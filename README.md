@@ -12,7 +12,7 @@
 
 **10% of the final grade**
 
-You can fin on this link the [report](/milestone_1/Milestone_1.md) relative to the milestone 1.
+You can find on this link the [report](/milestone_1/Milestone_1.md) relative to the milestone 1.
 
 ## Milestone 2 (26th April, 5pm)
 
