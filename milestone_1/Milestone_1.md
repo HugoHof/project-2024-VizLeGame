@@ -48,7 +48,17 @@ By our visulizations, we would like to show that the video games are defined by 
 
 A first processing of the dataset has been realized in this [notebook](/milestone_1/data_processing_games.ipynb). In a fist part, we first clean the dataset as explained in the previous part relative to the dataset.
 
-We use the `pandas` and `numpy` libraries to load and procees the data. We also used `matplotlib`to relaized the graphs displayed bellow. You can find bellow some graphs that present some aspects of our dataset and it can give an idea of how we can use this dataset to relized some vizualization relative to our subject.
+We use the `pandas` and `numpy` libraries to load and procees the data. We also used `matplotlib` to relaized the graphs displayed bellow. You can find bellow some graphs that present some aspects of our dataset and it can give an idea of how we can use this dataset to relized some vizualization relative to our subject.
+
+![genre pie chart](image/genre_pie_chart.png)
+
+![games per year](image/game_per_year.png)
+
+![top 20 platforms](image/top_20_platforms.png)
+
+![top 20 developers](image/top_20_developers.png)
+
+![top 20 game plays](image/top_20_games_plays.png)
 
 
 ### Related work
