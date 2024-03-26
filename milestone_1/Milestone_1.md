@@ -38,7 +38,7 @@ In our visualizations, we would like to show how each year more and more video g
 
 > - Think of an overview for the project, your motivation, and the target audience.
 
-By our visulizations, we would like to show that the video games are defined by their deversities at different scales. 
+By our visulizations, we would like to show that the video games are defined by their deversities at different scales.
 
 
 ### Exploratory Data Analysis
@@ -50,21 +50,50 @@ A first processing of the dataset has been realized in this [notebook](/mileston
 
 We use the `pandas` and `numpy` libraries to load and procees the data. We also used `matplotlib` to relaized the graphs displayed bellow. You can find bellow some graphs that present some aspects of our dataset and it can give an idea of how we can use this dataset to relized some vizualization relative to our subject.
 
+# Genre Pie Chart
 ![genre pie chart](image/genre_pie_chart.png)
 
+*This provides an overview of the distribution of different genres of games.
+It can help identify popular genres, which might influence the preferences of developers, platforms, and players.*
+
+# Games Per Year
 ![games per year](image/game_per_year.png)
 
+*Shows the number of games released each year.
+Trends in game releases may correlate with shifts in genre popularity or technological advancements.*
+
+# Top 20 Platforms
 ![top 20 platforms](image/top_20_platforms.png)
 
+*Identifies the platforms (such as consoles, PC, mobile) where games are being played.
+Platforms can dictate the type of games available due to hardware capabilities and audience demographics.*
+
+# Top 20 Developers
 ![top 20 developers](image/top_20_developers.png)
 
+*Lists the most successful game developers based on various metrics like sales, critical acclaim, or market share.
+These developers often have a significant influence on the types of games produced and may specialize in certain genres or platforms.*
+
+# Top 20 Game Plays
 ![top 20 game plays](image/top_20_games_plays.png)
+
+*Reflects the popularity of specific games based on the number of plays or downloads.
+Games with high play counts may indicate strong developer support, effective marketing, or exceptional gameplay.*
 
 
 ### Related work
 
 
 > - What others have already done with the data?
+
+Other have used this data for ml training to predict the [ratings](https://www.kaggle.com/code/dima806/rating-prediction-ml-shap) or the [success](https://www.kaggle.com/code/xreina8/predicting-video-game-success-a-machine-l-appr) of future videogames.
+
 > - Why is your approach original?
+
+We want to show the success of video games over the years. The video games are developed for specific platforms. It is interseting to show which platforms was the more popular on a given period. The video games are also caracterize by their genres. There are multiple genre of video games and we want to show the evolution of the genre over the years and how the genre are partitioned. we can also linked genre to developers to see wether they stick to some genre or have a wide variety of genre.
+
 > - What source of inspiration do you take? Visualizations that you found on other websites or magazines (might be unrelated to your data).
+
+
+
 > - In case you are using a dataset that you have already explored in another context (ML or ADA course, semester project...), you are required to share the report of that work to outline the differences with the submission for this class.
