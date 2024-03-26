@@ -56,4 +56,3 @@ Please, fill the following sections about your project.
 
 - < 24h: 80% of the grade for the milestone
 - < 48h: 70% of the grade for the milestone
-
