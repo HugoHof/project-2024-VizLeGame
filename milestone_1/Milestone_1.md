@@ -34,9 +34,11 @@ In 1962, the first video game, Spacewar!, was created. Since this date, each yea
 
 > - What am I trying to show with my visualization?
 
-In our visualizations, we would like to show how each year more and more video games are released. We also would like to show the diversity of the genre, the repartition of the games on the platforms and that these games are develop by many different developer.
+In our visualizations, we would like to show how each year more and more video games are released. We also would like to show the diversity of the genre, the repartition of the games on the platforms and that these games are develop by many different developers.
 
 > - Think of an overview for the project, your motivation, and the target audience.
+
+By our visulizations, we would like to show that the video games are defined by their deversities at different scales. 
 
 
 ### Exploratory Data Analysis
