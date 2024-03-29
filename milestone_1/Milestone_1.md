@@ -38,17 +38,24 @@ In our visualizations, we would like to show how each year more and more video g
 
 > - Think of an overview for the project, your motivation, and the target audience.
 
-With our visulizations, we would like to show that the video games are defined by their deversities at different scales.
+We would like to study the video games in a global context. Our visualization will be seperated in three distinct parts:
+- genres of the videogames along the years
+- platforms of the videogames along the years
+- developers of the videogames and their games developed along the years
+Finally, a last part will be dedicated to a correlation between these three parts.
 
+The target audiance would be anyone interseted in or want to learn about videogames, how it is caracterized and the evolution of this market.
+
+By using our visualiztion, users will be able to see this evolution and be able to correlate the caracteristics of the videogames that will be developed in the following years.
 
 ## Exploratory Data Analysis
 
 > Pre-processing of the data set you chose
 > - Show some basic statistics and get insights about the data
 
-A first processing of the dataset has been realized in this [notebook](/milestone_1/data_processing_games.ipynb). In a fist part, we first clean the dataset as explained in the previous part relative to the dataset.
+A first processing of the dataset has been realized in this [notebook](/milestone_1/data_processing_games.ipynb). In a fist part, we cleaned the dataset as explained in the previous part relative to the dataset.
 
-We use the `pandas` and `numpy` libraries to load and procees the data. We also used `matplotlib` to relaized the graphs displayed bellow. You can find bellow some graphs that present some aspects of our dataset and it can give an idea of how we can use this dataset to relized some vizualization relative to our subject.
+We use the `pandas` and `numpy` libraries to load and process the data. We also used `matplotlib` to realize the graphs displayed below. You can find below some graphs that present some aspects of our dataset and it can give an idea of how we can use this dataset for some vizualization relative to our subject.
 
 ### Genre Pie Chart
 ![genre pie chart](image/genre_pie_chart.png)
@@ -66,19 +73,22 @@ Trends in game releases may correlate with shifts in genre popularity or technol
 ![top 20 platforms](image/top_20_platforms.png)
 
 *Identifies the platforms (such as consoles, PC, mobile) where games are being played.
-Platforms can dictate the type of games available due to hardware capabilities and audience demographics.*
+The number of games developed on each platforms highlights the popularity of the platforms.*
 
 ### Top 20 Developers
 ![top 20 developers](image/top_20_developers.png)
 
-*Lists the most successful game developers based on various metrics like sales, critical acclaim, or market share.
-These developers often have a significant influence on the types of games produced and may specialize in certain genres or platforms.*
+*Lists the most successful game developers based on the number of games developed.
+These developers may have an influence on the types of games produced and may also specialize in certain genres or platforms.*
 
 ### Top 20 Game Plays
 ![top 20 game plays](image/top_20_games_plays.png)
 
-*Reflects the popularity of specific games based on the number of plays or downloads.
-Games with high play counts may indicate strong developer support, effective marketing, or exceptional gameplay.*
+*Reflects the popularity of specific games based on the number of plays.
+Games with high play counts could indicate a certain popularity.*
+
+# Remarks: 
+this is an example of the visualizations we could do, what we want to show is the correlation between the genre, developers, platforms and/or number of players as the years pass.
 
 
 ## Related work
@@ -90,6 +100,8 @@ Other have used this data for ml training to predict the [ratings](https://www.k
 
 > - Why is your approach original?
 
-We want to show the success of video games over the years. The video games are developed for specific platforms. It is interesting to show which platforms was the more popular on a given period. The video games are also caracterize by their genres. There are multiple genre of video games and we want to show the evolution of the genre over the years and how the genre are partitioned. we can also linked genre to developers to see wether they stick to some genre or have a wide variety of genre.
+We want to show the success of video games over the years. The video games are developed for specific platforms. It is interesting to show which platforms was the more popular on a given period. The video games are also caracterize by their genres. There are multiple genre of video games and we want to show the evolution of the genre over the years and how the genre are partitioned. We can also linked genre to developers to see wether they stick to some genre or have a wide variety of genre.
 
 > - What source of inspiration do you take? Visualizations that you found on other websites or magazines (might be unrelated to your data).
+
+We took inspirations from previous years projects and we wanted to have a dataset from videogames. we would like to work on vizualizations based on video games since this domain quickly evlolved during this last 20 years. We would like to understand the cacteristics of this evalution.
