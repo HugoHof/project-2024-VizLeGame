@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" >
+    <title>VizLeGame</title>
+    <link rel="icon" type="image/x-icon" href="/images/icon.png">
+
+    
+    <!--our CSS-->
+    <style src="css/style.css"></style>
+    
+    <!--full page-->
+    <link rel="stylesheet" href="lib/fullpage.min.css">
+
+    <!--D3.js-->
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    
+</head>
+<body>
+
+    <div id="fullpage">
+        <!--Homepage-->
+        <div class="section">Homepage</div>
+        <!--Introduction-->
+        <div class="section">Introduction</div>
+        <!--Genre Trends-->
+        <div class="section">Genre trends</div>
+        <!--Platforms-->
+        <div class="section">Platforms</div>
+        <!--Studio-->
+        <div class="section">Studio</div>
+        <!--Interactive diagram (bubbles)-->
+        <div class="section">Interactive diagram</div>
+        <!--Conclusion-->
+        <div class="section">Conclusion</div>
+        <!--About us-->
+        <div class="section">About us</div>
+    </div>
+
+    <!--fullpage.js-->
+    <script src="lib/fullpage.min.js"></script>
+    <script>
+        new fullpage('#fullpage', {
+        // Optional configurations can be added here
+        navigation: true, // Adds navigation dots
+        navigationTooltips: ['Home', 'Introduction', 'Genre trends', 'Platforms', 'Studio', 'Interactive diagram', 'Conclusion', 'About us'], // Adds name to navigation dots
+        sectionsColor: ['', '', '', '', '', '', '', '#FFFFFF'] // Background colors for each section
+        });
+    </script>
+    <!--Remove fullpage watermark-->
+    <style>.fp-watermark {
+        display: none;
+    }
+    </style>
+</body>
+</html>
