@@ -8,16 +8,16 @@
 }
 /* left side of the interactive graph */
 .leftSankey {
-    float: left; 
-    width: 70%; 
-    height: 100vh; 
+    float: left;
+    width: 70%;
+    height: 100%;
     background-color: aquamarine;
 }
 /* right side of the interactive graph */
 .rightSankey {
     float: right;
-    width: 30%; 
-    height: 100vh; 
+    width: 30%;
+    height: 100%;
     background-color: blueviolet;
 }
 /* style for dropdown menu of top3 game */
@@ -30,6 +30,7 @@
     border-radius: 5px;
     cursor: pointer;
 }
+/* div parent of all section */
 /* h1 */
 h1 {
     text-align: center; /* put the text in the center */
