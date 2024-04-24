@@ -7,34 +7,115 @@
 
     
     <!--our CSS-->
-    <style src="css/style.css"></style>
+    <link rel="stylesheet" href="css/style.css"></style>
     
     <!--full page-->
     <link rel="stylesheet" href="lib/fullpage.min.css">
 
     <!--D3.js-->
     <script src="https://d3js.org/d3.v4.min.js"></script>
+    <!--INTRODUCTION PAGE-->
+    <script src="js/introduction/introduction.js"></script>
     
 </head>
 <body>
 
     <div id="fullpage">
         <!--Homepage-->
-        <div class="section">Homepage</div>
+        <div class="section" id="homepage"> 
+            <h1 class="homepageTitle">How is the video game spread across different genres and platforms and are develloped by a large number of editors ?</h1>
+            <p>In 1962, the first video game, Spacewar!, was created. Since this date, each year more and more 
+                video games are developed. The studios that developed these games are spread around the world. 
+                The video games are defined by a multiple of genres and are developed to be used on different platforms.</p>
+        </div>
         <!--Introduction-->
-        <div class="section">Introduction</div>
+        <div class="section" id="intro_page">
+            <h1 class="sectionTitle">
+                Introduction
+            </h1>
+            <p>
+                A small introduction to our vizualization. Ex: Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
+                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Massa tempor nec feugiat nisl pretium fusce id velit ut. 
+                Molestie ac feugiat sed lectus vestibulum mattis ullamcorper velit. Fames ac turpis egestas maecenas pharetra. Ac odio tempor 
+                orci dapibus ultrices in iaculis nunc. Nisi est sit amet facilisis. Et netus et malesuada fames ac turpis egestas integer. Elit 
+                duis tristique sollicitudin nibh. Viverra adipiscing at in tellus integer feugiat. Condimentum lacinia quis vel eros donec ac odio 
+                tempor orci. Egestas purus viverra accumsan in nisl nisi scelerisque. Adipiscing tristique risus nec feugiat in fermentum posuere. 
+                A arcu cursus vitae congue mauris rhoncus. Aliquam vestibulum morbi blandit cursus.
+            </p>
+
+            <div id="intro_stats" style="display: flex; flex-direction: row; justify-content: center;">
+                <div id="genre_intro_stats" class = "statsPresentation" style ="display: grid;">
+                    <div id="genres_intro_stats_number" class="dynamicNumber"></div>
+                    <div id="genres_intro_stats_title" class="dynamicNumberTitle">
+                        <p><b>Genres</b></p>
+                    </div>
+                </div>
+    
+                <div id="platforms_intro_stats" class = "statsPresentation" style ="display: grid;">
+                    <div id="platforms_intro_stats_number" class="dynamicNumber"></div>
+                    <div id="platforms_intro_stats_title" class="dynamicNumberTitle">
+                        <p><b>Platforms</b></p>
+                    </div>
+                </div>
+    
+                <div id="editors_intro_stats" class = "statsPresentation" style ="display: grid;">
+                    <div id="editors_intro_stats_number" class="dynamicNumber"></div>
+                    <div id="editors_intro_stats_title" class="dynamicNumberTitle">
+                        <p><b>Editors</b></p>
+                    </div>
+                </div>
+    
+                <div id="games_intro_stats" class = "statsPresentation" style ="display: grid;">
+                    <div id="games_intro_stats_number" class="dynamicNumber"></div>
+                    <div id="games_intro_stats_title" class="dynamicNumberTitle">
+                        <p><b>Games</b></p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
         <!--Genre Trends-->
-        <div class="section">Genre trends</div>
+        <div class="section">
+            <h1 class="sectionTitle">
+                Game are caracterized by a large diversity of Genres
+            </h1>
+            <img src="milestone_2/graphs_sketchs/genres_diversity_sketch.jpeg" sizes=80%>
+        </div>
         <!--Platforms-->
-        <div class="section">Platforms</div>
+        <div class="section">
+            <h1 class="sectionTitle">
+                Games are developed for different platforms
+            </h1>
+        </div>
         <!--Studio-->
-        <div class="section">Studio</div>
+        <div class="section">
+            <h1 class="sectionTitle">
+                Games are developed by many developers along the years
+            </h1>
+        </div>
         <!--Interactive diagram (bubbles)-->
         <div class="section">Interactive diagram</div>
         <!--Conclusion-->
-        <div class="section">Conclusion</div>
+        <div class="section">
+            <h1 class="sectionTitle">
+                Conclusion
+            </h1>
+            <p>
+                A conclusion to the story telling of our vizualization. Ex: Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
+                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Massa tempor nec feugiat nisl pretium fusce id velit ut. 
+                Molestie ac feugiat sed lectus vestibulum mattis ullamcorper velit. Fames ac turpis egestas maecenas pharetra. Ac odio tempor 
+                orci dapibus ultrices in iaculis nunc. Nisi est sit amet facilisis. Et netus et malesuada fames ac turpis egestas integer. Elit 
+                duis tristique sollicitudin nibh. Viverra adipiscing at in tellus integer feugiat. Condimentum lacinia quis vel eros donec ac odio 
+                tempor orci. Egestas purus viverra accumsan in nisl nisi scelerisque. Adipiscing tristique risus nec feugiat in fermentum posuere. 
+                A arcu cursus vitae congue mauris rhoncus. Aliquam vestibulum morbi blandit cursus.
+            </p>
+        </div>
         <!--About us-->
-        <div class="section">About us</div>
+        <div class="section">
+            <h1 class="sectionTitle">
+                About us & Context
+            </h1>
+        </div>
     </div>
 
     <!--fullpage.js-->
@@ -44,9 +125,19 @@
         // Optional configurations can be added here
         navigation: true, // Adds navigation dots
         navigationTooltips: ['Home', 'Introduction', 'Genre trends', 'Platforms', 'Studio', 'Interactive diagram', 'Conclusion', 'About us'], // Adds name to navigation dots
-        sectionsColor: ['', '', '', '', '', '', '', '#FFFFFF'] // Background colors for each section
+        sectionsColor: ['', '', '', '', '', '', '', '#FFFFFF'], // Background colors for each section
+        verticalCentered: false,
+        scrollOverflow: false,
         });
     </script>
+
+<script>
+    displayNumberDynamically("#genres_intro_stats_number", 23, 2000);
+    displayNumberDynamically("#platforms_intro_stats_number", 175, 3000);
+    displayNumberDynamically("#editors_intro_stats_number", 12846, 5000);
+    displayNumberDynamically("#games_intro_stats_number", 26903, 6000);
+</script>
+
     <!--Remove fullpage watermark-->
     <style>.fp-watermark {
         display: none;
