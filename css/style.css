@@ -30,24 +30,21 @@
     border-radius: 5px;
     cursor: pointer;
 }
-/* the root container of the top 3 */
+/* the root container of the top games */
 .rankContainer {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
+    overflow: auto;
+    white-space: nowrap;
     width: 100%;
 }
-/* child of root container of the top 3 */
-.gameRankContainer {
-    width: 33%;
-    display: grid;
-    position: relative;
-}
-/* children where the game is displayed */
+/* child of root container of the top games */
 .gameContainer {
-    outline: 1px solid black;
-    width: 70%;
-    justify-self: center;
+    margin-left: 5px;
+    width: 33%;
+    display: inline-block;
+    align-content: center;
+}
+img {
+    object-fit: cover;
 }
 /* div parent of all section */
 /* h1 */
