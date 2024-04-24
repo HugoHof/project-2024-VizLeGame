@@ -6,19 +6,30 @@
 #fp-nav ul li .fp-tooltip {
     color: black;
 }
+/* for both sides of interactive graph */
+.interactive {
+    display: grid;
+    align-content: space-between;
+}
 /* left side of the interactive graph */
-.leftSankey {
+.leftInteractive {
     float: left;
     width: 60%;
     height: 100%;
     background-color: #fff;
 }
 /* right side of the interactive graph */
-.rightSankey {
+.rightInteractive {
     float: right;
     width: 40%;
     height: 100%;
     background-color: #d0d0d0;
+}
+/* bottom of the interactive */
+.bottomInteractive {
+    display: grid;
+    padding-inline: 5px;
+    grid-template-areas: 'left right';
 }
 /* style for dropdown menu of top3 game */
 .metricSelector {
@@ -38,12 +49,14 @@
 }
 /* child of root container of the top games */
 .gameContainer {
-    margin-left: 5px;
+    padding-inline: 5px;
     width: 33%;
     display: inline-block;
     align-content: center;
 }
 img {
+    height: 100%;
+    width: 100%;
     object-fit: cover;
 }
 /* div parent of all section */

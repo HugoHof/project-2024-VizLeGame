@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" >
     <title>VizLeGame</title>
-    <link rel="icon" type="image/x-icon" href="/images/icon.png">
+    <link rel="icon" type="image/x-icon" href="images/icon.png">
     
     <!--full page-->
     <link rel="stylesheet" href="lib/fullpage.min.css">
@@ -16,12 +16,9 @@
 
     <!--INTRODUCTION PAGE-->
     <script src="js/introduction/introduction.js"></script>
-    <script>
-        displayNumberDynamically("#genres_intro_stats_number", 23, 2000);
-        displayNumberDynamically("#platforms_intro_stats_number", 175, 3000);
-        displayNumberDynamically("#editors_intro_stats_number", 12846, 5000);
-        displayNumberDynamically("#games_intro_stats_number", 26903, 6000);
-    </script>
+
+    <!--Interactive page-->
+    <script src="js/Interactive/interactiveDiagram.js"></script>
     
 </head>
 <body>
@@ -79,13 +76,23 @@
                 </div>
             </div>
 
+            <script>
+                displayNumberDynamically("#genres_intro_stats_number", 23, 2000);
+                displayNumberDynamically("#platforms_intro_stats_number", 175, 3000);
+                displayNumberDynamically("#editors_intro_stats_number", 12846, 5000);
+                displayNumberDynamically("#games_intro_stats_number", 26903, 6000);
+            </script>
+
         </div>
         <!--Genre Trends-->
         <div class="section">
             <h1 class="sectionTitle">
                 Game are caracterized by a large diversity of Genres
             </h1>
-            <img src="milestone_2/graphs_sketchs/genres_diversity_sketch.jpeg" width="90%" height="90%">
+
+            <div style="max-width: 75%; max-height: 75%;">
+                <img src="milestone_2/graphs_sketchs/genres_diversity_sketch.jpeg">
+            </div>
         </div>
         <!--Platforms-->
         <div class="section">
@@ -98,18 +105,31 @@
             <h1 class="sectionTitle">
                 Games are developed by many developers along the years
             </h1>
-            <img src="milestone_2/graphs_sketchs/developer_diversity_sketch.jpeg" width="90%" height="90%">
+            <div style="max-width: 75%; max-height: 75%;">
+                <img src="milestone_2/graphs_sketchs/developer_diversity_sketch.jpeg">
+            </div>
         </div>
-        <!--Interactive diagram (bubbles)-->
+        <!--Interactive diagram-->
         <div class="section">
             
-            <div class="leftSankey" style="display: grid;">
+            <div class="interactive leftInteractive">
                 <h1 class= "sectionTitle">Overview</h1>
-
-                <p style="font-size: xx-large; text-align: center;"><b><i>This is where the sankey diagram will be</i></b></p>
+                <div>
+                    <img src="milestone_2/graphs_sketchs/Interactive_sketch.png">
+                </div>
+                <div class="bottomInteractive">
+                    <h2><input id="maxItems" type="number" style="width: auto; text-align: end;" min="3" max="20" value="3"> Max items</h2>
+                    <div style="width: 100%;">
+                        <input oninput="onTimeChange()" id="timeSlider" type="range" min="1976" max="2023" step="1" style="width: 100%;">
+                        <div style="display: grid; grid-template-areas: 'left right'; justify-content: end;">
+                            <h2 id="timeText" style="text-align: end;">2000</h2>
+                            <button id="timeButton" onclick="onTimePlay()" style="width: 6em; height: 2em; align-self: center;">play</button>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <div class="rightSankey" style="display: grid;">
+            <div class="interactive rightInteractive">
                 
                 <div style="display: block; max-height: 50%;">
                     <h2>Description: ###</h2>
@@ -137,41 +157,41 @@
                         <!--placeholder-->
                         <div class="gameContainer">
                             <div style="display: grid;">
-                                <img style="width: 100%; height: 100%;" src="https://upload.wikimedia.org/wikipedia/en/b/b5/MarioKart8Boxart.jpg"></img>
+                                <img src="https://upload.wikimedia.org/wikipedia/en/b/b5/MarioKart8Boxart.jpg"></img>
                                 <a style="text-align: center;">#1</a>
                             </div>
                         </div>
                         <div class="gameContainer">
                             <div style="display: grid;">
-                                <img style="width: 100%; height: 100%;" src="https://upload.wikimedia.org/wikipedia/en/b/b5/MarioKart8Boxart.jpg"></img>
+                                <img src="https://upload.wikimedia.org/wikipedia/en/b/b5/MarioKart8Boxart.jpg"></img>
                                 <a style="text-align: center;">#2</a>
                             </div>
                         </div>
                         <div class="gameContainer">
                             <div style="display: grid;">
-                                <img style="width: 100%; height: 100%;" src="https://upload.wikimedia.org/wikipedia/en/b/b5/MarioKart8Boxart.jpg"></img>
+                                <img src="https://upload.wikimedia.org/wikipedia/en/b/b5/MarioKart8Boxart.jpg"></img>
                                 <a style="text-align: center;">#3</a>
                             </div>
                         </div>
                         <div class="gameContainer">
                             <div style="display: grid;">
-                                <img style="width: 100%; height: 100%;" src="https://upload.wikimedia.org/wikipedia/en/b/b5/MarioKart8Boxart.jpg"></img>
+                                <img src="https://upload.wikimedia.org/wikipedia/en/b/b5/MarioKart8Boxart.jpg"></img>
                                 <a style="text-align: center;">#4</a>
                             </div>
                         </div>
                         <div class="gameContainer">
                             <div style="display: grid;">
-                                <img style="width: 100%; height: 100%;" src="https://upload.wikimedia.org/wikipedia/en/b/b5/MarioKart8Boxart.jpg"></img>
+                                <img src="https://upload.wikimedia.org/wikipedia/en/b/b5/MarioKart8Boxart.jpg"></img>
                                 <a style="text-align: center;">#5</a>
                             </div>
                         </div>
                         <div class="gameContainer">
                             <div style="display: grid;">
-                                <img style="width: 100%; height: 100%;" src="https://upload.wikimedia.org/wikipedia/en/b/b5/MarioKart8Boxart.jpg"></img>
+                                <img src="https://upload.wikimedia.org/wikipedia/en/b/b5/MarioKart8Boxart.jpg"></img>
                                 <a style="text-align: center;">#6</a>
                             </div>
                         </div>
-
+                        <!--placeholder end-->
                         
                     </div>
                 </div>
