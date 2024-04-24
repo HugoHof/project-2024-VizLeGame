@@ -7,6 +7,10 @@ setInterval(update, 1000);
 function update() {
     if (isPlaying) {
         const currTime = document.getElementById("timeSlider").value;
+        if (currTime == document.getElementById("timeSlider").max) {
+            onTimePlay();
+            return;
+        }
         document.getElementById("timeSlider").value = Number(currTime) + 1;
         document.getElementById("timeText").innerHTML = Number(currTime) + 1;
     }
