@@ -13,8 +13,15 @@
 
     <!--D3.js-->
     <script src="https://d3js.org/d3.v4.min.js"></script>
+
     <!--INTRODUCTION PAGE-->
     <script src="js/introduction/introduction.js"></script>
+    <script>
+        displayNumberDynamically("#genres_intro_stats_number", 23, 2000);
+        displayNumberDynamically("#platforms_intro_stats_number", 175, 3000);
+        displayNumberDynamically("#editors_intro_stats_number", 12846, 5000);
+        displayNumberDynamically("#games_intro_stats_number", 26903, 6000);
+    </script>
     
 </head>
 <body>
@@ -193,12 +200,5 @@
         sectionsColor: ['', '', '', '', '', '', '', '#FFFFFF'], // Background colors for each section
         });
     </script>
-
-<script>
-    displayNumberDynamically("#genres_intro_stats_number", 23, 2000);
-    displayNumberDynamically("#platforms_intro_stats_number", 175, 3000);
-    displayNumberDynamically("#editors_intro_stats_number", 12846, 5000);
-    displayNumberDynamically("#games_intro_stats_number", 26903, 6000);
-</script>
 </body>
 </html>
