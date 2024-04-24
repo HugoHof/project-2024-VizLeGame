@@ -2,6 +2,10 @@
 .fp-watermark {
     display: none;
 }
+/* fullpage tooltip names */
+#fp-nav ul li .fp-tooltip {
+    color: black;
+}
 /* left side of the interactive graph */
 .leftSankey {
     float: left; 
@@ -15,4 +19,26 @@
     width: 30%; 
     height: 100vh; 
     background-color: blueviolet;
+}
+/* style for dropdown menu of top3 game */
+.metricSelector {
+    padding-top: 3px;
+    padding-left: 5px;
+    font-size: large;
+    text-align: left;
+    border: 1px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+/* h1 */
+h1 {
+    text-align: center; /* put the text in the center */
+}
+/* h2 */
+h2 {
+    padding-inline: 20px;
+}
+/* p */
+p {
+    padding-inline: 20px;
 }
