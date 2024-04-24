@@ -1,3 +1,18 @@
-h1 {
-    text-align: center;
+/* remove fullpage watermark*/
+.fp-watermark {
+    display: none;
+}
+/* left side of the interactive graph */
+.leftSankey {
+    float: left; 
+    width: 70%; 
+    height: 100vh; 
+    background-color: aquamarine;
+}
+/* right side of the interactive graph */
+.rightSankey {
+    float: right;
+    width: 30%; 
+    height: 100vh; 
+    background-color: blueviolet;
 }

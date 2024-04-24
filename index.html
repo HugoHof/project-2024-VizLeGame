@@ -7,7 +7,7 @@
 
     
     <!--our CSS-->
-    <style src="css/style.css"></style>
+    <link rel="stylesheet" href="css/style.css"></style>
     
     <!--full page-->
     <link rel="stylesheet" href="lib/fullpage.min.css">
@@ -29,8 +29,18 @@
         <div class="section">Platforms</div>
         <!--Studio-->
         <div class="section">Studio</div>
-        <!--Interactive diagram (bubbles)-->
-        <div class="section">Interactive diagram</div>
+        <!--Interactive diagram sankey diagram-->
+        <div class="section">
+            
+            <div class="leftSankey">
+                <p>sankey graph</p>
+            </div>
+
+            <div class="rightSankey">
+                <p>description and top</p>
+            </div>
+
+        </div>
         <!--Conclusion-->
         <div class="section">Conclusion</div>
         <!--About us-->
@@ -47,10 +57,5 @@
         sectionsColor: ['', '', '', '', '', '', '', '#FFFFFF'] // Background colors for each section
         });
     </script>
-    <!--Remove fullpage watermark-->
-    <style>.fp-watermark {
-        display: none;
-    }
-    </style>
 </body>
 </html>
