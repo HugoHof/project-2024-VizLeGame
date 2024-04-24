@@ -31,15 +31,15 @@
         <!--Interactive diagram sankey diagram-->
         <div class="section">
             
-            <div class="leftSankey">
+            <div class="leftSankey" style="display: grid;">
                 <h1>Overview</h1>
 
-                <p>This is where the diagram will be</p>
+                <p style="font-size: xx-large; text-align: center;"><b><i>This is where the sankey diagram will be</i></b></p>
             </div>
 
             <div class="rightSankey">
                 
-                <div style="height: 25%;">
+                <div style="display: block;">
                     <h2>Description: ###</h2>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
                         sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
@@ -49,7 +49,7 @@
                     </p>
                 </div>
 
-                <div style="height: 75%;">
+                <div style="display: block;">
                     <h2>Top 3 games by 
                         <select class="metricSelector" id="metricSelector">
                             <option id="plays" selected="selected">plays</option>
@@ -59,6 +59,35 @@
                             <option id="reviews">reviews</option>
                         </select>
                     </h2>
+
+                    <div class="rankContainer">
+
+                        <div class="gameRankContainer" id="rank2" style="top: 20px;">
+                            <div class="gameContainer">
+                                <p style="padding: 2px;">Title:</p>
+                                <p style="padding: 2px;">genre:</p>
+                                <p style="padding: 2px;">Platforms:</p>
+                            </div>
+                            <p style="text-align: center;">#2</p>
+                        </div>
+                        <div class="gameRankContainer" id="rank1">
+                            <div class="gameContainer">
+                                <p style="padding: 2px;">Title:</p>
+                                <p style="padding: 2px;">genre:</p>
+                                <p style="padding: 2px;">Platforms:</p>
+                            </div>
+                            <p style="text-align: center;">#1</p>
+                        </div>
+                        <div class="gameRankContainer" id="rank3" style="top: 40px;">
+                            <div class="gameContainer">
+                                <p style="padding: 2px;">Title:</p>
+                                <p style="padding: 2px;">genre:</p>
+                                <p style="padding: 2px;">Platforms:</p>
+                            </div>
+                            <p style="text-align: center;">#3</p>
+
+                        </div>
+                    </div>
                 </div>
 
             </div>
