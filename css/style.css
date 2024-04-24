@@ -1,3 +1,56 @@
+/* remove fullpage watermark*/
+.fp-watermark {
+    display: none;
+}
+/* fullpage tooltip names */
+#fp-nav ul li .fp-tooltip {
+    color: black;
+}
+/* left side of the interactive graph */
+.leftSankey {
+    float: left;
+    width: 60%;
+    height: 100%;
+    background-color: #fff;
+}
+/* right side of the interactive graph */
+.rightSankey {
+    float: right;
+    width: 40%;
+    height: 100%;
+    background-color: #d0d0d0;
+}
+/* style for dropdown menu of top3 game */
+.metricSelector {
+    padding-top: 3px;
+    padding-left: 5px;
+    font-size: large;
+    text-align: left;
+    border: 1px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+/* the root container of the top 3 */
+.rankContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+}
+/* child of root container of the top 3 */
+.gameRankContainer {
+    width: 33%;
+    display: grid;
+    position: relative;
+}
+/* children where the game is displayed */
+.gameContainer {
+    outline: 1px solid black;
+    width: 70%;
+    justify-self: center;
+}
+/* div parent of all section */
+/* h1 */
 h1 {
     text-align: center;
 }
@@ -9,7 +62,6 @@ h1 {
 .sectionTitle {
     text-align: left;
     font-size: 40px;
-    padding: 50px;
     margin: 0px 0px 0px 0px;
     padding: 0px;
     padding-left: 10px;
@@ -37,4 +89,8 @@ p {
     box-sizing: border-box;
     padding: 5px;
     margin: 0px 20px 0px 20px;
+}
+/* h2 */
+h2 {
+    padding-inline: 20px;
 }
