@@ -17,9 +17,10 @@ d3.json("data/games_by_year_and_genre.json", function(error, data) {
     }
     // set default value of year and nb genres displayed
     localStorage.setItem("year_genres", 2000)
-    localStorage.setItem("nb_genres_displayed", 10)
+    localStorage.setItem("nb_genres_displayed", 23)
     //draw initial graph
     drawGraph(data)
+    
     // retrive the slider of the years
     var sliderOutput = document.getElementById("year_genre_displayed")
     var yearSlider = document.getElementById("year_genre_slider")
@@ -29,11 +30,23 @@ d3.json("data/games_by_year_and_genre.json", function(error, data) {
             localStorage.setItem("year_genres", this.value)
             drawGraph(data);
         }
+
     // retrive the slector of the number of genres displayed
     var nbGenresSelector= document.getElementById("nb_genre_displayed_selector")
         .oninput = function() {
             localStorage.setItem("nb_genres_displayed", this.value);
             drawGraph(data);
+        }
+    
+    //default criteria 
+    localStorage.setItem("top_3_genres_criteria", "Plays")
+    // extract the ranking top-3 games criteria
+    var criteria = document.getElementById("genres_games_top_3_criteria")
+        .oninput = function() {
+            // save the new criteria
+            localStorage.setItem("top_3_genres_criteria", this.value)
+            //update the top-3 ranking
+            updateTop3GamesGenreRanking(data)
         }
 })
 
@@ -53,6 +66,10 @@ function drawGraph(data) {
     // select only the nbItemsDisplayed first elements
     const startIndex = Math.min(graphData.length, nbItemsDisplayed)
     graphData = graphData.slice(graphData.length-startIndex, graphData.length)
+
+    // edit the title of the graph
+    document.getElementById("genre_graph_title")
+        .textContent = "Number of Video Games by Genre in "+String(year)
 
     // remove past graph
     barChart.selectAll("*").remove()
@@ -90,23 +107,37 @@ function drawGraph(data) {
         .style("stroke-dasharray", "3 3");
 
     // create the bars
-    barChart.selectAll(".bar")
-    .data(graphData)
-    .enter().append("rect")
-    .attr("class", "bar")
-    .attr("y", function (elem) { return y(elem.Genre); })
-    .attr("height", y.bandwidth())
-    .attr("x", 0)
-    .attr("width", function (elem) { return x(elem.Number_Of_Games); })
-    .style("fill", '#96a5b9')
+    var bars = barChart.selectAll(".bar")
+        .data(graphData)
+        .enter().append("rect")
+        .attr("class", "bar")
+        .attr("y", function (elem) { return y(elem.Genre); })
+        .attr("height", y.bandwidth())
+        .attr("x", 0)
+        .attr("width", function (elem) { return x(elem.Number_Of_Games); })
+        .style("fill", '#96a5b9')
+    
+    //add click listner on bar
+    bars.on("click", function(elem) { 
+        // reset the color of all the bars
+        barChart.selectAll(".bar").style("fill", '#96a5b9')
+        // change the color of the bar
+        d3.select(this).style("fill", '#003366')
+        // save the genre selected
+        localStorage.setItem("genre_selected", elem.Genre)
+        updateGenreDescription(); 
+        //save the new list of games displayed in the top-3 ranking
+        updateTop3GamesGenreRanking(data);
+        return;
+    });
 
     // add the x and y axes to the bar chart
     barChart.append('g')
-    .attr("class", "x axis")
-    .style("font-size", "10px")
-    .attr("transform", "translate(0," + height + ")")
-    .call(xAxis)
-    .call(g => g.select(".domain").remove());
+        .attr("class", "x axis")
+        .style("font-size", "10px")
+        .attr("transform", "translate(0," + height + ")")
+        .call(xAxis)
+        .call(g => g.select(".domain").remove());
 
     barChart.append('g')
         .attr("class", "y axis")
@@ -131,4 +162,55 @@ function drawGraph(data) {
         .style("font-weight", "bold")
         .style("fill", "#3c3d28")
         .text( function (elem) { return elem.Number_Of_Games; });
+}
+
+function updateGenreDescription(genre) {
+    // edit the title of the description section
+    document.getElementById("genre_description_title")
+        .textContent = localStorage.getItem("genre_selected")+" Genre"
+}
+
+function updateTop3GamesGenreRanking(data) {
+    const rankingCriteria = localStorage.getItem("top_3_genres_criteria")
+    const yearSelected = localStorage.getItem("year_genres");
+    const genreSelected = localStorage.getItem("genre_selected");
+    const gamesArray = data[yearSelected][genreSelected]
+    // sort the games according to the criteria
+    gamesArray.sort(function (x, y) {
+        return d3.ascending(x[rankingCriteria], y[rankingCriteria]);
+    });
+    //slect the top 3
+    const startIndex = Math.max(0, gamesArray.length - 3);
+    const top3Games = gamesArray.slice(startIndex, gamesArray.length);
+    //update games rankings displaying
+    
+    //top 1
+    document.getElementById("games_genre_rank_1_title")
+        .textContent = "Title : "+top3Games[2]["Title"]
+    document.getElementById("games_genre_rank_1_genres")
+        .textContent = "Genre(s) : "+String(top3Games[2]["Genres"])
+    document.getElementById("games_genre_rank_1_developer")
+        .textContent = "Developer(s) : "+String(top3Games[2]["Developers"])
+    document.getElementById("games_genre_rank_1_platforms")
+        .textContent = "Platform(s) : "+String(top3Games[2]["Platforms"])
+
+    //top 2
+    document.getElementById("games_genre_rank_2_title")
+        .textContent = "Title : "+top3Games[1]["Title"]
+    document.getElementById("games_genre_rank_2_genres")
+        .textContent = "Genre(s) : "+String(top3Games[1]["Genres"])
+    document.getElementById("games_genre_rank_2_developer")
+        .textContent = "Developer(s) : "+String(top3Games[1]["Developers"])
+    document.getElementById("games_genre_rank_2_platforms")
+        .textContent = "Platform(s) : "+String(top3Games[1]["Platforms"])
+
+    //top 3
+    document.getElementById("games_genre_rank_3_title")
+        .textContent = "Title : "+top3Games[0]["Title"]
+    document.getElementById("games_genre_rank_3_genres")
+        .textContent = "Genre(s) : "+String(top3Games[0]["Genres"])
+    document.getElementById("games_genre_rank_3_developer")
+        .textContent = "Developer(s) : "+String(top3Games[0]["Developers"])
+    document.getElementById("games_genre_rank_3_platforms")
+        .textContent = "Platform(s) : "+String(top3Games[0]["Platforms"])
 }

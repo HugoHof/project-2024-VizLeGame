@@ -103,7 +103,7 @@
                             <option value="15">15</option>
                             <option value="18">18</option>
                             <option value="21">21</option>
-                            <option value="23">All</option>
+                            <option value="23" selected="selected">All</option>
                         </select>
                     </div>
                 </div>
@@ -111,52 +111,51 @@
                 <div class="rightGenresSection">
                     
                     <div style="display: block;">
-                        <h2>Description: ###</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
-                            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-                            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-                            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
-                            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                        <h2 class="genreDescriptivePart" id="genre_description_title">Please Select a Genre</h2>
+                        <p>Click on a bar on the bar chart diagram to see some informations relative to the genre selected.
                         </p>
                     </div>
 
                     <div style="display: block;">
-                        <h2>Top 3 games by 
-                            <select class="metricSelector" id="metricSelector">
-                                <option id="plays" selected="selected">plays</option>
-                                <option id="ratings">ratings</option>
-                                <option id="playing">playing</option>
-                                <option id="wishlist">wishlist</option>
-                                <option id="reviews">reviews</option>
-                            </select>
-                        </h2>
+                        <h2>Top 3 games</h2>
+
+                        <label for="genres_games_top_3_criteria">Ranking in fuction of the :</label>
+
+                        <select class="metricSelector" id="genres_games_top_3_criteria">
+                            <option value="Plays" selected="selected">Number of Players</option>
+                            <option value="Rating">Average Game's Review Rating</option>
+                            <option value="Playing">Number of Games Downloaded</option>
+                            <option value="Wishlist">Number of Games present in the users wishlist</option>
+                            <option value="Reviews">Number of Reviews</option>
+                        </select>
 
                         <div class="rankContainer">
-
-                            <div class="gameRankContainer" id="rank2" style="top: 20px;">
+                            <div class="gameRankContainer" id="games_genre_rank_2" style="top: 20px;">
                                 <div class="gameContainer">
-                                    <p style="padding: 2px;">Title:</p>
-                                    <p style="padding: 2px;">genre:</p>
-                                    <p style="padding: 2px;">Platforms:</p>
+                                    <p style="padding: 2px;" id = "games_genre_rank_2_title">Title:</p>
+                                    <p style="padding: 2px;" id = "games_genre_rank_2_genres">Title:</p>
+                                    <p style="padding: 2px;" id = "games_genre_rank_2_developer">genre:</p>
+                                    <p style="padding: 2px;" id = "games_genre_rank_2_platforms">Platforms:</p>
                                 </div>
                                 <p style="text-align: center;">#2</p>
                             </div>
-                            <div class="gameRankContainer" id="rank1">
+                            <div class="gameRankContainer" id="games_genre_rank_1">
                                 <div class="gameContainer">
-                                    <p style="padding: 2px;">Title:</p>
-                                    <p style="padding: 2px;">genre:</p>
-                                    <p style="padding: 2px;">Platforms:</p>
+                                    <p style="padding: 2px;" id = "games_genre_rank_1_title">Title:</p>
+                                    <p style="padding: 2px;" id = "games_genre_rank_1_genres">Title:</p>
+                                    <p style="padding: 2px;" id = "games_genre_rank_1_developer">genre:</p>
+                                    <p style="padding: 2px;" id = "games_genre_rank_1_platforms">Platforms:</p>
                                 </div>
                                 <p style="text-align: center;">#1</p>
                             </div>
-                            <div class="gameRankContainer" id="rank3" style="top: 40px;">
+                            <div class="gameRankContainer" id="games_genre_rank_3" style="top: 40px;">
                                 <div class="gameContainer">
-                                    <p style="padding: 2px;">Title:</p>
-                                    <p style="padding: 2px;">genre:</p>
-                                    <p style="padding: 2px;">Platforms:</p>
+                                    <p style="padding: 2px;" id = "games_genre_rank_3_title">Title:</p>
+                                    <p style="padding: 2px;" id = "games_genre_rank_3_genres">Title:</p>
+                                    <p style="padding: 2px;" id = "games_genre_rank_3_developer">genre:</p>
+                                    <p style="padding: 2px;" id = "games_genre_rank_3_platforms">Platforms:</p>
                                 </div>
                                 <p style="text-align: center;">#3</p>
-
                             </div>
                         </div>
                     </div>

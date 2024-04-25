@@ -124,3 +124,13 @@ h2 {
     font-size: 30px;
     margin: 0px 0px 0px 0px;
 }
+
+/* title of the genres descriptive part */
+.genreDescriptivePart {
+    text-align: left;
+    padding: 0px;
+    padding-left: 10px;
+    font-size: 30px;
+    margin: 0px 0px 0px 0px;
+}
+
