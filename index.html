@@ -16,12 +16,6 @@
 
     <!--INTRODUCTION PAGE-->
     <script src="js/introduction/introduction.js"></script>
-    <script>
-        displayNumberDynamically("#genres_intro_stats_number", 23, 2000);
-        displayNumberDynamically("#platforms_intro_stats_number", 175, 3000);
-        displayNumberDynamically("#editors_intro_stats_number", 12846, 5000);
-        displayNumberDynamically("#games_intro_stats_number", 26903, 6000);
-    </script>
     
 </head>
 <body>
@@ -85,7 +79,14 @@
             <h1 class="sectionTitle">
                 Game are caracterized by a large diversity of Genres
             </h1>
-            <img src="milestone_2/graphs_sketchs/genres_diversity_sketch.jpeg" width="90%" height="90%">
+            <div id="genres_bar_chart"></div>
+            <div id="genres_bar_chart"></div>
+            <div class="slider_divider">
+                <div class="year_sider_displayed">
+                    <span id="year_genre_displayed">2000</span>
+                </div>
+                <input type="range" min="1954" max="2023" value="2000" class="slider" id="year_genre_slider">
+            </div>
         </div>
         <!--Platforms-->
         <div class="section">
@@ -200,5 +201,14 @@
         sectionsColor: ['', '', '', '', '', '', '', '#FFFFFF'], // Background colors for each section
         });
     </script>
+    <!--Introduction dynamic statistics displaying-->
+    <script>
+        displayNumberDynamically("#genres_intro_stats_number", 23, 2000);
+        displayNumberDynamically("#platforms_intro_stats_number", 175, 3000);
+        displayNumberDynamically("#editors_intro_stats_number", 12846, 5000);
+        displayNumberDynamically("#games_intro_stats_number", 26903, 6000);
+    </script>
+    <!--Genres bar chart-->
+    <script src = "js/genresBarChart.js"></script>
 </body>
 </html>
