@@ -186,31 +186,31 @@ function updateTop3GamesGenreRanking(data) {
     
     //top 1
     document.getElementById("games_genre_rank_1_title")
-        .textContent = "Title : "+top3Games[2]["Title"]
+        .textContent = top3Games[2]["Title"]
     document.getElementById("games_genre_rank_1_genres")
-        .textContent = "Genre(s) : "+String(top3Games[2]["Genres"])
+        .innerHTML = String(top3Games[2]["Genres"]).replaceAll(',', "<br>");
     document.getElementById("games_genre_rank_1_developer")
-        .textContent = "Developer(s) : "+String(top3Games[2]["Developers"])
+        .innerHTML = String(top3Games[2]["Developers"]).replaceAll(',', "<br>");
     document.getElementById("games_genre_rank_1_platforms")
-        .textContent = "Platform(s) : "+String(top3Games[2]["Platforms"])
+        .innerHTML = String(top3Games[2]["Platforms"]).replaceAll(',', "<br>");
 
     //top 2
     document.getElementById("games_genre_rank_2_title")
-        .textContent = "Title : "+top3Games[1]["Title"]
+        .textContent = top3Games[1]["Title"]
     document.getElementById("games_genre_rank_2_genres")
-        .textContent = "Genre(s) : "+String(top3Games[1]["Genres"])
+        .innerHTML = String(top3Games[1]["Genres"]).replaceAll(',', "<br>");
     document.getElementById("games_genre_rank_2_developer")
-        .textContent = "Developer(s) : "+String(top3Games[1]["Developers"])
+        .innerHTML = String(top3Games[1]["Developers"]).replaceAll(',', "<br>");
     document.getElementById("games_genre_rank_2_platforms")
-        .textContent = "Platform(s) : "+String(top3Games[1]["Platforms"])
+        .innerHTML = String(top3Games[1]["Platforms"]).replaceAll(',', "<br>");
 
     //top 3
     document.getElementById("games_genre_rank_3_title")
-        .textContent = "Title : "+top3Games[0]["Title"]
+        .textContent = top3Games[0]["Title"]
     document.getElementById("games_genre_rank_3_genres")
-        .textContent = "Genre(s) : "+String(top3Games[0]["Genres"])
+        .innerHTML = String(top3Games[0]["Genres"]).replace(',', "<br>");
     document.getElementById("games_genre_rank_3_developer")
-        .textContent = "Developer(s) : "+String(top3Games[0]["Developers"])
+        .innerHTML = String(top3Games[0]["Developers"]).replace(',', "<br>");
     document.getElementById("games_genre_rank_3_platforms")
-        .textContent = "Platform(s) : "+String(top3Games[0]["Platforms"])
+        .innerHTML = String(top3Games[0]["Platforms"]).replace(',', "<br>");
 }

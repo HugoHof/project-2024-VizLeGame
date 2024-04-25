@@ -93,7 +93,7 @@
                         <div class="year_sider_displayed">
                             <span id="year_genre_displayed">2000</span>
                         </div>
-                        <input type="range" min="1954" max="2023" value="2000" class="slider" id="year_genre_slider">
+                        <input type="range" min="1971" max="2023" value="2000" class="slider" id="year_genre_slider">
                         <label for="nb_genre_displayed_selector">Number of GenresDisplayed :</label>
                         <select id="nb_genre_displayed_selector">
                             <option value="3">3</option>
@@ -116,10 +116,10 @@
                         </p>
                     </div>
 
-                    <div style="display: block;">
+                    <div style="display: block; margin: 0%; padding: 0%; align-content: baseline;">
                         <h2>Top 3 games</h2>
 
-                        <label for="genres_games_top_3_criteria">Ranking in fuction of the :</label>
+                        <label for="genres_games_top_3_criteria" style="margin-left: 1%;">Ranking in fuction of the :</label>
 
                         <select class="metricSelector" id="genres_games_top_3_criteria">
                             <option value="Plays" selected="selected">Number of Players</option>
@@ -129,33 +129,62 @@
                             <option value="Reviews">Number of Reviews</option>
                         </select>
 
-                        <div class="rankContainer">
-                            <div class="gameRankContainer" id="games_genre_rank_2" style="top: 20px;">
-                                <div class="gameContainer">
-                                    <p style="padding: 2px;" id = "games_genre_rank_2_title">Title:</p>
-                                    <p style="padding: 2px;" id = "games_genre_rank_2_genres">Title:</p>
-                                    <p style="padding: 2px;" id = "games_genre_rank_2_developer">genre:</p>
-                                    <p style="padding: 2px;" id = "games_genre_rank_2_platforms">Platforms:</p>
+                        <div class="podiumGame">
+                            <!--2nd Podium Place"-->
+                            <div class="podiumPlace">
+                                <div class="gameCard">
+                                    <div class= "gameCardTitleContainer">
+                                        <h1 class="gameCardTitle" id="games_genre_rank_2_title">Title #2</h1>
+                                    </div>
+                                    <div class= "gameDescriptionContainer">
+                                        <label class="gameCardLabel" for="games_genre_rank_2_genres">Genre(s) </label>
+                                        <p class="gameCardTextElem" id="games_genre_rank_2_genres"></p>
+                                        <label class="gameCardLabel" for="games_genre_rank_2_developer">Developer(s) </label>
+                                        <p class="gameCardTextElem" id="games_genre_rank_2_developer"></p>
+                                        <label class="gameCardLabel" for="games_genre_rank_2_platforms">Platform(s) </label>
+                                        <p class="gameCardTextElem" id="games_genre_rank_2_platforms"></p>
+                                    </div>
                                 </div>
-                                <p style="text-align: center;">#2</p>
+
+                                <div style="height: 90px; background-color: #C0C0C0;" class="podiumStep">#2</div>
                             </div>
-                            <div class="gameRankContainer" id="games_genre_rank_1">
-                                <div class="gameContainer">
-                                    <p style="padding: 2px;" id = "games_genre_rank_1_title">Title:</p>
-                                    <p style="padding: 2px;" id = "games_genre_rank_1_genres">Title:</p>
-                                    <p style="padding: 2px;" id = "games_genre_rank_1_developer">genre:</p>
-                                    <p style="padding: 2px;" id = "games_genre_rank_1_platforms">Platforms:</p>
+                            
+                            <!--1st Podium Place"-->
+                            <div class="podiumPlace">
+                                <div class="gameCard">
+                                    <div class= "gameCardTitleContainer">
+                                        <h1 class="gameCardTitle" id="games_genre_rank_1_title">Title #1</h1>
+                                    </div>
+                                    <div class= "gameDescriptionContainer">
+                                        <label class="gameCardLabel" for="games_genre_rank_1_genres">Genre(s) </label>
+                                        <p class="gameCardTextElem" id="games_genre_rank_1_genres"></p>
+                                        <label class="gameCardLabel" for="games_genre_rank_1_developer">Developer(s) </label>
+                                        <p class="gameCardTextElem" id="games_genre_rank_1_developer"></p>
+                                        <label class="gameCardLabel" for="games_genre_rank_1_platforms">Platform(s) </label>
+                                        <p class="gameCardTextElem" id="games_genre_rank_1_platforms"></p>
+                                    </div>
                                 </div>
-                                <p style="text-align: center;">#1</p>
+
+                                <div style="height: 120px; background-color: #ffd700;" class="podiumStep">#1</div>
                             </div>
-                            <div class="gameRankContainer" id="games_genre_rank_3" style="top: 40px;">
-                                <div class="gameContainer">
-                                    <p style="padding: 2px;" id = "games_genre_rank_3_title">Title:</p>
-                                    <p style="padding: 2px;" id = "games_genre_rank_3_genres">Title:</p>
-                                    <p style="padding: 2px;" id = "games_genre_rank_3_developer">genre:</p>
-                                    <p style="padding: 2px;" id = "games_genre_rank_3_platforms">Platforms:</p>
+                            
+                            <!--3rd Podium Place"-->
+                            <div class="podiumPlace">
+                                <div class="gameCard">
+                                    <div class= "gameCardTitleContainer">
+                                        <h1 class="gameCardTitle" id="games_genre_rank_3_title">Title #3</h1>
+                                    </div>
+                                    <div class= "gameDescriptionContainer">
+                                        <label class="gameCardLabel" for="games_genre_rank_3_genres">Genre(s) </label>
+                                        <p class="gameCardTextElem" id="games_genre_rank_3_genres"></p>
+                                        <label class="gameCardLabel" for="games_genre_rank_3_developer">Developer(s) </label>
+                                        <p class="gameCardTextElem" id="games_genre_rank_3_developer"></p>
+                                        <label class="gameCardLabel" for="games_genre_rank_3_platforms">Platform(s) </label>
+                                        <p class="gameCardTextElem" id="games_genre_rank_3_platforms"></p>
+                                    </div>
                                 </div>
-                                <p style="text-align: center;">#3</p>
+
+                                <div style="height: 70px; background-color: #CD7F32;" class="podiumStep">#3</div>
                             </div>
                         </div>
                     </div>
