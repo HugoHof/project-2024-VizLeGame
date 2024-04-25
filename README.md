@@ -17,6 +17,9 @@ You can find on this link the [report](/milestone_1/Milestone_1.md) relative to 
 ## Milestone 2 (26th April, 5pm)
 
 **10% of the final grade**
+You can find on this link the [report](/milestone_2/Milestone_2.pdf) relative to the milestone 2.
+You can find on this link the [web-link](https://hugohof.github.io/VizLeGame/) of the skecth of our website.
+
 
 
 ## Milestone 3 (31st May, 5pm)
