@@ -15,19 +15,32 @@ d3.json("data/games_by_year_and_genre.json", function(error, data) {
         console.log('Error when loading the data for the genres bar chart : ', error);
         return;
     }
+    // set default value of year and nb genres displayed
+    localStorage.setItem("year_genres", 2000)
+    localStorage.setItem("nb_genres_displayed", 10)
+    //draw initial graph
+    drawGraph(data)
     // retrive the slider of the years
     var sliderOutput = document.getElementById("year_genre_displayed")
     var yearSlider = document.getElementById("year_genre_slider")
         .oninput = function() {
             // display the year currently displayed
             sliderOutput.innerHTML = this.value;
-            year = this.value
-            drawGraph(year, data)
+            localStorage.setItem("year_genres", this.value)
+            drawGraph(data);
+        }
+    // retrive the slector of the number of genres displayed
+    var nbGenresSelector= document.getElementById("nb_genre_displayed_selector")
+        .oninput = function() {
+            localStorage.setItem("nb_genres_displayed", this.value);
+            drawGraph(data);
         }
 })
 
-function drawGraph(year, data) {
-    graphData = []
+function drawGraph(data) {
+    const nbItemsDisplayed = localStorage.getItem("nb_genres_displayed");
+    const year = localStorage.getItem("year_genres");
+    var graphData = []
     var dataForYear = data[String(year)]
     for (let key in dataForYear) {
         graphData.push({Genre : [key], Number_Of_Games : dataForYear[key].length})
@@ -36,6 +49,10 @@ function drawGraph(year, data) {
     graphData.sort(function (x, y) {
         return d3.ascending(x.Number_Of_Games, y.Number_Of_Games);
     });
+
+    // select only the nbItemsDisplayed first elements
+    const startIndex = Math.min(graphData.length, nbItemsDisplayed)
+    graphData = graphData.slice(graphData.length-startIndex, graphData.length)
 
     // remove past graph
     barChart.selectAll("*").remove()
