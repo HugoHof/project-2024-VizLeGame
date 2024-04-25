@@ -141,53 +141,71 @@
                     </p>
                 </div>
 
-                <div style="display: block;">
+                <div style="display: grid;">
                     <h2>Top games by 
-                        <select class="metricSelector" id="metricSelector">
-                            <option id="plays" selected="selected">plays</option>
-                            <option id="ratings">ratings</option>
-                            <option id="playing">playing</option>
-                            <option id="wishlist">wishlist</option>
-                            <option id="reviews">reviews</option>
+                        <select class="metricSelector" id="metricSelector" onchange="updateTop20()">
+                            <option value="Plays" selected="selected">plays</option>
+                            <option value="Rating">ratings</option>
+                            <option value="Playing">playing</option>
+                            <option value="Wishlist">wishlist</option>
+                            <option value="Reviews">reviews</option>
                         </select>
                     </h2>
 
-                    <div class="rankContainer">
+                    <div id="rankContainerInteractive" class="rankContainer">
 
                         <!--placeholder-->
                         <div class="gameContainer">
                             <div style="display: grid;">
-                                <img src="https://upload.wikimedia.org/wikipedia/en/b/b5/MarioKart8Boxart.jpg"></img>
+                                <a>title</a>
+                                <a>genres</a>
+                                <a>platforms</a>
+                                <a>developers</a>
                                 <a style="text-align: center;">#1</a>
                             </div>
                         </div>
                         <div class="gameContainer">
                             <div style="display: grid;">
-                                <img src="https://upload.wikimedia.org/wikipedia/en/b/b5/MarioKart8Boxart.jpg"></img>
+                                <a>title</a>
+                                <a>genres</a>
+                                <a>platforms</a>
+                                <a>developers</a>
                                 <a style="text-align: center;">#2</a>
                             </div>
                         </div>
                         <div class="gameContainer">
                             <div style="display: grid;">
-                                <img src="https://upload.wikimedia.org/wikipedia/en/b/b5/MarioKart8Boxart.jpg"></img>
+                                <a>title</a>
+                                <a>genres</a>
+                                <a>platforms</a>
+                                <a>developers</a>
                                 <a style="text-align: center;">#3</a>
                             </div>
                         </div>
                         <div class="gameContainer">
                             <div style="display: grid;">
-                                <img src="https://upload.wikimedia.org/wikipedia/en/b/b5/MarioKart8Boxart.jpg"></img>
+                                <a>title</a>
+                                <a>genres</a>
+                                <a>platforms</a>
+                                <a>developers</a>
                                 <a style="text-align: center;">#4</a>
                             </div>
                         </div>
                         <div class="gameContainer">
                             <div style="display: grid;">
-                                <img src="https://upload.wikimedia.org/wikipedia/en/b/b5/MarioKart8Boxart.jpg"></img>
+                                <a>title</a>
+                                <a>genres</a>
+                                <a>platforms</a>
+                                <a>developers</a>
                                 <a style="text-align: center;">#5</a>
                             </div>
                         </div>
                         <div class="gameContainer">
                             <div style="display: grid;">
-                                <img src="https://upload.wikimedia.org/wikipedia/en/b/b5/MarioKart8Boxart.jpg"></img>
+                                <a>title</a>
+                                <a>genres</a>
+                                <a>platforms</a>
+                                <a>developers</a>
                                 <a style="text-align: center;">#6</a>
                             </div>
                         </div>

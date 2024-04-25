@@ -49,8 +49,8 @@
 }
 /* child of root container of the top games */
 .gameContainer {
+    border: 1px solid black;
     padding-inline: 5px;
-    width: 33%;
     display: inline-block;
     align-content: center;
 }
