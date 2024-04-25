@@ -95,3 +95,120 @@ p {
 h2 {
     padding-inline: 20px;
 }
+/* FOR THE GENRE DIVERSITY PART*/
+
+/*style of the main vizualisation part*/
+.visulizationPart {
+    width: 100%;
+    height: 90%;
+}
+/* left side of the genre diversity part */
+.leftGenresSection {
+    float: left;
+    width: 50%;
+    height: 100%;
+    background-color: #fff;
+}
+/* right side of the genre diversity part */
+.rightGenresSection {
+    float: right;
+    width: 50%;
+    height: 100%;
+    background-color: #77b7e2;
+    align-items: end;
+    align-content: end;
+}
+
+/* title of the genre graph */
+.genreGraphTitle {
+    text-align: center;
+    padding: 0px;
+    font-size: 30px;
+    margin: 0px 0px 0px 0px;
+}
+
+/* title of the genres descriptive part */
+.genreDescriptivePart {
+    text-align: left;
+    padding: 0px;
+    padding-left: 10px;
+    font-size: 30px;
+    margin: 0px 0px 0px 0px;
+}
+
+/* the conatiner of a game card */
+.podiumGame {
+    padding: 0%;
+    margin: 0%;
+    padding-top: 0%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+    height: 80%;
+    align-items: end;
+}
+
+.podiumPlace {
+    padding: 0%;
+    margin: 1%;
+    padding-top: 10%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    height: 80%;
+    align-items: center;
+}
+
+.podiumStep {
+    text-align: center;
+    width: 100%;
+    font-size: xx-large;
+    margin-top: 10px;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+}
+
+.gameCard {
+    box-shadow: 0 14px 18px 0 rgba(6, 6, 6, 0.2);
+    width: 80%;
+    height: 100%;
+    margin: 1%;
+    justify-content: center;
+    text-align: center;
+}
+.gameCardTitleContainer {
+    font-family: 'Courier New', Courier, monospace;
+    background-color: black;
+    width: 100%;
+    height: 20%;
+    font-size: small;
+    color: white;
+    padding: auto;
+    padding-left: 0%;
+    margin-left: 0%;
+    justify-self: center;
+}
+.gameCardLabel {
+    text-align: left;
+    font-family: cursive;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+.gameCardTextElem {
+    font-size: medium;
+    text-align: left;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    margin-top: 0%;
+    padding-top: 0%;
+    margin-left: 8%;
+    margin-right: 5%;
+}
+.gameDescriptionContainer {
+    text-align: left;
+    background-color: #d0d0d0;
+    width: 100%;
+    height: 80%;
+}
