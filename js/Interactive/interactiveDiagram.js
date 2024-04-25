@@ -6,7 +6,6 @@ setInterval(update, 1000);
 
 function update() {
     if (isPlaying) {
-        updateTop20()
         const currTime = document.getElementById("timeSlider").value;
         if (currTime == document.getElementById("timeSlider").max) {
             onTimePlay();
@@ -14,6 +13,7 @@ function update() {
         }
         document.getElementById("timeSlider").value = Number(currTime) + 1;
         document.getElementById("timeText").innerHTML = Number(currTime) + 1;
+        updateTop20()
     }
 }
 
@@ -23,27 +23,15 @@ function onTimePlay() {
 }
 
 function onTimeChange() {
-    updateTop20();
     if (isPlaying) {
         onTimePlay();
     }
     const slider = document.getElementById("timeSlider");
     document.getElementById("timeText").innerText = slider.value;
+    updateTop20();
 }
 
 // ------------------------------------------ top 20 games --------------------------------------------------
-
-/*
-<div class="gameContainer">
-    <div style="display: grid;">
-        <a>title</a>
-        <a>genres</a>
-        <a>platforms</a>
-        <a>developers</a>
-        <a style="text-align: center;">#1</a>
-    </div>
-</div>
-*/
 
 var listInteractive;
 
@@ -62,6 +50,10 @@ function sortAndFilterYear(data, sortField, year) {
     });
 }
 
+function listStringToString(list) {
+    return list.match(/"(?:[^"\\]|\\.)*"|'(?:[^'\\]|\\.)*'/g).join(", ").replace(/["']/g, '');
+}
+
 function createTop20(data) {
     var txtHtml = "";
     for (let i = 0; i < 20; ++i) {
@@ -69,12 +61,12 @@ function createTop20(data) {
             continue;
         }
         txtHtml += '<div class="gameContainer">';
-        txtHtml += '<div style="display: grid;">';
-        txtHtml += '<a>' + data[i].Title + '</a>';
-        txtHtml += '<a>' + data[i].Genres + '</a>';
-        txtHtml += '<a>' + data[i].Platforms + '</a>';
-        txtHtml += '<a>' + data[i].Developers + '</a>';
-        txtHtml += '<a style="text-align: center;">#' + (i + 1) + '</a>';
+        txtHtml += '<div style="display: grid; height: 100%;">';
+        txtHtml += '<a style="font-size: x-large; text-align: center;">' + data[i].Title + '</a>';
+        txtHtml += '<a>Genres: ' + listStringToString(data[i].Genres) + '</a>';
+        txtHtml += '<a>Platforms: ' + listStringToString(data[i].Platforms) + '</a>';
+        txtHtml += '<a>Developers: ' + listStringToString(data[i].Developers) + '</a>';
+        txtHtml += '<a style="text-align: center; align-self: end">#' + (i + 1) + '</a>';
         txtHtml += '</div></div>';
     }
     document.getElementById("rankContainerInteractive").innerHTML = txtHtml;

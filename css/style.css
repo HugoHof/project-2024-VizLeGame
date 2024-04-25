@@ -6,13 +6,10 @@
 #fp-nav ul li .fp-tooltip {
     color: black;
 }
-/* for both sides of interactive graph */
-.interactive {
-    display: grid;
-    align-content: space-between;
-}
 /* left side of the interactive graph */
 .leftInteractive {
+    display: grid;
+    align-content: space-between;
     float: left;
     width: 60%;
     height: 100%;
@@ -20,6 +17,9 @@
 }
 /* right side of the interactive graph */
 .rightInteractive {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     float: right;
     width: 40%;
     height: 100%;
@@ -51,8 +51,10 @@
 .gameContainer {
     border: 1px solid black;
     padding-inline: 5px;
-    display: inline-block;
+    display: inline-table;
     align-content: center;
+    width: 250px;
+    height: 500px;
 }
 img {
     height: 100%;
@@ -93,7 +95,9 @@ h1 {
     font-size: 70px;
     color: rgb(28, 59, 59);
 }
-
+a{
+    text-wrap: wrap;
+}
 p {
     font-size: 25px;
     text-align: justify;
