@@ -95,3 +95,32 @@ p {
 h2 {
     padding-inline: 20px;
 }
+/* FOR THE GENRE DIVERSITY PART*/
+
+/*style of the main vizualisation part*/
+.visulizationPart {
+    width: 100%;
+    height: 90%;
+}
+/* left side of the genre diversity part */
+.leftGenresSection {
+    float: left;
+    width: 50%;
+    height: 100%;
+    background-color: #fff;
+}
+/* right side of the genre diversity part */
+.rightGenresSection {
+    float: right;
+    width: 50%;
+    height: 100%;
+    background-color: #3192a8;
+}
+
+/* title of the genre graph */
+.genreGraphTitle {
+    text-align: center;
+    padding: 0px;
+    font-size: 30px;
+    margin: 0px 0px 0px 0px;
+}

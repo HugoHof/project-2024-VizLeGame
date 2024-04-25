@@ -76,27 +76,91 @@
         </div>
         <!--Genre Trends-->
         <div class="section">
+            <!--Title of genres diversity section-->
             <h1 class="sectionTitle">
                 Game are caracterized by a large diversity of Genres
             </h1>
-            <div id="genres_bar_chart"></div>
-            <div id="genres_bar_chart"></div>
-            <div class="slider_divider">
-                <div class="year_sider_displayed">
-                    <span id="year_genre_displayed">2000</span>
+            <!--Genre diversity visualization-->
+            <div class="visulizationPart">
+                <!--Left part of the genre diversity-->
+                <div class="leftGenresSection" style="display: grid;">
+                    <!--Title of the graph presented-->
+                    <h2 class="genreGraphTitle" id="genre_graph_title">Number of Video Games by Genre in 2000</h2>
+                    <!--Graph genres part that present a bar chart of genres-->
+                    <div id="genres_bar_chart"></div>
+                    <!--Interaction with the genre bar chart-->
+                    <div class="slider_divider">
+                        <div class="year_sider_displayed">
+                            <span id="year_genre_displayed">2000</span>
+                        </div>
+                        <input type="range" min="1954" max="2023" value="2000" class="slider" id="year_genre_slider">
+                        <label for="nb_genre_displayed_selector">Number of GenresDisplayed :</label>
+                        <select id="nb_genre_displayed_selector">
+                            <option value="3">3</option>
+                            <option value="6">6</option>
+                            <option value="9">9</option>
+                            <option value="12">12</option>
+                            <option value="15">15</option>
+                            <option value="18">18</option>
+                            <option value="21">21</option>
+                            <option value="23">All</option>
+                        </select>
+                    </div>
                 </div>
-                <input type="range" min="1954" max="2023" value="2000" class="slider" id="year_genre_slider">
-                <label for="nb_genre_displayed_selector">Number of GenresDisplayed :</label>
-                <select id="nb_genre_displayed_selector">
-                    <option value="3">3</option>
-                    <option value="6">6</option>
-                    <option value="9">9</option>
-                    <option value="12">12</option>
-                    <option value="15">15</option>
-                    <option value="18">18</option>
-                    <option value="21">21</option>
-                    <option value="23">All</option>
-                </select>
+                <!--Right part of the genre diversity-->
+                <div class="rightGenresSection">
+                    
+                    <div style="display: block;">
+                        <h2>Description: ###</h2>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
+                            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+                            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+                            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
+                            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                        </p>
+                    </div>
+
+                    <div style="display: block;">
+                        <h2>Top 3 games by 
+                            <select class="metricSelector" id="metricSelector">
+                                <option id="plays" selected="selected">plays</option>
+                                <option id="ratings">ratings</option>
+                                <option id="playing">playing</option>
+                                <option id="wishlist">wishlist</option>
+                                <option id="reviews">reviews</option>
+                            </select>
+                        </h2>
+
+                        <div class="rankContainer">
+
+                            <div class="gameRankContainer" id="rank2" style="top: 20px;">
+                                <div class="gameContainer">
+                                    <p style="padding: 2px;">Title:</p>
+                                    <p style="padding: 2px;">genre:</p>
+                                    <p style="padding: 2px;">Platforms:</p>
+                                </div>
+                                <p style="text-align: center;">#2</p>
+                            </div>
+                            <div class="gameRankContainer" id="rank1">
+                                <div class="gameContainer">
+                                    <p style="padding: 2px;">Title:</p>
+                                    <p style="padding: 2px;">genre:</p>
+                                    <p style="padding: 2px;">Platforms:</p>
+                                </div>
+                                <p style="text-align: center;">#1</p>
+                            </div>
+                            <div class="gameRankContainer" id="rank3" style="top: 40px;">
+                                <div class="gameContainer">
+                                    <p style="padding: 2px;">Title:</p>
+                                    <p style="padding: 2px;">genre:</p>
+                                    <p style="padding: 2px;">Platforms:</p>
+                                </div>
+                                <p style="text-align: center;">#3</p>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <!--Platforms-->

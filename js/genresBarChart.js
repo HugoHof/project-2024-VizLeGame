@@ -1,7 +1,7 @@
 // setup the dimesnions of the bar chart
-const margin = { top:70, right: 40, bottom: 60, left:175 }
-const width = 560 - margin.left -margin.right
-const height = 300 - margin.top - margin.bottom
+const margin = { top:10, right: 40, bottom: 60, left:100 }
+const width = 710 - margin.left -margin.right
+const height = 700 - margin.top - margin.bottom
 
 // Create the SVG container for the bar chart
 const barChart = d3.select("#genres_bar_chart").append("svg")
