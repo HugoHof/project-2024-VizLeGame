@@ -81,7 +81,7 @@
                 Game are caracterized by a large diversity of Genres
             </h1>
             <!--Genre diversity visualization-->
-            <div class="visulizationPart">
+            <div class="visualizationPart">
                 <!--Left part of the genre diversity-->
                 <div class="leftGenresSection" style="display: grid;">
                     <!--Title of the graph presented-->
@@ -203,7 +203,37 @@
             <h1 class="sectionTitle">
                 Games are developed by many developers along the years
             </h1>
-            <img src="milestone_2/graphs_sketchs/developer_diversity_sketch.jpeg" width="90%" height="90%">
+            <!--Developers visualization-->
+            <div class="visualizationPart">
+                <!--Left part of the developers diversity-->
+                <div class="leftGenresSection" style="display: grid;">
+                    <!--Title of the graph presented-->
+                    <h2 class="genreGraphTitle" id="developer_graph_title">Number of Video Games Realeased by Developer in 2000</h2>
+                    <!--Graph Developer's part that present a circle packing chart of developers-->
+                    <div id="developer_circle_packing_chart"></div>
+                    <!--Interaction with the developer circle packing chart-->
+                    <div class="slider_divider">
+                        <div class="year_sider_displayed">
+                            <span id="year_developer_displayed">2000</span>
+                        </div>
+                        <input type="range" min="1971" max="2023" value="2000" class="slider" id="year_developer_slider">
+                        <label for="nb_developer_displayed_selector">Number of Developers Displayed :</label>
+                        <select id="nb_developer_displayed_selector">
+                            <option value="10">10</option>
+                            <option value="20">20</option>
+                            <option value="30">30</option>
+                            <option value="40">40</option>
+                            <option value="50">50</option>
+                            <option value="60">60</option>
+                            <option value="70">70</option>
+                            <option value="1000" selected="selected">All</option>
+                        </select>
+                    </div>
+                </div>
+                <!--Right part of the Developer's diversity-->
+                <div class="rightGenresSection">
+                </div>
+            </div>
         </div>
         <!--Interactive diagram (bubbles)-->
         <div class="section">
@@ -314,5 +344,7 @@
     </script>
     <!--Genres bar chart-->
     <script src = "js/genresBarChart.js"></script>
+    <!--Developers Circel Packing chart-->
+    <script src = "js/developersCirclePackingChart.js"></script>
 </body>
 </html>

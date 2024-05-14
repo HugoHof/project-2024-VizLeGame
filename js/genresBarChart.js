@@ -1,14 +1,14 @@
 // setup the dimesnions of the bar chart
-const margin = { top:10, right: 40, bottom: 60, left:100 }
-const width = 710 - margin.left -margin.right
-const height = 700 - margin.top - margin.bottom
+const marginGenre = { top:10, right: 40, bottom: 60, left:100 }
+const widthGenre = 710 - marginGenre.left -marginGenre.right
+const heightGenre = 700 - marginGenre.top - marginGenre.bottom
 
 // Create the SVG container for the bar chart
-const barChart = d3.select("#genres_bar_chart").append("svg")
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
+const barChartGenre = d3.select("#genres_bar_chart").append("svg")
+    .attr("width", widthGenre + marginGenre.left + marginGenre.right)
+    .attr("height", heightGenre + marginGenre.top + marginGenre.bottom)
     .append("g")
-    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+    .attr("transform", "translate(" + marginGenre.left + "," + marginGenre.top + ")");
 
 d3.json("data/games_by_year_and_genre.json", function(error, data) {
     if(error) {
@@ -19,29 +19,29 @@ d3.json("data/games_by_year_and_genre.json", function(error, data) {
     localStorage.setItem("year_genres", 2000)
     localStorage.setItem("nb_genres_displayed", 23)
     //draw initial graph
-    drawGraph(data)
+    drawGraphGenre(data)
     
     // retrive the slider of the years
-    var sliderOutput = document.getElementById("year_genre_displayed")
-    var yearSlider = document.getElementById("year_genre_slider")
+    var sliderOutputGenre = document.getElementById("year_genre_displayed")
+    var yearSliderGenre = document.getElementById("year_genre_slider")
         .oninput = function() {
             // display the year currently displayed
-            sliderOutput.innerHTML = this.value;
+            sliderOutputGenre.innerHTML = this.value;
             localStorage.setItem("year_genres", this.value)
-            drawGraph(data);
+            drawGraphGenre(data);
         }
 
     // retrive the slector of the number of genres displayed
     var nbGenresSelector= document.getElementById("nb_genre_displayed_selector")
         .oninput = function() {
             localStorage.setItem("nb_genres_displayed", this.value);
-            drawGraph(data);
+            drawGraphGenre(data);
         }
     
     //default criteria 
     localStorage.setItem("top_3_genres_criteria", "Plays")
     // extract the ranking top-3 games criteria
-    var criteria = document.getElementById("genres_games_top_3_criteria")
+    var criteriaGenre = document.getElementById("genres_games_top_3_criteria")
         .oninput = function() {
             // save the new criteria
             localStorage.setItem("top_3_genres_criteria", this.value)
@@ -50,7 +50,7 @@ d3.json("data/games_by_year_and_genre.json", function(error, data) {
         }
 })
 
-function drawGraph(data) {
+function drawGraphGenre(data) {
     const nbItemsDisplayed = localStorage.getItem("nb_genres_displayed");
     const year = localStorage.getItem("year_genres");
     var graphData = []
@@ -72,15 +72,15 @@ function drawGraph(data) {
         .textContent = "Number of Video Games by Genre in "+String(year)
 
     // remove past graph
-    barChart.selectAll("*").remove()
+    barChartGenre.selectAll("*").remove()
 
     // set the x scale
     const x = d3.scaleLinear()
-        .range([0, width])
+        .range([0, widthGenre])
         .domain([0, d3.max(graphData, function(elem) { return elem.Number_Of_Games; })]);
     // set the y scale
     const y = d3.scaleBand()
-        .range([height, 0])
+        .range([heightGenre, 0])
         .padding(0.1)
         .domain(graphData.map(function (elem) { return elem.Genre}));
 
@@ -93,7 +93,7 @@ function drawGraph(data) {
         .tickPadding(10);
     
     // add grid lines
-    barChart.selectAll("line.vertical-grid")
+    barChartGenre.selectAll("line.vertical-grid")
         .data(x.ticks(5))
         .enter()
         .append("line")
@@ -101,13 +101,13 @@ function drawGraph(data) {
         .attr("x1", function (elem) { return x(elem); })
         .attr("y1", 0)
         .attr("x2", function (elem) { return x(elem); })
-        .attr("y2", height)
+        .attr("y2", heightGenre)
         .style("stroke", "gray")
         .style("stroke-width", 0.5)
         .style("stroke-dasharray", "3 3");
 
     // create the bars
-    var bars = barChart.selectAll(".bar")
+    var bars = barChartGenre.selectAll(".bar")
         .data(graphData)
         .enter().append("rect")
         .attr("class", "bar")
@@ -120,7 +120,7 @@ function drawGraph(data) {
     //add click listner on bar
     bars.on("click", function(elem) { 
         // reset the color of all the bars
-        barChart.selectAll(".bar").style("fill", '#96a5b9')
+        barChartGenre.selectAll(".bar").style("fill", '#96a5b9')
         // change the color of the bar
         d3.select(this).style("fill", '#003366')
         // save the genre selected
@@ -132,25 +132,25 @@ function drawGraph(data) {
     });
 
     // add the x and y axes to the bar chart
-    barChart.append('g')
+    barChartGenre.append('g')
         .attr("class", "x axis")
         .style("font-size", "10px")
-        .attr("transform", "translate(0," + height + ")")
+        .attr("transform", "translate(0," + heightGenre + ")")
         .call(xAxis)
         .call(g => g.select(".domain").remove());
 
-    barChart.append('g')
+    barChartGenre.append('g')
         .attr("class", "y axis")
         .style("font-size", "8px")
         .call(yAxis)
         .selectAll("path")
         .style("stroke-width", "1.75px");
     
-    barChart.selectAll(".y.axis .tick text")
+    barChartGenre.selectAll(".y.axis .tick text")
         .text(function (elem) { return elem[0].toUpperCase(); });
 
     // add labels to the end of each bars
-    barChart.selectAll(".label")
+    barChartGenre.selectAll(".label")
         .data(graphData)
         .enter()
         .append("text")
