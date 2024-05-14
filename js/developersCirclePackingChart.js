@@ -1,14 +1,23 @@
 // setup the dimesnions of the circle packing chart
 const marginDev = { top:10, right: 40, bottom: 60, left:100 }
-const widthDev = 710 - marginDev.left -marginDev.right
-const heightDev = 700 - marginDev.top - marginDev.bottom
+const widthDev = 710 
+const heightDev = 700
 
 // Create the SVG container for the circle packing chart
 const devCircleChart = d3.select("#developer_circle_packing_chart").append("svg")
-    .attr("width", widthDev + marginDev.left + marginDev.right)
-    .attr("height", heightDev + marginDev.top + marginDev.bottom)
-    .append("g")
-    .attr("transform", "translate(" + marginDev.left + "," + marginDev.top + ")");
+    .attr("width", widthDev)
+    .attr("height", heightDev);
+
+// create a tooltip for the circular packing chart
+var tooltip = d3.select("#developer_circle_packing_chart")
+    .append("div")
+    .style("opacity", 0)
+    .attr("class", "tooltip")
+    .style("background-color", "white")
+    .style("border", "solid")
+    .style("border-width", "2px")
+    .style("border-radius", "5px")
+    .style("padding", "5px")
 
 // import the data form the json file
 d3.json("data/games_by_year_and_developers.json", function(error, data) {
@@ -63,4 +72,43 @@ function drawGraphDev(data) {
 
     // remove past graph
     devCircleChart.selectAll("*").remove()
+
+    // size scale by developers
+    var size = d3.scaleLinear()
+        .domain([0, 100000000])
+        .range([10, 10+graphData.length])
+
+    // create the circle for each developer 
+    var node = devCircleChart
+        .append("g")
+        .selectAll("circle")
+        .data(graphData)
+        .enter()
+        .append("circle")
+            .attr("class", "node")
+            .attr("r", function(elem){ return elem.Number_Of_Games})
+            .attr("cx", widthDev / 2)
+            .attr("cy", heightDev / 2)
+            .style("fill", "#69b3a2")
+            .style("fill-opacity", 0.3)
+            .attr("stroke", "black")
+            .style("stroke-width", 1)
+    
+    // add forces forces between each nodes
+    var simulation = d3.forceSimulation()
+        // attraction to the center of the circle area
+        .force("center", d3.forceCenter().x(widthDev/2).y(heightDev/2))
+        // nodes are attracted one each other
+        .force("charge", d3.forceManyBody().strength(0.1))
+        // force that avoird that the circles overlapp
+        .force("collide", d3.forceCollide().strength(.2).radius(function(elem) { return elem.Number_Of_Games + 5; }).iterations(1));
+
+    
+    // apply the previous forces to all the nodes and upadtaes the nodes psotions
+    // once the force algorithm has converge, the node stop to move
+    simulation.nodes(graphData)
+        .on("tick", function(elem) {
+            node.attr("cx", function(elem){ return elem.x; })
+                .attr("cy", function(elem){ return elem.y; })
+        });
 }
