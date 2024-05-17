@@ -1,16 +1,20 @@
 // setup the dimesnions of the circle packing chart
 const marginDev = { top:10, right: 40, bottom: 60, left:100 }
-const widthDev = 710 
-const heightDev = 700
+const widthDev = 700 - marginDev.left -marginDev.right
+const heightDev = 700 - marginDev.top - marginDev.bottom
 
 // Create the SVG container for the circle packing chart
 const devCircleChart = d3.select("#developer_circle_packing_chart").append("svg")
-    .attr("width", widthDev)
-    .attr("height", heightDev);
+    .attr("width", widthDev + marginDev.left + marginDev.right)
+    .attr("height", heightDev + marginDev.top + marginDev.bottom)
+    .append("g")
+    .attr("transform", "translate(" + marginDev.left + "," + marginDev.top + ")");
 
 // create a tooltip for the circular packing chart
-var tooltip = d3.select("#developer_circle_packing_chart")
+var TooltipDev = d3.select("#developer_circle_packing_chart")
     .append("div")
+    .style("z-index", "10")
+    .style("position", "absolute")
     .style("opacity", 0)
     .attr("class", "tooltip")
     .style("background-color", "white")
@@ -75,24 +79,105 @@ function drawGraphDev(data) {
 
     // size scale by developers
     var size = d3.scaleLinear()
-        .domain([0, 100000000])
-        .range([10, 10+graphData.length])
+        .domain([0, Math.max(graphData.values)])
+        .range([1, 50])
+
+    // show the name of the developers and the number of games released by this developer when the mouse is over to the corresponding circle
+    var mouseMoveOnCircle = function(elem) {
+        TooltipDev
+            .html('<u>' + elem.Developers + '</u>' + "<br>" + elem.Number_Of_Games + " Games Realeased")
+            .style("left", (d3.mouse(this)[0]+20) + "px")
+            .style("top", (d3.mouse(this)[1] +80) + "px");
+    }
+
+    // set the opacity of the tootlptip to see relative information corresponding to the circle the mouse is present to. 
+    var mouseOverCircle = function(elem) {
+        TooltipDev
+            .style("opacity", 1);
+    }
+
+    // remove the opacity of the tooltip when the mouse leave the circle
+    var mouseLeaveCircle = function(elem) {
+        TooltipDev
+            .style("opacity", 0);
+    }
+
+    // on mouse click change the current developer selected + change the color circle + reset the color of the other circle
+    var mouseClick = function(elem) {
+        // reset the color of all the circle
+        node.style("fill", '#69b3aa')
+        // change the color of the bar
+        d3.select(this).style("fill", '#003366')
+        // save the developer selected
+        localStorage.setItem("developer_selected", elem.Developers)
+        return;
+    }
 
     // create the circle for each developer 
-    var node = devCircleChart
-        .append("g")
-        .selectAll("circle")
+    var node = devCircleChart.append("g")
+        .selectAll("g")
         .data(graphData)
         .enter()
         .append("circle")
             .attr("class", "node")
-            .attr("r", function(elem){ return elem.Number_Of_Games})
+            .attr("r", function(elem){ return elem.Number_Of_Games*4})
             .attr("cx", widthDev / 2)
             .attr("cy", heightDev / 2)
-            .style("fill", "#69b3a2")
-            .style("fill-opacity", 0.3)
+            .style("fill", "#69b3aa")
+            .style("fill-opacity", 0.8)
             .attr("stroke", "black")
             .style("stroke-width", 1)
+            .on("mouseover", mouseOverCircle)
+            .on("mousemove", mouseMoveOnCircle)
+            .on("mouseleave", mouseLeaveCircle)
+            .on("click", mouseClick)
+            //used to darg a circle and change is position
+            .call(d3.drag() // call specific function when circle is dragged
+                .on("start", startDragCircle)
+                .on("drag", dragCircle)
+                .on("end", endDragCircle));
+    
+    // add text label to indicate the developer
+    var textsDev = devCircleChart.append("g")
+        .selectAll("g")
+        .data(graphData)
+        .enter()
+        .append("text")
+            .attr("x", widthDev/2)
+            .attr("y", (heightDev-10)/2)
+            .attr("dy", "0.35em")
+            .attr("pointer-events", "none")
+            .attr("text-anchor", "middle")
+            .style("font-family", "arial")
+            .style("font-weight", "bold")
+            .style("fill", "#3c3d28")
+            .text(function(elem) {
+                var index = Math.min(String(elem.Developers).length, 10)
+                if(index < String(elem.Developers).length) {
+                    return String(elem.Developers).substring(0, index) + "...";
+                }
+                return elem.Developers;
+            })
+            .style("font-size", function(elem) { return (elem.Number_Of_Games * 1.1) + "px"; });
+    
+    // add text label to indicate the number of games realeased
+    var textsGamesRealeased = devCircleChart.append("g")
+        .selectAll("g")
+        .data(graphData)
+        .enter()
+        .append("text")
+            .attr("x", widthDev/2)
+            .attr("y", (heightDev+10)/2)
+            .attr("dy", "0.35em")
+            .attr("pointer-events", "none")
+            .attr("text-anchor", "middle")
+            .style("font-family", "arial")
+            .style("foont-size", function(elem) {String(0.01/elem.Number_Of_Games)+"px"})
+            .style("fill", "#3c3d28")
+            .text(function(elem) {
+                return String(elem.Number_Of_Games);
+            })
+            .style("font-size", function(elem) { return (elem.Number_Of_Games * 1.1) + "px"; });
     
     // add forces forces between each nodes
     var simulation = d3.forceSimulation()
@@ -101,14 +186,43 @@ function drawGraphDev(data) {
         // nodes are attracted one each other
         .force("charge", d3.forceManyBody().strength(0.1))
         // force that avoird that the circles overlapp
-        .force("collide", d3.forceCollide().strength(.2).radius(function(elem) { return elem.Number_Of_Games + 5; }).iterations(1));
+        .force("collide", d3.forceCollide().strength(.2).radius(function(elem) { return elem.Number_Of_Games * 4 + 5; }).iterations(1));
 
     
     // apply the previous forces to all the nodes and upadtaes the nodes psotions
     // once the force algorithm has converge, the node stop to move
     simulation.nodes(graphData)
         .on("tick", function(elem) {
+            //update the position of the circle
             node.attr("cx", function(elem){ return elem.x; })
                 .attr("cy", function(elem){ return elem.y; })
+            // update the postion of the developer's text
+            textsDev.attr("x", function(elem){ return elem.x; })
+                .attr("y", function(elem){ return elem.y - elem.Number_Of_Games*0.7; })
+            // upadte the postion of the nuber of games realeased text
+            textsGamesRealeased.attr("x", function(elem){ return elem.x; })
+                .attr("y", function(elem){ return elem.y + elem.Number_Of_Games*0.7; })
         });
+    
+    //FUNCTIONS TO DRAG A CIRCLE//
+    function startDragCircle(elem) {
+        if (!d3.event.active) {
+            simulation.alphaTarget(.03).restart()
+        }
+        elem.fx = elem.x
+        elem.fy = elem.y
+    }
+
+    function dragCircle(elem) {
+        elem.fx = d3.event.x
+        elem.fy = d3.event.y
+    }
+
+    function endDragCircle(elem) {
+        if (!d3.event.active) {
+            simulation.alphaTarget(.03)
+        }
+        elem.fx = null
+        elem.fy = null
+    }
 }

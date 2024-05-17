@@ -212,3 +212,9 @@ h2 {
     width: 100%;
     height: 80%;
 }
+
+/*DEVELOPERS PART*/
+.node:hover{
+    stroke-width: 7px;
+    opacity: 1;
+}
