@@ -21,42 +21,46 @@ d3.json("data/games_by_year_and_genre.json", function(error, data) {
     // set default value of year and nb genres displayed
     localStorage.setItem("year_genres", 2000)
     localStorage.setItem("nb_genres_displayed", 23)
-    //draw initial graph
-    drawGraphGenre(data)
-    
-    // retrive the slider of the years
-    var sliderOutputGenre = document.getElementById("year_genre_displayed")
-    var yearSliderGenre = document.getElementById("year_genre_slider")
-        .oninput = function() {
-            // display the year currently displayed
-            sliderOutputGenre.innerHTML = this.value;
-            localStorage.setItem("year_genres", this.value)
-            drawGraphGenre(data);
-        }
 
-    // retrive the slector of the number of genres displayed
-    var nbGenresSelector= document.getElementById("nb_genre_displayed_selector")
-        .oninput = function() {
-            localStorage.setItem("nb_genres_displayed", this.value);
-            drawGraphGenre(data);
-        }
-    
-    //default criteria 
-    localStorage.setItem("top_3_genres_criteria", "Plays")
-    // extract the ranking top-3 games criteria
-    var criteriaGenre = document.getElementById("genres_games_top_3_criteria")
-        .oninput = function() {
-            // save the new criteria
-            localStorage.setItem("top_3_genres_criteria", this.value)
-            //update the top-3 ranking
-            updateTop3GamesGenreRanking(data)
-        }
-    
-    // upadte every 1 s the displaying of the graph if isPlayingDeveloper is activated
-    setInterval(function() { return upadteGraphDisplayinyOnPlayGenre(data); }, 1000)
-})
+    // load the content of the json file that contains the genre descriptions
+    d3.json("data/genresDef.json", function(error, genreDescription) {
+        //draw initial graph
+        drawGraphGenre(data, genreDescription)
+        
+        // retrive the slider of the years
+        var sliderOutputGenre = document.getElementById("year_genre_displayed")
+        var yearSliderGenre = document.getElementById("year_genre_slider")
+            .oninput = function() {
+                // display the year currently displayed
+                sliderOutputGenre.innerHTML = this.value;
+                localStorage.setItem("year_genres", this.value)
+                drawGraphGenre(data, genreDescription);
+            }
 
-function drawGraphGenre(data) {
+        // retrive the slector of the number of genres displayed
+        var nbGenresSelector= document.getElementById("nb_genre_displayed_selector")
+            .oninput = function() {
+                localStorage.setItem("nb_genres_displayed", this.value);
+                drawGraphGenre(data, genreDescription);
+            }
+        
+        //default criteria 
+        localStorage.setItem("top_3_genres_criteria", "Plays")
+        // extract the ranking top-3 games criteria
+        var criteriaGenre = document.getElementById("genres_games_top_3_criteria")
+            .oninput = function() {
+                // save the new criteria
+                localStorage.setItem("top_3_genres_criteria", this.value)
+                //update the top-3 ranking
+                updateTop3GamesGenreRanking(data, genreDescription)
+            }
+        
+        // upadte every 1 s the displaying of the graph if isPlayingDeveloper is activated
+        setInterval(function() { return upadteGraphDisplayinyOnPlayGenre(data), genreDescription; }, 1000)
+    });
+});
+
+function drawGraphGenre(data, genreDescription) {
     const nbItemsDisplayed = localStorage.getItem("nb_genres_displayed");
     const year = localStorage.getItem("year_genres");
     var graphData = []
@@ -131,7 +135,7 @@ function drawGraphGenre(data) {
         d3.select(this).style("fill", '#003366')
         // save the genre selected
         localStorage.setItem("genre_selected", elem.Genre)
-        updateGenreDescription(); 
+        updateGenreDescription(genreDescription); 
         //save the new list of games displayed in the top-3 ranking
         updateTop3GamesGenreRanking(data);
         // show the right content of the visualization
@@ -173,10 +177,15 @@ function drawGraphGenre(data) {
         .text( function (elem) { return elem.Number_Of_Games; });
 }
 
-function updateGenreDescription(genre) {
+function updateGenreDescription(genreDescription) {
+    // retrive the current genre selected
+    const currentGenre = localStorage.getItem("genre_selected")
     // edit the title of the description section
     document.getElementById("genre_description_title")
-        .textContent = localStorage.getItem("genre_selected")+" Genre"
+        .textContent = currentGenre +" Genre"
+    // edit the genre description text
+    document.getElementById("genre_description_text")
+        .textContent = genreDescription[String(currentGenre)]    
 }
 
 function updateTop3GamesGenreRanking(data) {
@@ -234,7 +243,7 @@ function onClickPlayButtonGenre() {
 }
 
 // Updadte the graph displaying if the play button is activated
-function upadteGraphDisplayinyOnPlayGenre(data) {
+function upadteGraphDisplayinyOnPlayGenre(data, genreDescription) {
     if(isPlayingGenre) {
         const currentYear = localStorage.getItem("year_genres")
         if(currentYear >= document.getElementById("year_genre_slider").max-1) {
@@ -247,7 +256,7 @@ function upadteGraphDisplayinyOnPlayGenre(data) {
             document.getElementById("year_genre_displayed").innerHTML = Number(currentYear) + 1
             document.getElementById("year_genre_slider").value = Number(currentYear) + 1
             // re draw the graph
-            drawGraphGenre(data)
+            drawGraphGenre(data, genreDescription)
         }
     }
 }
