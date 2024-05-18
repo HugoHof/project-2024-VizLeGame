@@ -32,9 +32,8 @@
 }
 /* the root container of the top 3 */
 .rankContainer {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
+    overflow: auto;
+    white-space: nowrap;
     width: 100%;
 }
 /* child of root container of the top 3 */
@@ -173,8 +172,8 @@ h2 {
 
 .gameCard {
     box-shadow: 0 14px 18px 0 rgba(6, 6, 6, 0.2);
-    width: 80%;
-    height: 100%;
+    width: 250px;
+    height: 400px;
     margin: 1%;
     justify-content: center;
     text-align: center;

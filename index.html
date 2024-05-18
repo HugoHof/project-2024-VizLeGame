@@ -105,6 +105,8 @@
                             <option value="21">21</option>
                             <option value="23" selected="selected">All</option>
                         </select>
+                        <!--Play Button-->
+                        <button id="genre_play_button" onclick="onClickPlayButtonGenre()" style="width: 6em; height: 2em; align-self: center;">Play</button>
                     </div>
                 </div>
                 <!--Right part of the genre diversity-->
@@ -228,24 +230,46 @@
                             <option value="70">70</option>
                             <option value="10000000000000">All</option>
                         </select>
+                        <!--Play Button-->
+                        <button id="developer_play_button" onclick="onClickPlayButtonDev()" style="width: 6em; height: 2em; align-self: center;">Play</button>
                     </div>
                 </div>
                 <!--Right part of the Developer's diversity-->
                 <div class="rightGenresSection">
-                    <!--Title of the graph presented-->
-                    <h2 class="genreGraphTitle" id="developer_graph_title_2">Please select a Developer</h2>
-                    <!--Criteria selector for the graph-->
-                    <label for="developer_evolution_criteria">In function of :</label>
-                        <select id="developer_evolution_criteria">
+                    <!--Top Games for the developer-->
+                    <div style="display: grid; align-self: self-start;">
+                        <!--Title of the graph presented for the evolution of a developer-->
+                        <h2 class="genreGraphTitle" id="developer_list_games_title">Please select a Developer</h2>
+                        <!--Slector of the ranking criteria-->
+                        <label for="developer_list_games_criteria">Sort by :</label>
+                        <select class="metricSelector" id="developer_list_games_criteria">
                             <option value="Plays" selected="selected">Number of Players</option>
                             <option value="Rating">Average Game's Review Rating</option>
                             <option value="Playing">Number of Games Downloaded</option>
                             <option value="Wishlist">Number of Games present in the users wishlist</option>
                             <option value="Reviews">Number of Reviews</option>
-                            <option value="Number_of_Games">Number of Games Realeased</option>
                         </select>
-                    <!--Graph Developer's part that present a circle packing chart of developers-->
-                    <div id="developer_circle_packing_chart_2"></div>
+                        <!--List of games-->
+                        <div id="developer_list_games" class="rankContainer">
+                        </div>
+                    </div>
+                    <!--Global Evolution of the developer part-->
+                    <div style="display: grid; align-self: self-end;">
+                        <!--Title of the graph presented for the evolution of a developer-->
+                        <h2 class="genreGraphTitle" id="developer_graph_title_2">Please select a Developer</h2>
+                        <!--Criteria selector for the graph-->
+                        <label for="developer_evolution_criteria">In function of :</label>
+                            <select id="developer_evolution_criteria">
+                                <option value="Plays" selected="selected">Number of Players</option>
+                                <option value="Rating">Average Game's Review Rating</option>
+                                <option value="Playing">Number of Games Downloaded</option>
+                                <option value="Wishlist">Number of Games present in the users wishlist</option>
+                                <option value="Reviews">Number of Reviews</option>
+                                <option value="Number_of_Games">Number of Games Realeased</option>
+                            </select>
+                        <!--Graph Developer's part that present a circle packing chart of developers-->
+                        <div id="developer_circle_packing_chart_2"></div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -359,7 +383,8 @@
     <!--Genres bar chart-->
     <script src = "js/genresBarChart.js"></script>
     <!--Developers Circel Packing chart-->
-    <script src = "js/developersCirclePackingChart.js"></script>
-    <script src = "js/developersEvolutionChart.js"></script>
+    <script src = "js/DeveloperPart/developersCirclePackingChart.js"></script>
+    <script src = "js/DeveloperPart/developersEvolutionChart.js"></script>
+    <script src= "js/DeveloperPart/developerTopGames.js"></script>
 </body>
 </html>

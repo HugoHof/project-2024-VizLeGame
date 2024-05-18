@@ -3,6 +3,9 @@ const marginGenre = { top:10, right: 40, bottom: 60, left:100 }
 const widthGenre = 710 - marginGenre.left -marginGenre.right
 const heightGenre = 700 - marginGenre.top - marginGenre.bottom
 
+// to know if we currently playing in the genre part
+var isPlayingGenre = false
+
 // Create the SVG container for the bar chart
 const barChartGenre = d3.select("#genres_bar_chart").append("svg")
     .attr("width", widthGenre + marginGenre.left + marginGenre.right)
@@ -48,6 +51,9 @@ d3.json("data/games_by_year_and_genre.json", function(error, data) {
             //update the top-3 ranking
             updateTop3GamesGenreRanking(data)
         }
+    
+    // upadte every 1 s the displaying of the graph if isPlayingDeveloper is activated
+    setInterval(function() { return upadteGraphDisplayinyOnPlayGenre(data); }, 1000)
 })
 
 function drawGraphGenre(data) {
@@ -213,4 +219,32 @@ function updateTop3GamesGenreRanking(data) {
         .innerHTML = String(top3Games[0]["Developers"]).replace(',', "<br>");
     document.getElementById("games_genre_rank_3_platforms")
         .innerHTML = String(top3Games[0]["Platforms"]).replace(',', "<br>");
+}
+
+// Play Button change on click
+function onClickPlayButtonGenre() {
+    const currentYear = localStorage.getItem("year_genres")
+    if(currentYear < document.getElementById("year_genre_slider").max || isPlayingGenre) {
+        isPlayingGenre  = !isPlayingGenre
+        document.getElementById("genre_play_button").innerText = isPlayingGenre ? "Pause" : "Play"
+    }
+}
+
+// Updadte the graph displaying if the play button is activated
+function upadteGraphDisplayinyOnPlayGenre(data) {
+    if(isPlayingGenre) {
+        const currentYear = localStorage.getItem("year_genres")
+        if(currentYear >= document.getElementById("year_genre_slider").max-1) {
+            isPlayingGenre = false
+            document.getElementById("genre_play_button").innerText = "Play"
+        }
+        // to evict the bug when moveing the side bar during the animation.
+        if(currentYear >= document.getElementById("year_developer_slider").min && currentYear <= document.getElementById("year_developer_slider").max - 1) {
+            localStorage.setItem("year_genres", Number(currentYear) + 1);
+            document.getElementById("year_genre_displayed").innerHTML = Number(currentYear) + 1
+            document.getElementById("year_genre_slider").value = Number(currentYear) + 1
+            // re draw the graph
+            drawGraphGenre(data)
+        }
+    }
 }

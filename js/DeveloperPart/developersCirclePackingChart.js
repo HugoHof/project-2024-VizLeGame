@@ -3,6 +3,9 @@ const marginDev = { top:10, right: 40, bottom: 60, left:100 }
 const widthDev = 700 - marginDev.left -marginDev.right
 const heightDev = 700 - marginDev.top - marginDev.bottom
 
+// to know if the graph is currently play
+var isPlayingDeveloper = false;
+
 // Create the SVG container for the circle packing chart
 const devCircleChart = d3.select("#developer_circle_packing_chart").append("svg")
     .attr("width", widthDev + marginDev.left + marginDev.right)
@@ -44,6 +47,14 @@ d3.json("data/games_by_year_and_developers.json", function(error, data) {
             //re-draw the evolution graph
             drawDevEvolutionChart(data)
         }
+    // obtains the criteria in which the list of games will be ranked
+    var criteriaDevTop = document.getElementById("developer_list_games_criteria")
+        .oninput = function() {
+            // save the new criteria
+            localStorage.setItem("developer_list_games_criteria", this.value)
+            //re-draw the list of games relative to the developer
+            drawListGamesDeveloper(data)
+    }
 
     //draw initial graph
     drawGraphDev(data)
@@ -64,7 +75,38 @@ d3.json("data/games_by_year_and_developers.json", function(error, data) {
             localStorage.setItem("nb_developer_displayed", this.value);
             drawGraphDev(data);
         }
+
+    // upadte every 3 s the displaying of the graph if isPlayingDeveloper is activated
+    setInterval(function() { return upadteGraphDisplayinyOnPlayDev(data); }, 3000)
 })
+
+// Play Button change on click
+function onClickPlayButtonDev() {
+    const currentYear = localStorage.getItem("year_developer")
+    if(currentYear < document.getElementById("year_developer_slider").max || isPlayingDeveloper) {
+        isPlayingDeveloper  = !isPlayingDeveloper
+        document.getElementById("developer_play_button").innerText = isPlayingDeveloper ? "Pause" : "Play"
+    }
+}
+
+// Updadte the graph displaying if the play button is activated
+function upadteGraphDisplayinyOnPlayDev(data) {
+    if(isPlayingDeveloper) {
+        const currentYear = localStorage.getItem("year_developer")
+        if(currentYear >= document.getElementById("year_developer_slider").max-1) {
+            isPlayingDeveloper = false
+            document.getElementById("developer_play_button").innerText = "Play"
+        }
+        // to evict the bug when moveing the side bar during the animation.
+        if(currentYear >= document.getElementById("year_developer_slider").min && currentYear <= document.getElementById("year_developer_slider").max - 1) {
+            localStorage.setItem("year_developer", Number(currentYear) + 1);
+            document.getElementById("year_developer_displayed").innerHTML = Number(currentYear) + 1
+            document.getElementById("year_developer_slider").value = Number(currentYear) + 1
+            // re draw the graph
+            drawGraphDev(data)
+        }
+    }
+}
 
 function drawGraphDev(data) {
     const nbItemsDisplayed = localStorage.getItem("nb_developer_displayed");
@@ -100,7 +142,7 @@ function drawGraphDev(data) {
         TooltipDev
             .html('<u>' + elem.Developers + '</u>' + "<br>" + elem.Number_Of_Games + " Games Realeased")
             .style("left", (d3.mouse(this)[0]+20) + "px")
-            .style("top", (d3.mouse(this)[1] +80) + "px");
+            .style("top", (d3.mouse(this)[1] +40) + "px");
     }
 
     // set the opacity of the tootlptip to see relative information corresponding to the circle the mouse is present to. 
@@ -125,6 +167,8 @@ function drawGraphDev(data) {
         localStorage.setItem("developer_selected", elem.Developers)
         // draw a new evolution graph
         drawDevEvolutionChart(data)
+        // draw the list f games relative to the developer
+        drawListGamesDeveloper(data)
         return;
     }
 
