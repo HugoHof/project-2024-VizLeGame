@@ -169,6 +169,9 @@ function drawGraphDev(data) {
         drawDevEvolutionChart(data)
         // draw the list f games relative to the developer
         drawListGamesDeveloper(data)
+        // show the right content of the visualization
+        document.getElementById("developer_right_no_selected").style.display = "none"
+        document.getElementById("developer_right_selected").style.display = "initial"
         return;
     }
 

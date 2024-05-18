@@ -134,6 +134,9 @@ function drawGraphGenre(data) {
         updateGenreDescription(); 
         //save the new list of games displayed in the top-3 ranking
         updateTop3GamesGenreRanking(data);
+        // show the right content of the visualization
+        document.getElementById("genre_right_no_selected").style.display = "none"
+        document.getElementById("genre_right_selected").style.display = "initial"
         return;
     });
 
