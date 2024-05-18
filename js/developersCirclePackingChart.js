@@ -32,6 +32,19 @@ d3.json("data/games_by_year_and_developers.json", function(error, data) {
     // set default value of year and nb developers displayed
     localStorage.setItem("year_developer", 2000)
     localStorage.setItem("nb_developer_displayed", 20)
+
+    //default criteria 
+    localStorage.setItem("developer_evolution_criteria", "Plays")
+
+    // extract the criteria for the developer evolution
+    var criteriaDevEvolution = document.getElementById("developer_evolution_criteria")
+        .oninput = function() {
+            // save the new criteria
+            localStorage.setItem("developer_evolution_criteria", this.value)
+            //re-draw the evolution graph
+            drawDevEvolutionChart(data)
+        }
+
     //draw initial graph
     drawGraphDev(data)
     
@@ -110,6 +123,8 @@ function drawGraphDev(data) {
         d3.select(this).style("fill", '#003366')
         // save the developer selected
         localStorage.setItem("developer_selected", elem.Developers)
+        // draw a new evolution graph
+        drawDevEvolutionChart(data)
         return;
     }
 
