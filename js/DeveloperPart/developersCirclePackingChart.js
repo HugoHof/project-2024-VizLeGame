@@ -20,11 +20,14 @@ var TooltipDev = d3.select("#developer_circle_packing_chart")
     .style("position", "absolute")
     .style("opacity", 0)
     .attr("class", "tooltip")
-    .style("background-color", "white")
-    .style("border", "solid")
-    .style("border-width", "2px")
     .style("border-radius", "5px")
     .style("padding", "5px")
+    .style("background-color", "black")
+    .style("color", "white")
+    .style("font-family", "'SF Pixelate', sans-serif")
+    .style("font-size", "10pt")
+    .style("margin", "5px")
+    .attr("pointer-events", "none")
 
 // import the data form the json file
 d3.json("data/games_by_year_and_developers.json", function(error, data) {

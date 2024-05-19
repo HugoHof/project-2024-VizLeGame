@@ -79,37 +79,41 @@
         </div>
         <!--Genre Trends-->
         <div class="section">
-            <!--Title of genres diversity section-->
-            <h1 class="sectionTitle">
-                Game are caracterized by a large diversity of Genres
-            </h1>
             <!--Genre diversity visualization-->
             <div class="visualizationPart">
                 <!--Left part of the genre diversity-->
                 <div class="leftGenresSection" style="display: grid;">
-                    <!--Title of the graph presented-->
-                    <h2 class="genreGraphTitle" id="genre_graph_title">Number of Video Games by Genre in 2000</h2>
+                    <!--Title of genres diversity section-->
+                    <h1 class="sectionTitleGraph">
+                        A large diversity of Genres...
+                    </h1>
                     <!--Graph genres part that present a bar chart of genres-->
                     <div id="genres_bar_chart"></div>
+                    <!--Title of the graph presented-->
+                    <h2 class="graphTitle" id="genre_graph_title">Number of Video Games by Genre in 2000</h2>
                     <!--Interaction with the genre bar chart-->
-                    <div class="slider_divider">
-                        <div class="year_sider_displayed">
-                            <span id="year_genre_displayed">2000</span>
+                    <div class="visualizationPartTools">
+                        <div class="visualizationPartTimeTools">
+                            <label class= "rightPartSelectorLabel" for="year_genre_slider">Current Year Displayed :</label>
+                            <input class="visualizationPartSlider" type="range" min="1971" max="2023" value="2000" class="slider" id="year_genre_slider">
+                            <!--Current year Displayed-->
+                            <p class="visualizationPartYearDisplayed" id="year_genre_displayed">2000</p>
+                            <!--Play Button-->
+                            <button id="genre_play_button" onclick="onClickPlayButtonGenre()" class="visualizationPartButtonTool">Play</button>
                         </div>
-                        <input type="range" min="1971" max="2023" value="2000" class="slider" id="year_genre_slider">
-                        <label for="nb_genre_displayed_selector">Number of GenresDisplayed :</label>
-                        <select id="nb_genre_displayed_selector">
-                            <option value="3">3</option>
-                            <option value="6">6</option>
-                            <option value="9">9</option>
-                            <option value="12">12</option>
-                            <option value="15">15</option>
-                            <option value="18">18</option>
-                            <option value="21">21</option>
-                            <option value="23" selected="selected">All</option>
-                        </select>
-                        <!--Play Button-->
-                        <button id="genre_play_button" onclick="onClickPlayButtonGenre()" style="width: 6em; height: 2em; align-self: center;">Play</button>
+                        <div class="visualizationSelectorTools">
+                            <label class= "rightPartSelectorLabel" for="nb_genre_displayed_selector">Number of Genres Displayed :</label>
+                            <select class= "rightPartSelector" id="nb_genre_displayed_selector">
+                                <option value="3">3</option>
+                                <option value="6">6</option>
+                                <option value="9">9</option>
+                                <option value="12">12</option>
+                                <option value="15">15</option>
+                                <option value="18">18</option>
+                                <option value="21">21</option>
+                                <option value="23" selected="selected">All</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
                 <!--Right part of the genre diversity-->
@@ -144,7 +148,7 @@
                                 <div class="podiumGame">
                                     <!--2nd Podium Place"-->
                                     <div class="podiumPlace">
-                                        <div class="gameCard">
+                                        <div class="gameCard" id="genre_rank_2">
                                             <div class= "gameCardTitleContainer">
                                                 <h1 class="gameCardTitle" id="games_genre_rank_2_title">Title #2</h1>
                                             </div>
@@ -163,7 +167,7 @@
                                     
                                     <!--1st Podium Place"-->
                                     <div class="podiumPlace">
-                                        <div class="gameCard">
+                                        <div class="gameCard"  id="genre_rank_1">
                                             <div class= "gameCardTitleContainer">
                                                 <h1 class="gameCardTitle" id="games_genre_rank_1_title">Title #1</h1>
                                             </div>
@@ -182,7 +186,7 @@
                                     
                                     <!--3rd Podium Place"-->
                                     <div class="podiumPlace">
-                                        <div class="gameCard">
+                                        <div class="gameCard"  id="genre_rank_3">
                                             <div class= "gameCardTitleContainer">
                                                 <h1 class="gameCardTitle" id="games_genre_rank_3_title">Title #3</h1>
                                             </div>
@@ -214,36 +218,40 @@
         </div>
         <!--Developers-->
         <div class="section">
-            <h1 class="sectionTitle">
-                Games are developed by many developers along the years
-            </h1>
             <!--Developers visualization-->
             <div class="visualizationPart">
                 <!--Left part of the developers diversity-->
                 <div class="leftGenresSection" style="display: grid;">
-                    <!--Title of the graph presented-->
-                    <h2 class="genreGraphTitle" id="developer_graph_title">Number of Video Games Realeased by Developer in 2000</h2>
+                    <!--Title of the section-->
+                    <h1 class="sectionTitleGraph">
+                        A lot of Developers...
+                    </h1>
                     <!--Graph Developer's part that present a circle packing chart of developers-->
                     <div id="developer_circle_packing_chart"></div>
+                    <!--Title of the graph presented-->
+                    <h2 class="graphTitleDev" id="developer_graph_title">Number of Video Games Realeased by Developer in 2000</h2>
                     <!--Interaction with the developer circle packing chart-->
-                    <div class="slider_divider">
-                        <div class="year_sider_displayed">
-                            <span id="year_developer_displayed">2000</span>
+                    <div class="visualizationPartTools">
+                        <div class="visualizationPartTimeTools">
+                            <label class= "rightPartSelectorLabel" for="year_developer_slider">Current Year Displayed :</label>
+                            <input type="range" min="1971" max="2023" value="2000" class="visualizationPartSlider" id="year_developer_slider">
+                            <p class="visualizationPartYearDisplayed" id="year_developer_displayed">2000</p>
+                            <!--Play Button-->
+                            <button id="developer_play_button" onclick="onClickPlayButtonDev()" class="visualizationPartButtonTool">Play</button>
                         </div>
-                        <input type="range" min="1971" max="2023" value="2000" class="slider" id="year_developer_slider">
-                        <label for="nb_developer_displayed_selector">Number of Developers Displayed :</label>
-                        <select id="nb_developer_displayed_selector">
-                            <option value="10">10</option>
-                            <option value="20"selected="selected">20</option>
-                            <option value="30">30</option>
-                            <option value="40">40</option>
-                            <option value="50">50</option>
-                            <option value="60">60</option>
-                            <option value="70">70</option>
-                            <option value="10000000000000">All</option>
-                        </select>
-                        <!--Play Button-->
-                        <button id="developer_play_button" onclick="onClickPlayButtonDev()" style="width: 6em; height: 2em; align-self: center;">Play</button>
+                        <div class="visualizationSelectorTools">
+                            <label class="rightPartSelectorLabel" for="nb_developer_displayed_selector">Number of Developers Displayed :</label>
+                            <select class="rightPartSelector" id="nb_developer_displayed_selector">
+                                <option value="10">10</option>
+                                <option value="20"selected="selected">20</option>
+                                <option value="30">30</option>
+                                <option value="40">40</option>
+                                <option value="50">50</option>
+                                <option value="60">60</option>
+                                <option value="70">70</option>
+                                <option value="10000000000000">All</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
                 <!--Right part of the Developer's diversity-->

@@ -1,6 +1,6 @@
 // setup the dimesnions of the bar chart
-const marginGenre = { top:10, right: 40, bottom: 60, left:100 }
-const widthGenre = 710 - marginGenre.left -marginGenre.right
+const marginGenre = { top:10, right: 40, bottom: 60, left:200 }
+const widthGenre = 700 - marginGenre.left -marginGenre.right
 const heightGenre = 700 - marginGenre.top - marginGenre.bottom
 
 // to know if we currently playing in the genre part
@@ -147,20 +147,24 @@ function drawGraphGenre(data, genreDescription) {
     // add the x and y axes to the bar chart
     barChartGenre.append('g')
         .attr("class", "x axis")
-        .style("font-size", "10px")
+        .style("font-family", "'Games', sans-serif")
+        .style("font-size", "10pt")
         .attr("transform", "translate(0," + heightGenre + ")")
         .call(xAxis)
         .call(g => g.select(".domain").remove());
 
     barChartGenre.append('g')
         .attr("class", "y axis")
-        .style("font-size", "8px")
+        .style("font-family", "'Games', sans-serif")
+        .style("font-size", "10pt")
         .call(yAxis)
         .selectAll("path")
         .style("stroke-width", "1.75px");
     
     barChartGenre.selectAll(".y.axis .tick text")
-        .text(function (elem) { return elem[0].toUpperCase(); });
+        .style("font-family", "'Games', sans-serif")
+        .style("font-size", "10pt")
+        .text(function (elem) { return elem[0].toUpperCase().replaceAll('&', 'And'); });
 
     // add labels to the end of each bars
     barChartGenre.selectAll(".label")
@@ -170,7 +174,7 @@ function drawGraphGenre(data, genreDescription) {
         .attr("x", function (elem) { return x(elem.Number_Of_Games) + 5; })
         .attr("y", function (elem) { return y(elem.Genre) + y.bandwidth() / 2; })
         .attr("dy", ".35em")
-        .style("font-family", "arial")
+        .style("font-family", "'SF Pixelate', sans-serif")
         .style("foont-size", "0.1px")
         .style("font-weight", "bold")
         .style("fill", "#3c3d28")
@@ -195,42 +199,59 @@ function updateTop3GamesGenreRanking(data) {
     const gamesArray = data[yearSelected][genreSelected]
     // sort the games according to the criteria
     gamesArray.sort(function (x, y) {
-        return d3.ascending(x[rankingCriteria], y[rankingCriteria]);
+        return d3.descending(x[rankingCriteria], y[rankingCriteria]);
     });
     //slect the top 3
     const startIndex = Math.max(0, gamesArray.length - 3);
     const top3Games = gamesArray.slice(startIndex, gamesArray.length);
     //update games rankings displaying
     
-    //top 1
-    document.getElementById("games_genre_rank_1_title")
-        .textContent = top3Games[2]["Title"].toUpperCase()
-    document.getElementById("games_genre_rank_1_genres")
-        .innerHTML = String(top3Games[2]["Genres"]).replaceAll(',', ", ");
-    document.getElementById("games_genre_rank_1_developer")
-        .innerHTML = String(top3Games[2]["Developers"]).replaceAll(',', ", ");
-    document.getElementById("games_genre_rank_1_platforms")
-        .innerHTML = String(top3Games[2]["Platforms"]).replaceAll(',', ", ");
-
-    //top 2
-    document.getElementById("games_genre_rank_2_title")
-        .textContent = top3Games[1]["Title"].toUpperCase()
-    document.getElementById("games_genre_rank_2_genres")
-        .innerHTML = String(top3Games[1]["Genres"]).replaceAll(',', ", ");
-    document.getElementById("games_genre_rank_2_developer")
-        .innerHTML = String(top3Games[1]["Developers"]).replaceAll(',', ", ");
-    document.getElementById("games_genre_rank_2_platforms")
-        .innerHTML = String(top3Games[1]["Platforms"]).replaceAll(',', ", ");
-
-    //top 3
-    document.getElementById("games_genre_rank_3_title")
-        .textContent = top3Games[0]["Title"].toUpperCase()
-    document.getElementById("games_genre_rank_3_genres")
-        .innerHTML = String(top3Games[0]["Genres"]).replace(',', ", ");
-    document.getElementById("games_genre_rank_3_developer")
-        .innerHTML = String(top3Games[0]["Developers"]).replace(',', ", ");
-    document.getElementById("games_genre_rank_3_platforms")
-        .innerHTML = String(top3Games[0]["Platforms"]).replace(',', ", ");
+    if(top3Games.length >= 1) {
+        //top 1
+        document.getElementById("genre_rank_1").style.display = "initial"
+        document.getElementById("games_genre_rank_1_title")
+            .textContent = top3Games[0]["Title"].toUpperCase()
+        document.getElementById("games_genre_rank_1_genres")
+            .innerHTML = String(top3Games[0]["Genres"]).replaceAll(',', ", ");
+        document.getElementById("games_genre_rank_1_developer")
+            .innerHTML = String(top3Games[0]["Developers"]).replaceAll(',', ", ");
+        document.getElementById("games_genre_rank_1_platforms")
+            .innerHTML = String(top3Games[0]["Platforms"]).replaceAll(',', ", ");
+        if(top3Games.length >=2) {
+            //top 2
+            document.getElementById("genre_rank_2").style.display = "initial"
+            document.getElementById("games_genre_rank_2_title")
+                .textContent = top3Games[1]["Title"].toUpperCase()
+            document.getElementById("games_genre_rank_2_genres")
+                .innerHTML = String(top3Games[1]["Genres"]).replaceAll(',', ", ");
+            document.getElementById("games_genre_rank_2_developer")
+                .innerHTML = String(top3Games[1]["Developers"]).replaceAll(',', ", ");
+            document.getElementById("games_genre_rank_2_platforms")
+                .innerHTML = String(top3Games[1]["Platforms"]).replaceAll(',', ", ");
+            
+            if(top3Games.length >= 3) {
+                //top 3
+                document.getElementById("genre_rank_3").style.display = "initial"
+                document.getElementById("games_genre_rank_3_title")
+                    .textContent = top3Games[2]["Title"].toUpperCase()
+                document.getElementById("games_genre_rank_3_genres")
+                    .innerHTML = String(top3Games[2]["Genres"]).replace(',', ", ");
+                document.getElementById("games_genre_rank_3_developer")
+                    .innerHTML = String(top3Games[2]["Developers"]).replace(',', ", ");
+                document.getElementById("games_genre_rank_3_platforms")
+                    .innerHTML = String(top3Games[2]["Platforms"]).replace(',', ", ");
+            } else {
+                document.getElementById("genre_rank_3").style.display = "none"
+            }
+        } else {
+            document.getElementById("genre_rank_2").style.display = "none"
+            document.getElementById("genre_rank_3").style.display = "none"
+        }
+    } else {
+        document.getElementById("genre_rank_1").style.display = "none"
+        document.getElementById("genre_rank_2").style.display = "none"
+        document.getElementById("genre_rank_3").style.display = "none"
+    }
 }
 
 // Play Button change on click

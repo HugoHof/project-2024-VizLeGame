@@ -103,6 +103,7 @@ function drawDevEvolutionChart(data) {
     // Create the line 
 
     // add a point for the esthetic to complete the graph
+    graphData = [{Year : new Date(String("1971-01-01")), YElem : 0}].concat(graphData)
     graphData.push({Year : new Date(String("2023-01-02")), YElem : 0})
 
     // Plot the area
