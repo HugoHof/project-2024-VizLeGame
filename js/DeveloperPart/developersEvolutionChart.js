@@ -1,7 +1,7 @@
 // setup the dimesnions of the developer evolution chart
 const marginDevEvo = { top:10, right: 40, bottom: 60, left:100 }
 const widthDevEvo = 700 - marginDevEvo.left -marginDevEvo.right
-const heightDevEvo = 400 - marginDevEvo.top - marginDevEvo.bottom
+const heightDevEvo = 300 - marginDevEvo.top - marginDevEvo.bottom
 
 // append the graph to the page
 var devEvolutionChart = d3.select("#developer_circle_packing_chart_2")

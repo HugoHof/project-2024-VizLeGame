@@ -28,6 +28,8 @@ var TooltipDev = d3.select("#developer_circle_packing_chart")
     .style("font-size", "10pt")
     .style("margin", "5px")
     .attr("pointer-events", "none")
+    .style("left", "100px")
+    .style("top", "100px");
 
 // import the data form the json file
 d3.json("data/games_by_year_and_developers.json", function(error, data) {
@@ -143,9 +145,7 @@ function drawGraphDev(data) {
     // show the name of the developers and the number of games released by this developer when the mouse is over to the corresponding circle
     var mouseMoveOnCircle = function(elem) {
         TooltipDev
-            .html('<u>' + elem.Developers + '</u>' + "<br>" + elem.Number_Of_Games + " Games Realeased")
-            .style("left", (d3.mouse(this)[0]+20) + "px")
-            .style("top", (d3.mouse(this)[1] +40) + "px");
+            .html('<u>' + elem.Developers + '</u>' + "<br>" + elem.Number_Of_Games + " Games Realeased");
     }
 
     // set the opacity of the tootlptip to see relative information corresponding to the circle the mouse is present to. 
