@@ -1,7 +1,7 @@
 // setup the dimesnions of the developer evolution chart
 const marginDevEvo = { top:10, right: 40, bottom: 60, left:100 }
 const widthDevEvo = 700 - marginDevEvo.left -marginDevEvo.right
-const heightDevEvo = 350 - marginDevEvo.top - marginDevEvo.bottom
+const heightDevEvo = 400 - marginDevEvo.top - marginDevEvo.bottom
 
 // append the graph to the page
 var devEvolutionChart = d3.select("#developer_circle_packing_chart_2")
@@ -86,14 +86,19 @@ function drawDevEvolutionChart(data) {
     // Add the x axis
     devEvolutionChart.append("g")
         .attr("transform", `translate(0,${heightDevEvo})`)
+        .attr("stroke", "white")
         .call(d3.axisBottom(x)
             .ticks(d3.timeYear.every(10)) 
             .tickFormat(d3.timeFormat("%Y"))
-        ); 
+        )
+        .selectAll("*")
+            .attr("stroke", "white");
 
     // Add the y axis
     devEvolutionChart.append("g")
         .call(d3.axisLeft(y))
+        .selectAll("*")
+            .attr("stroke", "white");
     
     // Create the line 
 
@@ -107,6 +112,7 @@ function drawDevEvolutionChart(data) {
         .attr("fill", "#69b3aa")
         .attr("opacity", ".8")
         .attr("stroke", "#000")
+        .attr("stroke", "white")
         .attr("stroke-width", 1)
         .attr("stroke-linejoin", "round")
         .attr("d",  d3.line()

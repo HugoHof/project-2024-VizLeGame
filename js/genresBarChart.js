@@ -204,33 +204,33 @@ function updateTop3GamesGenreRanking(data) {
     
     //top 1
     document.getElementById("games_genre_rank_1_title")
-        .textContent = top3Games[2]["Title"]
+        .textContent = top3Games[2]["Title"].toUpperCase()
     document.getElementById("games_genre_rank_1_genres")
-        .innerHTML = String(top3Games[2]["Genres"]).replaceAll(',', "<br>");
+        .innerHTML = String(top3Games[2]["Genres"]).replaceAll(',', ", ");
     document.getElementById("games_genre_rank_1_developer")
-        .innerHTML = String(top3Games[2]["Developers"]).replaceAll(',', "<br>");
+        .innerHTML = String(top3Games[2]["Developers"]).replaceAll(',', ", ");
     document.getElementById("games_genre_rank_1_platforms")
-        .innerHTML = String(top3Games[2]["Platforms"]).replaceAll(',', "<br>");
+        .innerHTML = String(top3Games[2]["Platforms"]).replaceAll(',', ", ");
 
     //top 2
     document.getElementById("games_genre_rank_2_title")
-        .textContent = top3Games[1]["Title"]
+        .textContent = top3Games[1]["Title"].toUpperCase()
     document.getElementById("games_genre_rank_2_genres")
-        .innerHTML = String(top3Games[1]["Genres"]).replaceAll(',', "<br>");
+        .innerHTML = String(top3Games[1]["Genres"]).replaceAll(',', ", ");
     document.getElementById("games_genre_rank_2_developer")
-        .innerHTML = String(top3Games[1]["Developers"]).replaceAll(',', "<br>");
+        .innerHTML = String(top3Games[1]["Developers"]).replaceAll(',', ", ");
     document.getElementById("games_genre_rank_2_platforms")
-        .innerHTML = String(top3Games[1]["Platforms"]).replaceAll(',', "<br>");
+        .innerHTML = String(top3Games[1]["Platforms"]).replaceAll(',', ", ");
 
     //top 3
     document.getElementById("games_genre_rank_3_title")
-        .textContent = top3Games[0]["Title"]
+        .textContent = top3Games[0]["Title"].toUpperCase()
     document.getElementById("games_genre_rank_3_genres")
-        .innerHTML = String(top3Games[0]["Genres"]).replace(',', "<br>");
+        .innerHTML = String(top3Games[0]["Genres"]).replace(',', ", ");
     document.getElementById("games_genre_rank_3_developer")
-        .innerHTML = String(top3Games[0]["Developers"]).replace(',', "<br>");
+        .innerHTML = String(top3Games[0]["Developers"]).replace(',', ", ");
     document.getElementById("games_genre_rank_3_platforms")
-        .innerHTML = String(top3Games[0]["Platforms"]).replace(',', "<br>");
+        .innerHTML = String(top3Games[0]["Platforms"]).replace(',', ", ");
 }
 
 // Play Button change on click

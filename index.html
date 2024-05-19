@@ -16,7 +16,10 @@
 
     <!--INTRODUCTION PAGE-->
     <script src="js/introduction/introduction.js"></script>
-    
+
+    <!--Video Games font-->
+    <link href="https://fonts.cdnfonts.com/css/games" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/sf-pixelate" rel="stylesheet">
 </head>
 <body>
 
@@ -110,88 +113,91 @@
                     </div>
                 </div>
                 <!--Right part of the genre diversity-->
-                <div class="rightGenresSection">
+                <div class="rightPartSection">
                     <!--When no genre is selected-->
                     <div id="genre_right_no_selected" style="display: initial;">
-                        <h2 class="genreDescriptivePart">Please Select a Genre</h2>
-                        <h2 class="genreDescriptivePart">(Click on a bar on the left)</h2>
+                        <h2 class="rightPartIndication">Please Select a Genre</h2>
+                        <h2 class="rightPartIndication">(Click on a bar on the left)</h2>
                     </div>
                     <!--When a genre is selected-->
                     <div id="genre_right_selected" style="display: none;">
-                        <div style="display: block;">
-                            <h2 class="genreDescriptivePart" id="genre_description_title">Please Select a Genre</h2>
-                            <p id="genre_description_text" style="font-size: 14px;"></p>
+                        <div class="rightPartDescriptionPart">
+                            <h2 class="rightPartTitle" id="genre_description_title"></h2>
+                            <p class= "rightPartDescription" id ="genre_description_text"></p>
                         </div>
 
-                        <div style="display: block; margin: 0%; padding: 0%; align-content: baseline;">
-                            <h2>Top 3 games</h2>
+                        <div class="rightPartTop3Part">
+                            <div class="rightPartTop3PartInfo">
+                                <h2 class="rightPartTitle">Top 3 games</h2>
 
-                            <label for="genres_games_top_3_criteria" style="margin-left: 1%;">Ranking in fuction of the :</label>
+                                <label class= "rightPartSelectorLabel" for="genres_games_top_3_criteria">Ranking in fuction of the :</label>
 
-                            <select class="metricSelector" id="genres_games_top_3_criteria">
-                                <option value="Plays" selected="selected">Number of Players</option>
-                                <option value="Rating">Average Game's Review Rating</option>
-                                <option value="Playing">Number of Games Downloaded</option>
-                                <option value="Wishlist">Number of Games present in the users wishlist</option>
-                                <option value="Reviews">Number of Reviews</option>
-                            </select>
-
-                            <div class="podiumGame">
-                                <!--2nd Podium Place"-->
-                                <div class="podiumPlace">
-                                    <div class="gameCard">
-                                        <div class= "gameCardTitleContainer">
-                                            <h1 class="gameCardTitle" id="games_genre_rank_2_title">Title #2</h1>
+                                <select class="rightPartSelector" id="genres_games_top_3_criteria">
+                                    <option value="Plays" selected="selected">Number of Players</option>
+                                    <option value="Rating">Average Game's Review Rating</option>
+                                    <option value="Playing">Number of Games Downloaded</option>
+                                    <option value="Wishlist">Number of Games present in the users wishlist</option>
+                                    <option value="Reviews">Number of Reviews</option>
+                                </select>
+                            </div>
+                            <div class="rightPartTop3PartContent">
+                                <div class="podiumGame">
+                                    <!--2nd Podium Place"-->
+                                    <div class="podiumPlace">
+                                        <div class="gameCard">
+                                            <div class= "gameCardTitleContainer">
+                                                <h1 class="gameCardTitle" id="games_genre_rank_2_title">Title #2</h1>
+                                            </div>
+                                            <div class= "gameDescriptionContainer">
+                                                <label class="gameCardLabel" for="games_genre_rank_2_genres">Genre(s) </label>
+                                                <p class="gameCardTextElem" id="games_genre_rank_2_genres"></p>
+                                                <label class="gameCardLabel" for="games_genre_rank_2_developer">Developer(s) </label>
+                                                <p class="gameCardTextElem" id="games_genre_rank_2_developer"></p>
+                                                <label class="gameCardLabel" for="games_genre_rank_2_platforms">Platform(s) </label>
+                                                <p class="gameCardTextElem" id="games_genre_rank_2_platforms"></p>
+                                            </div>
                                         </div>
-                                        <div class= "gameDescriptionContainer">
-                                            <label class="gameCardLabel" for="games_genre_rank_2_genres">Genre(s) </label>
-                                            <p class="gameCardTextElem" id="games_genre_rank_2_genres"></p>
-                                            <label class="gameCardLabel" for="games_genre_rank_2_developer">Developer(s) </label>
-                                            <p class="gameCardTextElem" id="games_genre_rank_2_developer"></p>
-                                            <label class="gameCardLabel" for="games_genre_rank_2_platforms">Platform(s) </label>
-                                            <p class="gameCardTextElem" id="games_genre_rank_2_platforms"></p>
-                                        </div>
+    
+                                        <div style="height: 75px; background-color: #C0C0C0;" class="podiumStep">2</div>
                                     </div>
-
-                                    <div style="height: 90px; background-color: #C0C0C0;" class="podiumStep">#2</div>
-                                </div>
-                                
-                                <!--1st Podium Place"-->
-                                <div class="podiumPlace">
-                                    <div class="gameCard">
-                                        <div class= "gameCardTitleContainer">
-                                            <h1 class="gameCardTitle" id="games_genre_rank_1_title">Title #1</h1>
+                                    
+                                    <!--1st Podium Place"-->
+                                    <div class="podiumPlace">
+                                        <div class="gameCard">
+                                            <div class= "gameCardTitleContainer">
+                                                <h1 class="gameCardTitle" id="games_genre_rank_1_title">Title #1</h1>
+                                            </div>
+                                            <div class= "gameDescriptionContainer">
+                                                <label class="gameCardLabel" for="games_genre_rank_1_genres">Genre(s) </label>
+                                                <p class="gameCardTextElem" id="games_genre_rank_1_genres"></p>
+                                                <label class="gameCardLabel" for="games_genre_rank_1_developer">Developer(s) </label>
+                                                <p class="gameCardTextElem" id="games_genre_rank_1_developer"></p>
+                                                <label class="gameCardLabel" for="games_genre_rank_1_platforms">Platform(s) </label>
+                                                <p class="gameCardTextElem" id="games_genre_rank_1_platforms"></p>
+                                            </div>
                                         </div>
-                                        <div class= "gameDescriptionContainer">
-                                            <label class="gameCardLabel" for="games_genre_rank_1_genres">Genre(s) </label>
-                                            <p class="gameCardTextElem" id="games_genre_rank_1_genres"></p>
-                                            <label class="gameCardLabel" for="games_genre_rank_1_developer">Developer(s) </label>
-                                            <p class="gameCardTextElem" id="games_genre_rank_1_developer"></p>
-                                            <label class="gameCardLabel" for="games_genre_rank_1_platforms">Platform(s) </label>
-                                            <p class="gameCardTextElem" id="games_genre_rank_1_platforms"></p>
-                                        </div>
+    
+                                        <div style="height: 95px; background-color: #ffd700;" class="podiumStep">1</div>
                                     </div>
-
-                                    <div style="height: 120px; background-color: #ffd700;" class="podiumStep">#1</div>
-                                </div>
-                                
-                                <!--3rd Podium Place"-->
-                                <div class="podiumPlace">
-                                    <div class="gameCard">
-                                        <div class= "gameCardTitleContainer">
-                                            <h1 class="gameCardTitle" id="games_genre_rank_3_title">Title #3</h1>
+                                    
+                                    <!--3rd Podium Place"-->
+                                    <div class="podiumPlace">
+                                        <div class="gameCard">
+                                            <div class= "gameCardTitleContainer">
+                                                <h1 class="gameCardTitle" id="games_genre_rank_3_title">Title #3</h1>
+                                            </div>
+                                            <div class= "gameDescriptionContainer">
+                                                <label class="gameCardLabel" for="games_genre_rank_3_genres">Genre(s) </label>
+                                                <p class="gameCardTextElem" id="games_genre_rank_3_genres"></p>
+                                                <label class="gameCardLabel" for="games_genre_rank_3_developer">Developer(s) </label>
+                                                <p class="gameCardTextElem" id="games_genre_rank_3_developer"></p>
+                                                <label class="gameCardLabel" for="games_genre_rank_3_platforms">Platform(s) </label>
+                                                <p class="gameCardTextElem" id="games_genre_rank_3_platforms"></p>
+                                            </div>
                                         </div>
-                                        <div class= "gameDescriptionContainer">
-                                            <label class="gameCardLabel" for="games_genre_rank_3_genres">Genre(s) </label>
-                                            <p class="gameCardTextElem" id="games_genre_rank_3_genres"></p>
-                                            <label class="gameCardLabel" for="games_genre_rank_3_developer">Developer(s) </label>
-                                            <p class="gameCardTextElem" id="games_genre_rank_3_developer"></p>
-                                            <label class="gameCardLabel" for="games_genre_rank_3_platforms">Platform(s) </label>
-                                            <p class="gameCardTextElem" id="games_genre_rank_3_platforms"></p>
-                                        </div>
+    
+                                        <div style="height: 55px; background-color: #CD7F32;" class="podiumStep">3</div>
                                     </div>
-
-                                    <div style="height: 70px; background-color: #CD7F32;" class="podiumStep">#3</div>
                                 </div>
                             </div>
                         </div>
@@ -241,47 +247,54 @@
                     </div>
                 </div>
                 <!--Right part of the Developer's diversity-->
-                <div class="rightGenresSection">
+                <div class="rightPartSection">
                     <!--When no genre is selected-->
                     <div id="developer_right_no_selected" style="display: initial;">
-                        <h2 class="genreDescriptivePart">Please Select a Developer</h2>
-                        <h2 class="genreDescriptivePart">(Click on a circle on the left)</h2>
+                        <h2 class="rightPartIndication">Please Select a Developer</h2>
+                        <h2 class="rightPartIndication">(Click on a circle on the left)</h2>
                     </div>
                     <!--When a genre is selected-->
                     <div id="developer_right_selected" style="display: none;">
                         <!--Top Games for the developer-->
-                        <div style="display: grid; align-self: self-start;">
-                            <!--Title of the graph presented for the evolution of a developer-->
-                            <h2 class="genreGraphTitle" id="developer_list_games_title">Please select a Developer</h2>
-                            <!--Slector of the ranking criteria-->
-                            <label for="developer_list_games_criteria">Sort by :</label>
-                            <select class="metricSelector" id="developer_list_games_criteria">
-                                <option value="Plays" selected="selected">Number of Players</option>
-                                <option value="Rating">Average Game's Review Rating</option>
-                                <option value="Playing">Number of Games Downloaded</option>
-                                <option value="Wishlist">Number of Games present in the users wishlist</option>
-                                <option value="Reviews">Number of Reviews</option>
-                            </select>
-                            <!--List of games-->
-                            <div id="developer_list_games" class="rankContainer">
-                            </div>
-                        </div>
-                        <!--Global Evolution of the developer part-->
-                        <div style="display: grid; align-self: self-end;">
-                            <!--Title of the graph presented for the evolution of a developer-->
-                            <h2 class="genreGraphTitle" id="developer_graph_title_2">Please select a Developer</h2>
-                            <!--Criteria selector for the graph-->
-                            <label for="developer_evolution_criteria">In function of :</label>
-                                <select id="developer_evolution_criteria">
+                        <div class="rightPartListPart">
+                            <div class="rightPartTop3PartInfo">
+                                <!--Part where the games relative to the developer are displayed-->
+                                <h2 class="rightPartTitleSmall" id="developer_list_games_title">Please select a Developer</h2>
+                                <!--Slector of the ranking criteria-->
+                                <label class="rightPartSelectorLabel" for="developer_list_games_criteria">Sort by :</label>
+                                <select class="rightPartSelector" id="developer_list_games_criteria">
                                     <option value="Plays" selected="selected">Number of Players</option>
                                     <option value="Rating">Average Game's Review Rating</option>
                                     <option value="Playing">Number of Games Downloaded</option>
                                     <option value="Wishlist">Number of Games present in the users wishlist</option>
                                     <option value="Reviews">Number of Reviews</option>
-                                    <option value="Number_of_Games">Number of Games Realeased</option>
                                 </select>
-                            <!--Graph Developer's part that present a circle packing chart of developers-->
-                            <div id="developer_circle_packing_chart_2"></div>
+                            </div>
+                            <div class="rightPartTop3PartContent">
+                                <!--List of games-->
+                                <div id="developer_list_games" class="rightPartListContainer"></div>
+                            </div>
+                        </div>
+                        <div class="rightPartGraphPart">
+                            <div class="rightPartTop3PartInfo">
+                                <!--Title of the graph presented for the evolution of a developer-->
+                                <h2 class="rightPartTitleSmall" id="developer_graph_title_2"></h2>
+                                <!--Criteria selector for the graph-->
+                                <label class= "rightPartSelectorLabel" for="developer_evolution_criteria">In function of :</label>
+                                    <select class="rightPartSelector" id="developer_evolution_criteria">
+                                        <option value="Plays" selected="selected">Number of Players</option>
+                                        <option value="Rating">Average Game's Review Rating</option>
+                                        <option value="Playing">Number of Games Downloaded</option>
+                                        <option value="Wishlist">Number of Games present in the users wishlist</option>
+                                        <option value="Reviews">Number of Reviews</option>
+                                        <option value="Number_of_Games">Number of Games Realeased</option>
+                                    </select>
+                            </div>
+                            <!--Global Evolution of the developer part-->
+                            <div class= "rightPartTop3PartContent">
+                                <!--Graph Developer's part that present a circle packing chart of developers-->
+                                <div id="developer_circle_packing_chart_2" style="align-self: center;"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
