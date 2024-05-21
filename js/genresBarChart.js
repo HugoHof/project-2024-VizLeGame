@@ -202,8 +202,8 @@ function updateTop3GamesGenreRanking(data) {
         return d3.descending(x[rankingCriteria], y[rankingCriteria]);
     });
     //slect the top 3
-    const startIndex = Math.max(0, gamesArray.length - 3);
-    const top3Games = gamesArray.slice(startIndex, gamesArray.length);
+    const endIndex = Math.max(0, gamesArray.length);
+    const top3Games = gamesArray.slice(0, endIndex);
     //update games rankings displaying
     
     if(top3Games.length >= 1) {
