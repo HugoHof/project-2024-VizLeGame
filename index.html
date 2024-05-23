@@ -10,6 +10,7 @@
 
     <!--our CSS-->
     <link rel="stylesheet" href="css/style.css"></style>
+    <link rel="stylesheet" href="css/pacman.css"></style>
 
     <!--D3.js-->
     <script src="https://d3js.org/d3.v4.min.js"></script>
@@ -25,11 +26,15 @@
 
     <div id="fullpage">
         <!--Homepage-->
-        <div class="section" id="homepage"> 
-            <h1 class="homepageTitle">How is the video game spread across different genres and platforms and are develloped by a large number of editors ?</h1>
-            <p>In 1962, the first video game, Spacewar!, was created. Since this date, each year more and more 
-                video games are developed. The studios that developed these games are spread around the world. 
-                The video games are defined by a multiple of genres and are developed to be used on different platforms.</p>
+        <div class="section" id="homepage" style="height: 90%; width: 100%; margin: 0%; padding: 0%;"> 
+            <div class="mainPageBack" style="z-index: 0;">
+                <h1 class="mainPageText">How is the video game spread across different genres and platforms and are develloped by a large number of developers ?</h1>
+                <div class="pacman">
+                    <div class="pacman-top"></div>
+                    <div class="pacman-bottom"></div>
+                    <div class="feedPacman"></div>
+                </div>
+            </div>
         </div>
         <!--Introduction-->
         <div class="section" id="intro_page">
@@ -37,13 +42,9 @@
                 Introduction
             </h1>
             <p>
-                A small introduction to our vizualization. Ex: Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
-                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Massa tempor nec feugiat nisl pretium fusce id velit ut. 
-                Molestie ac feugiat sed lectus vestibulum mattis ullamcorper velit. Fames ac turpis egestas maecenas pharetra. Ac odio tempor 
-                orci dapibus ultrices in iaculis nunc. Nisi est sit amet facilisis. Et netus et malesuada fames ac turpis egestas integer. Elit 
-                duis tristique sollicitudin nibh. Viverra adipiscing at in tellus integer feugiat. Condimentum lacinia quis vel eros donec ac odio 
-                tempor orci. Egestas purus viverra accumsan in nisl nisi scelerisque. Adipiscing tristique risus nec feugiat in fermentum posuere. 
-                A arcu cursus vitae congue mauris rhoncus. Aliquam vestibulum morbi blandit cursus.
+                In 1962, the first video game, Spacewar!, was created. Since this date, each year more and more 
+                video games are developed. The studios that developed these games are spread around the world. 
+                The video games are defined by a multiple of genres and are developed to be used on different platforms.
             </p>
 
             <div id="intro_stats" style="display: flex; flex-direction: row; justify-content: center;">
@@ -405,7 +406,7 @@
         scrollOverflow: false,
         navigation: true, // Adds navigation dots
         navigationTooltips: ['Home', 'Introduction', 'Genre trends', 'Platforms', 'Developers', 'Interactive diagram', 'Conclusion', 'About us'], // Adds name to navigation dots
-        sectionsColor: ['', '', '', '', '', '', '', '#FFFFFF'], // Background colors for each section
+        sectionsColor: ['#000000', '', '', '', '', '', '', '#FFFFFF'], // Background colors for each section
         });
     </script>
     <!--Introduction dynamic statistics displaying-->

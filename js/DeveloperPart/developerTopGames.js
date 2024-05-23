@@ -1,17 +1,13 @@
 //Draw the list of the games relative to a developer.
 function drawListGamesDeveloper(data) {
-    // obatins the current developer, year and ranking criteria selected
-    const developer = localStorage.getItem("developer_selected")
-    const criteria = localStorage.getItem("developer_list_games_criteria")
-    const year = localStorage.getItem("year_developer")
     //change the title
     document.getElementById("developer_list_games_title")
-        .textContent = "Games Realeased by " + String(developer) + " in " + String(year)
+        .textContent = "Games Realeased by " + String(currentDeveloperSelected) + " in " + String(yearDeveloper)
 
-    var gameLst = (data[String(year)])[developer]
+    var gameLst = (data[String(yearDeveloper)])[currentDeveloperSelected]
     // sort the games according to the criteria
     gameLst.sort(function (x, y) {
-        return d3.descending(x[criteria], y[criteria]);
+        return d3.descending(x[developerRankCriteria], y[developerRankCriteria]);
     });
     var textHTML = "";
     var index = 0;

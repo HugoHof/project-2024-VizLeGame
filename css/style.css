@@ -471,3 +471,24 @@ h2 {
     stroke-width: 7px;
     opacity: 1;
 }
+
+/*MAIN PAGE*/
+.mainPageBack {
+    background-color: transparent;
+    min-width: 100%;
+    min-height: 100%;
+    max-width: 100%;
+    max-width: 100%;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+}
+.mainPageText {
+    color: white;
+    font-family: 'Games', 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    padding: 10%;
+    font-size: 40pt;
+    justify-content: center;
+}

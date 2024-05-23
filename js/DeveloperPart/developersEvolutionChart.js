@@ -16,41 +16,38 @@ function drawDevEvolutionChart(data) {
     // remove past graph
     devEvolutionChart.selectAll("*").remove()
 
-    const evolutionCriteria = localStorage.getItem("developer_evolution_criteria")
-    const devSelected = localStorage.getItem("developer_selected")
-
     // edit the title of the graph
     document.getElementById("developer_graph_title_2")
-        .textContent = "Global Evolution of "+ devSelected + " along the Years"
+        .textContent = "Global Evolution of "+ currentDeveloperSelected + " along the Years"
 
     // if ny developer is selected, do nothing
-    if(devSelected == null){
+    if(currentDeveloperSelected == null){
         return;
     }
     // data processing 
     var graphDataInter = []
     for (let key in data) {
 
-        const lst_games = (data[String(key)])[devSelected] != undefined ? (data[String(key)])[devSelected] : []
+        const lst_games = (data[String(key)])[currentDeveloperSelected] != undefined ? (data[String(key)])[currentDeveloperSelected] : []
         if (key >= 1970) {
             graphDataInter.push({Year : key, Lst_Games : lst_games})
         }
     }
     var graphData = []
     // take the number of games (size of array)
-    if(evolutionCriteria == "Number_of_Games") {
+    if(developerEvolutionCriteria == "Number_of_Games") {
         for (let elem of graphDataInter) {
             graphData.push({Year : new Date(String(elem.Year+"-01-01")), YElem : elem.Lst_Games.length})
         }
     // do the mean on the criteria for all the games of a given year
-    } else if(evolutionCriteria == "Rating") {
+    } else if(developerEvolutionCriteria == "Rating") {
         for (let elem of graphDataInter) {
             console.log(elem.Lst_Games);
             var sum = 0
             var count = 0
             for (let elem_2 of elem.Lst_Games) {
-                if (elem_2[evolutionCriteria] >=0) {
-                    sum += elem_2[evolutionCriteria]
+                if (elem_2[developerEvolutionCriteria] >=0) {
+                    sum += elem_2[developerEvolutionCriteria]
                     count += 1
                 }
             }
@@ -61,7 +58,7 @@ function drawDevEvolutionChart(data) {
         for (let elem of graphDataInter) {
             var sum = 0
             for (let elem_2 of elem.Lst_Games) {
-                sum += elem_2[evolutionCriteria]
+                sum += elem_2[developerEvolutionCriteria]
             }
             graphData.push({Year : new Date(String(elem.Year+"-01-01")), YElem : sum})
         }
@@ -77,7 +74,7 @@ function drawDevEvolutionChart(data) {
 
     // define x and y domains
     x.domain(d3.extent(graphData, function(elem) { return elem.Year; }));
-    if(evolutionCriteria == "Rating") {
+    if(developerEvolutionCriteria == "Rating") {
         y.domain([0, 5]);
     } else {
         y.domain([0, d3.max(graphData, function(elem) { return elem.YElem; })]);

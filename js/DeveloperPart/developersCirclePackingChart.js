@@ -3,6 +3,13 @@ const marginDev = { top:10, right: 40, bottom: 60, left:100 }
 const widthDev = 700 - marginDev.left -marginDev.right
 const heightDev = 700 - marginDev.top - marginDev.bottom
 
+//variable for developer graph
+var yearDeveloper = 2000
+var nbDeveloperDisplayed = 20
+var developerRankCriteria = "Plays"
+var currentDeveloperSelected = ""
+var developerEvolutionCriteria = "Plays"
+
 // to know if the graph is currently play
 var isPlayingDeveloper = false;
 
@@ -38,17 +45,17 @@ d3.json("data/games_by_year_and_developers.json", function(error, data) {
         return;
     }
     // set default value of year and nb developers displayed
-    localStorage.setItem("year_developer", 2000)
-    localStorage.setItem("nb_developer_displayed", 20)
+    yearDeveloper = 2000;
+    nbDeveloperDisplayed = 20;
 
     //default criteria 
-    localStorage.setItem("developer_evolution_criteria", "Plays")
+    developerEvolutionCriteria = "Plays";
 
     // extract the criteria for the developer evolution
     var criteriaDevEvolution = document.getElementById("developer_evolution_criteria")
         .oninput = function() {
             // save the new criteria
-            localStorage.setItem("developer_evolution_criteria", this.value)
+            developerEvolutionCriteria = this.value;
             //re-draw the evolution graph
             drawDevEvolutionChart(data)
         }
@@ -56,7 +63,7 @@ d3.json("data/games_by_year_and_developers.json", function(error, data) {
     var criteriaDevTop = document.getElementById("developer_list_games_criteria")
         .oninput = function() {
             // save the new criteria
-            localStorage.setItem("developer_list_games_criteria", this.value)
+            developerRankCriteria = this.value
             //re-draw the list of games relative to the developer
             drawListGamesDeveloper(data)
     }
@@ -70,14 +77,14 @@ d3.json("data/games_by_year_and_developers.json", function(error, data) {
         .oninput = function() {
             // display the year currently displayed
             sliderOutputDev.innerHTML = this.value;
-            localStorage.setItem("year_developer", this.value)
+            yearDeveloper = this.value;
             drawGraphDev(data);
         }
 
     // retrieve the selector of the number of developers displayed
     var nbDeveloperSelectorDev= document.getElementById("nb_developer_displayed_selector")
         .oninput = function() {
-            localStorage.setItem("nb_developer_displayed", this.value);
+            nbDeveloperDisplayed = this.value;
             drawGraphDev(data);
         }
 
@@ -87,8 +94,7 @@ d3.json("data/games_by_year_and_developers.json", function(error, data) {
 
 // Play Button change on click
 function onClickPlayButtonDev() {
-    const currentYear = localStorage.getItem("year_developer")
-    if(currentYear < document.getElementById("year_developer_slider").max || isPlayingDeveloper) {
+    if(yearDeveloper < document.getElementById("year_developer_slider").max || isPlayingDeveloper) {
         isPlayingDeveloper  = !isPlayingDeveloper
         document.getElementById("developer_play_button").innerText = isPlayingDeveloper ? "Pause" : "Play"
     }
@@ -97,16 +103,15 @@ function onClickPlayButtonDev() {
 // Updadte the graph displaying if the play button is activated
 function upadteGraphDisplayinyOnPlayDev(data) {
     if(isPlayingDeveloper) {
-        const currentYear = localStorage.getItem("year_developer")
-        if(currentYear >= document.getElementById("year_developer_slider").max-1) {
+        if(yearDeveloper >= document.getElementById("year_developer_slider").max-1) {
             isPlayingDeveloper = false
             document.getElementById("developer_play_button").innerText = "Play"
         }
         // to evict the bug when moveing the side bar during the animation.
-        if(currentYear >= document.getElementById("year_developer_slider").min && currentYear <= document.getElementById("year_developer_slider").max - 1) {
-            localStorage.setItem("year_developer", Number(currentYear) + 1);
-            document.getElementById("year_developer_displayed").innerHTML = Number(currentYear) + 1
-            document.getElementById("year_developer_slider").value = Number(currentYear) + 1
+        if(yearDeveloper >= document.getElementById("year_developer_slider").min && yearDeveloper <= document.getElementById("year_developer_slider").max - 1) {
+            yearDeveloper += 1;
+            document.getElementById("year_developer_displayed").innerHTML = Number(yearDeveloper)
+            document.getElementById("year_developer_slider").value = Number(yearDeveloper)
             // re draw the graph
             drawGraphDev(data)
         }
@@ -114,10 +119,8 @@ function upadteGraphDisplayinyOnPlayDev(data) {
 }
 
 function drawGraphDev(data) {
-    const nbItemsDisplayed = localStorage.getItem("nb_developer_displayed");
-    const year = localStorage.getItem("year_developer");
     var graphData = []
-    var dataForYear = data[String(year)]
+    var dataForYear = data[String(yearDeveloper)]
     for (let key in dataForYear) {
         graphData.push({Developers : [key], Number_Of_Games : dataForYear[key].length})
     }
@@ -127,12 +130,12 @@ function drawGraphDev(data) {
     });
 
     // select only the nbItemsDisplayed minimum elements(such that if there is less elements to show than expected, tehre is no error)
-    const startIndex = Math.min(graphData.length, nbItemsDisplayed)
+    const startIndex = Math.min(graphData.length, nbDeveloperDisplayed)
     graphData = graphData.slice(graphData.length-startIndex, graphData.length)
 
     // edit the title of the graph
     document.getElementById("developer_graph_title")
-        .textContent = "Number of Video Games Realeased by Developer in "+String(year)
+        .textContent = "Number of Video Games Realeased by Developer in "+String(yearDeveloper)
 
     // remove past graph
     devCircleChart.selectAll("*").remove()
@@ -167,7 +170,7 @@ function drawGraphDev(data) {
         // change the color of the bar
         d3.select(this).style("fill", '#003366')
         // save the developer selected
-        localStorage.setItem("developer_selected", elem.Developers)
+        currentDeveloperSelected = elem.Developers
         // draw a new evolution graph
         drawDevEvolutionChart(data)
         // draw the list f games relative to the developer
