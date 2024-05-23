@@ -7,9 +7,6 @@ const heightGenre = 700 - marginGenre.top - marginGenre.bottom
 var isPlayingGenre = false
 
 //variables of the graph
-var yearGenre = 2000
-var nbGenreDisplayed = 23
-var genreRankCriteria = "Plays"
 var currentGenreSelected = ""
 
 // Create the SVG container for the bar chart
@@ -24,9 +21,6 @@ d3.json("data/games_by_year_and_genre.json", function(error, data) {
         console.log('Error when loading the data for the genres bar chart : ', error);
         return;
     }
-    // set default value of year and nb genres displayed
-    yearGenre= 2000
-    nbGenreDisplayed = 23
 
     // load the content of the json file that contains the genre descriptions
     d3.json("data/genresDef.json", function(error, genreDescription) {
@@ -39,24 +33,18 @@ d3.json("data/games_by_year_and_genre.json", function(error, data) {
             .oninput = function() {
                 // display the year currently displayed
                 sliderOutputGenre.innerHTML = this.value;
-                yearGenre = this.value
                 drawGraphGenre(data, genreDescription);
             }
 
         // retrive the slector of the number of genres displayed
         var nbGenresSelector= document.getElementById("nb_genre_displayed_selector")
             .oninput = function() {
-                nbGenreDisplayed = this.value;
                 drawGraphGenre(data, genreDescription);
             }
         
-        //default criteria 
-        genreRankCriteria = "Plays"
         // extract the ranking top-3 games criteria
         var criteriaGenre = document.getElementById("genres_games_top_3_criteria")
             .oninput = function() {
-                // save the new criteria
-                genreRankCriteria = this.value
                 //update the top-3 ranking
                 updateTop3GamesGenreRanking(data, genreDescription)
             }
@@ -68,7 +56,7 @@ d3.json("data/games_by_year_and_genre.json", function(error, data) {
 
 function drawGraphGenre(data, genreDescription) {
     var graphData = []
-    var dataForYear = data[String(yearGenre)]
+    var dataForYear = data[String(document.getElementById("year_genre_slider").value)]
     for (let key in dataForYear) {
         graphData.push({Genre : [key], Number_Of_Games : dataForYear[key].length})
     }
@@ -78,12 +66,12 @@ function drawGraphGenre(data, genreDescription) {
     });
 
     // select only the nbItemsDisplayed first elements
-    const startIndex = Math.min(graphData.length, nbGenreDisplayed)
+    const startIndex = Math.min(graphData.length, document.getElementById("nb_genre_displayed_selector").value)
     graphData = graphData.slice(graphData.length-startIndex, graphData.length)
 
     // edit the title of the graph
     document.getElementById("genre_graph_title")
-        .textContent = "Number of Video Games by Genre in "+String(yearGenre)
+        .textContent = "Number of Video Games by Genre in "+String(document.getElementById("year_genre_slider").value)
 
     // remove past graph
     barChartGenre.selectAll("*").remove()
@@ -195,10 +183,10 @@ function updateGenreDescription(genreDescription) {
 }
 
 function updateTop3GamesGenreRanking(data) {
-    const gamesArray = data[yearGenre][currentGenreSelected]
+    const gamesArray = data[document.getElementById("year_genre_slider").value][currentGenreSelected]
     // sort the games according to the criteria
     gamesArray.sort(function (x, y) {
-        return d3.descending(x[genreRankCriteria], y[genreRankCriteria]);
+        return d3.descending(x[document.getElementById("genres_games_top_3_criteria").value], y[document.getElementById("genres_games_top_3_criteria").value]);
     });
     //slect the top 3
     const endIndex = Math.max(0, gamesArray.length);
@@ -255,7 +243,7 @@ function updateTop3GamesGenreRanking(data) {
 
 // Play Button change on click
 function onClickPlayButtonGenre() {
-    if(yearGenre < document.getElementById("year_genre_slider").max || isPlayingGenre) {
+    if(document.getElementById("year_genre_slider").value < document.getElementById("year_genre_slider").max || isPlayingGenre) {
         isPlayingGenre  = !isPlayingGenre
         document.getElementById("genre_play_button").innerText = isPlayingGenre ? "Pause" : "Play"
     }
@@ -263,16 +251,16 @@ function onClickPlayButtonGenre() {
 
 // Updadte the graph displaying if the play button is activated
 function upadteGraphDisplayinyOnPlayGenre(data, genreDescription) {
+    const currentYear = Number(document.getElementById("year_genre_slider").value)
     if(isPlayingGenre) {
-        if(yearGenre >= document.getElementById("year_genre_slider").max-1) {
+        if(currentYear >= document.getElementById("year_genre_slider").max-1) {
             isPlayingGenre = false
             document.getElementById("genre_play_button").innerText = "Play"
         }
         // to evict the bug when moveing the side bar during the animation.
-        if(yearGenre >= document.getElementById("year_developer_slider").min && yearGenre <= document.getElementById("year_developer_slider").max - 1) {
-            yearGenre += 1;
-            document.getElementById("year_genre_displayed").innerHTML = Number(yearGenre)
-            document.getElementById("year_genre_slider").value = Number(yearGenre)
+        if(currentYear >= document.getElementById("year_genre_slider").min && currentYear <= document.getElementById("year_genre_slider").max - 1) {
+            document.getElementById("year_genre_slider").value = currentYear + 1
+            document.getElementById("year_genre_displayed").innerHTML = currentYear + 1
             // re draw the graph
             drawGraphGenre(data, genreDescription)
         }
