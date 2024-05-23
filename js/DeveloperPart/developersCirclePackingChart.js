@@ -4,11 +4,7 @@ const widthDev = 700 - marginDev.left -marginDev.right
 const heightDev = 700 - marginDev.top - marginDev.bottom
 
 //variable for developer graph
-var yearDeveloper = 2000
-var nbDeveloperDisplayed = 20
-var developerRankCriteria = "Plays"
 var currentDeveloperSelected = ""
-var developerEvolutionCriteria = "Plays"
 
 // to know if the graph is currently play
 var isPlayingDeveloper = false;
@@ -44,26 +40,16 @@ d3.json("data/games_by_year_and_developers.json", function(error, data) {
         console.log('Error when loading the data for the developer circular packing chart : ', error);
         return;
     }
-    // set default value of year and nb developers displayed
-    yearDeveloper = 2000;
-    nbDeveloperDisplayed = 20;
-
-    //default criteria 
-    developerEvolutionCriteria = "Plays";
 
     // extract the criteria for the developer evolution
     var criteriaDevEvolution = document.getElementById("developer_evolution_criteria")
         .oninput = function() {
-            // save the new criteria
-            developerEvolutionCriteria = this.value;
             //re-draw the evolution graph
             drawDevEvolutionChart(data)
         }
     // obtains the criteria in which the list of games will be ranked
     var criteriaDevTop = document.getElementById("developer_list_games_criteria")
         .oninput = function() {
-            // save the new criteria
-            developerRankCriteria = this.value
             //re-draw the list of games relative to the developer
             drawListGamesDeveloper(data)
     }
@@ -77,14 +63,12 @@ d3.json("data/games_by_year_and_developers.json", function(error, data) {
         .oninput = function() {
             // display the year currently displayed
             sliderOutputDev.innerHTML = this.value;
-            yearDeveloper = this.value;
             drawGraphDev(data);
         }
 
     // retrieve the selector of the number of developers displayed
     var nbDeveloperSelectorDev= document.getElementById("nb_developer_displayed_selector")
         .oninput = function() {
-            nbDeveloperDisplayed = this.value;
             drawGraphDev(data);
         }
 
@@ -94,7 +78,7 @@ d3.json("data/games_by_year_and_developers.json", function(error, data) {
 
 // Play Button change on click
 function onClickPlayButtonDev() {
-    if(yearDeveloper < document.getElementById("year_developer_slider").max || isPlayingDeveloper) {
+    if(document.getElementById("year_developer_slider").value < document.getElementById("year_developer_slider").max || isPlayingDeveloper) {
         isPlayingDeveloper  = !isPlayingDeveloper
         document.getElementById("developer_play_button").innerText = isPlayingDeveloper ? "Pause" : "Play"
     }
@@ -102,16 +86,16 @@ function onClickPlayButtonDev() {
 
 // Updadte the graph displaying if the play button is activated
 function upadteGraphDisplayinyOnPlayDev(data) {
+    const currentYear = Number(document.getElementById("year_developer_slider").value)
     if(isPlayingDeveloper) {
-        if(yearDeveloper >= document.getElementById("year_developer_slider").max-1) {
+        if(currentYear >= document.getElementById("year_developer_slider").max-1) {
             isPlayingDeveloper = false
             document.getElementById("developer_play_button").innerText = "Play"
         }
         // to evict the bug when moveing the side bar during the animation.
-        if(yearDeveloper >= document.getElementById("year_developer_slider").min && yearDeveloper <= document.getElementById("year_developer_slider").max - 1) {
-            yearDeveloper += 1;
-            document.getElementById("year_developer_displayed").innerHTML = Number(yearDeveloper)
-            document.getElementById("year_developer_slider").value = Number(yearDeveloper)
+        if(currentYear >= document.getElementById("year_developer_slider").min && currentYear <= document.getElementById("year_developer_slider").max - 1) {
+            document.getElementById("year_developer_displayed").innerHTML = currentYear + 1
+            document.getElementById("year_developer_slider").value = currentYear + 1
             // re draw the graph
             drawGraphDev(data)
         }
@@ -120,7 +104,7 @@ function upadteGraphDisplayinyOnPlayDev(data) {
 
 function drawGraphDev(data) {
     var graphData = []
-    var dataForYear = data[String(yearDeveloper)]
+    var dataForYear = data[String(document.getElementById("year_developer_slider").value)]
     for (let key in dataForYear) {
         graphData.push({Developers : [key], Number_Of_Games : dataForYear[key].length})
     }
@@ -130,12 +114,12 @@ function drawGraphDev(data) {
     });
 
     // select only the nbItemsDisplayed minimum elements(such that if there is less elements to show than expected, tehre is no error)
-    const startIndex = Math.min(graphData.length, nbDeveloperDisplayed)
+    const startIndex = Math.min(graphData.length, document.getElementById("nb_developer_displayed_selector").value)
     graphData = graphData.slice(graphData.length-startIndex, graphData.length)
 
     // edit the title of the graph
     document.getElementById("developer_graph_title")
-        .textContent = "Number of Video Games Realeased by Developer in "+String(yearDeveloper)
+        .textContent = "Number of Video Games Realeased by Developer in "+String(document.getElementById("year_developer_slider").value)
 
     // remove past graph
     devCircleChart.selectAll("*").remove()

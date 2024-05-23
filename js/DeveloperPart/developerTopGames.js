@@ -2,12 +2,12 @@
 function drawListGamesDeveloper(data) {
     //change the title
     document.getElementById("developer_list_games_title")
-        .textContent = "Games Realeased by " + String(currentDeveloperSelected) + " in " + String(yearDeveloper)
+        .textContent = "Games Realeased by " + String(currentDeveloperSelected) + " in " + String(document.getElementById("year_developer_slider").value)
 
-    var gameLst = (data[String(yearDeveloper)])[currentDeveloperSelected]
+    var gameLst = (data[String(document.getElementById("year_developer_slider").value)])[currentDeveloperSelected]
     // sort the games according to the criteria
     gameLst.sort(function (x, y) {
-        return d3.descending(x[developerRankCriteria], y[developerRankCriteria]);
+        return d3.descending(x[document.getElementById("developer_list_games_criteria").value], y[document.getElementById("developer_list_games_criteria").value]);
     });
     var textHTML = "";
     var index = 0;

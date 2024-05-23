@@ -35,19 +35,19 @@ function drawDevEvolutionChart(data) {
     }
     var graphData = []
     // take the number of games (size of array)
-    if(developerEvolutionCriteria == "Number_of_Games") {
+    if(document.getElementById("developer_evolution_criteria").value == "Number_of_Games") {
         for (let elem of graphDataInter) {
             graphData.push({Year : new Date(String(elem.Year+"-01-01")), YElem : elem.Lst_Games.length})
         }
     // do the mean on the criteria for all the games of a given year
-    } else if(developerEvolutionCriteria == "Rating") {
+    } else if(document.getElementById("developer_evolution_criteria").value == "Rating") {
         for (let elem of graphDataInter) {
             console.log(elem.Lst_Games);
             var sum = 0
             var count = 0
             for (let elem_2 of elem.Lst_Games) {
-                if (elem_2[developerEvolutionCriteria] >=0) {
-                    sum += elem_2[developerEvolutionCriteria]
+                if (elem_2[document.getElementById("developer_evolution_criteria").value] >=0) {
+                    sum += elem_2[document.getElementById("developer_evolution_criteria").value]
                     count += 1
                 }
             }
@@ -58,7 +58,7 @@ function drawDevEvolutionChart(data) {
         for (let elem of graphDataInter) {
             var sum = 0
             for (let elem_2 of elem.Lst_Games) {
-                sum += elem_2[developerEvolutionCriteria]
+                sum += elem_2[document.getElementById("developer_evolution_criteria").value]
             }
             graphData.push({Year : new Date(String(elem.Year+"-01-01")), YElem : sum})
         }
@@ -74,7 +74,7 @@ function drawDevEvolutionChart(data) {
 
     // define x and y domains
     x.domain(d3.extent(graphData, function(elem) { return elem.Year; }));
-    if(developerEvolutionCriteria == "Rating") {
+    if(document.getElementById("developer_evolution_criteria").value == "Rating") {
         y.domain([0, 5]);
     } else {
         y.domain([0, d3.max(graphData, function(elem) { return elem.YElem; })]);
