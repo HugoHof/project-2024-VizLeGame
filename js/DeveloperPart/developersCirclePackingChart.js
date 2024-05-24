@@ -117,6 +117,8 @@ function drawGraphDev(data) {
     const startIndex = Math.min(graphData.length, document.getElementById("nb_developer_displayed_selector").value)
     graphData = graphData.slice(graphData.length-startIndex, graphData.length)
 
+    const max_Value = graphData[graphData.length-1].Number_Of_Games
+
     // edit the title of the graph
     document.getElementById("developer_graph_title")
         .textContent = "Number of Video Games Realeased by Developer in "+String(document.getElementById("year_developer_slider").value)
@@ -172,7 +174,7 @@ function drawGraphDev(data) {
         .enter()
         .append("circle")
             .attr("class", "node")
-            .attr("r", function(elem){ return elem.Number_Of_Games*4})
+            .attr("r", function(elem){ return elem.Number_Of_Games*100/max_Value})
             .attr("cx", widthDev / 2)
             .attr("cy", heightDev / 2)
             .style("fill", "#69b3aa")
@@ -210,7 +212,7 @@ function drawGraphDev(data) {
                 }
                 return elem.Developers;
             })
-            .style("font-size", function(elem) { return (elem.Number_Of_Games * 1.1) + "px"; });
+            .style("font-size", function(elem) { return (elem.Number_Of_Games *25/max_Value) + "px"; });
     
     // add text label to indicate the number of games realeased
     var textsGamesRealeased = devCircleChart.append("g")
@@ -229,7 +231,7 @@ function drawGraphDev(data) {
             .text(function(elem) {
                 return String(elem.Number_Of_Games);
             })
-            .style("font-size", function(elem) { return (elem.Number_Of_Games * 1.1) + "px"; });
+            .style("font-size", function(elem) { return (elem.Number_Of_Games *25/max_Value) + "px"; });
     
     // add forces forces between each nodes
     var simulation = d3.forceSimulation()
@@ -238,7 +240,7 @@ function drawGraphDev(data) {
         // nodes are attracted one each other
         .force("charge", d3.forceManyBody().strength(0.1))
         // force that avoird that the circles overlapp
-        .force("collide", d3.forceCollide().strength(.2).radius(function(elem) { return elem.Number_Of_Games * 4 + 5; }).iterations(1));
+        .force("collide", d3.forceCollide().strength(.2).radius(function(elem) { return elem.Number_Of_Games*100/max_Value + 5; }).iterations(1));
 
     
     // apply the previous forces to all the nodes and upadtaes the nodes psotions
@@ -250,10 +252,10 @@ function drawGraphDev(data) {
                 .attr("cy", function(elem){ return elem.y; })
             // update the postion of the developer's text
             textsDev.attr("x", function(elem){ return elem.x; })
-                .attr("y", function(elem){ return elem.y - elem.Number_Of_Games*0.7; })
+                .attr("y", function(elem){ return elem.y - elem.Number_Of_Games*20/max_Value; })
             // upadte the postion of the nuber of games realeased text
             textsGamesRealeased.attr("x", function(elem){ return elem.x; })
-                .attr("y", function(elem){ return elem.y + elem.Number_Of_Games*0.7; })
+                .attr("y", function(elem){ return elem.y + elem.Number_Of_Games*20/max_Value; })
         });
     
     //FUNCTIONS TO DRAG A CIRCLE//
