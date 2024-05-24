@@ -50,7 +50,7 @@ d3.json("data/games_by_year_and_genre.json", function(error, data) {
             }
         
         // upadte every 1 s the displaying of the graph if isPlayingDeveloper is activated
-        setInterval(function() { return upadteGraphDisplayinyOnPlayGenre(data), genreDescription; }, 1000)
+        setInterval(function() { return upadteGraphDisplayinyOnPlayGenre(data, genreDescription); }, 1000)
     });
 });
 
