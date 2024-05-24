@@ -179,7 +179,7 @@ function updateGenreDescription(genreDescription) {
         .textContent = currentGenreSelected +" Genre"
     // edit the genre description text
     document.getElementById("genre_description_text")
-        .textContent = genreDescription[String(currentGenreSelected)]    
+        .textContent = genreDescription[currentGenreSelected]    
 }
 
 function updateTop3GamesGenreRanking(data) {
