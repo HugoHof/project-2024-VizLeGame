@@ -278,6 +278,7 @@ h2 {
     margin: 0%; 
     padding: 0%; 
     align-content: center;
+    padding-bottom: 5px;
 }
 .rightPartTop3PartContent {
     height: 70%;
@@ -455,7 +456,7 @@ h2 {
 
 .podiumStep {
     text-align: center;
-    width: 90%;
+    width: 100%;
     border-radius: 25px;
     font-size: 50pt;
     margin-top: 10px;
