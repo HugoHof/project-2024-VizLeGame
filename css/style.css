@@ -443,6 +443,7 @@ h2 {
 }
 
 .podiumPlace {
+    position: relative;
     padding: 0%;
     margin: 0%;
     padding-top: 1px;
