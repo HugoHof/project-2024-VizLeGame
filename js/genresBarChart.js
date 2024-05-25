@@ -13,10 +13,8 @@ var currentGenreSelected = ""
 const barChartGenre = d3.select("#genres_bar_chart").append("svg")
     .attr("viewBox", `0 0 ${widthGenre + marginGenre.left + marginGenre.right} ${heightGenre + marginGenre.top + marginGenre.bottom}`)
     .attr("preserveAspectRatio", "xMidYMid meet")
-    .style("max-width", "100%")
-    .style("max-height", "100%")
-    .style("min-width", "100%")
-    .style("min-height", "100%")
+    .style("width", "100%")
+    .style("height", "100%")
     .style("display", "block")
     .append("g")
     .attr("transform", "translate(" + marginGenre.left + "," + marginGenre.top + ")");

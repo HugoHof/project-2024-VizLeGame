@@ -13,10 +13,8 @@ var isPlayingDeveloper = false;
 const devCircleChart = d3.select("#developer_circle_packing_chart").append("svg")
     .attr("viewBox", `0 0 ${widthDev + marginDev.left + marginDev.right} ${heightDev + marginDev.top + marginDev.bottom}`)
     .attr("preserveAspectRatio", "xMidYMid meet")
-    .style("max-width", "100%")
-    .style("max-height", "100%")
-    .style("min-width", "100%")
-    .style("min-height", "100%")
+    .style("width", "100%")
+    .style("height", "100%")
     .style("display", "block")
     .append("g")
     .attr("transform", "translate(" + marginDev.left + "," + marginDev.top + ")");
