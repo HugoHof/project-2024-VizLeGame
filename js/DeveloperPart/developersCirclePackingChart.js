@@ -11,8 +11,11 @@ var isPlayingDeveloper = false;
 
 // Create the SVG container for the circle packing chart
 const devCircleChart = d3.select("#developer_circle_packing_chart").append("svg")
-    .attr("width", widthDev + marginDev.left + marginDev.right)
-    .attr("height", heightDev + marginDev.top + marginDev.bottom)
+    .attr("viewBox", `0 0 ${widthDev + marginDev.left + marginDev.right} ${heightDev + marginDev.top + marginDev.bottom}`)
+    .attr("preserveAspectRatio", "xMidYMid meet")
+    .style("width", "100%")
+    .style("height", "100%")
+    .style("display", "block")
     .append("g")
     .attr("transform", "translate(" + marginDev.left + "," + marginDev.top + ")");
 
