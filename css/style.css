@@ -276,7 +276,7 @@ h2 {
     margin: 0%; 
     padding: 0%; 
     align-content: center;
-    padding-bottom: 5px;
+    padding-bottom: 4%;
 }
 .rightPartTop3PartContent {
     height: 70%;
@@ -481,7 +481,7 @@ h2 {
     padding: 2px;
     justify-content: center;
     text-align: center;
-    width: 170px;
+    width: 250px;
     overflow-y: auto;
 }
 
