@@ -6,8 +6,8 @@ const heightDevEvo = 300 - marginDevEvo.top - marginDevEvo.bottom
 // append the graph to the page
 var devEvolutionChart = d3.select("#developer_circle_packing_chart_2")
   .append("svg")
-    .attr("width", widthDevEvo + marginDevEvo.left + marginDevEvo.right)
-    .attr("height", heightDevEvo + marginDevEvo.top + marginDevEvo.bottom)
+    .attr("viewBox", `0 0 ${widthDevEvo + marginDevEvo.left + marginDevEvo.right} ${heightDevEvo + marginDevEvo.top + marginDevEvo.bottom}`)
+    .attr("preserveAspectRatio", "xMidYMid meet")
   .append("g")
     .attr("transform", "translate(" + marginDevEvo.left + "," + marginDevEvo.top + ")");
 

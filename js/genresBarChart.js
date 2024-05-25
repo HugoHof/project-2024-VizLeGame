@@ -11,8 +11,8 @@ var currentGenreSelected = ""
 
 // Create the SVG container for the bar chart
 const barChartGenre = d3.select("#genres_bar_chart").append("svg")
-    .attr("width", widthGenre + marginGenre.left + marginGenre.right)
-    .attr("height", heightGenre + marginGenre.top + marginGenre.bottom)
+    .attr("viewBox", `0 0 ${widthGenre + marginGenre.left + marginGenre.right} ${heightGenre + marginGenre.top + marginGenre.bottom}`)
+    .attr("preserveAspectRatio", "xMidYMid meet")
     .append("g")
     .attr("transform", "translate(" + marginGenre.left + "," + marginGenre.top + ")");
 

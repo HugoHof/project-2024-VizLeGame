@@ -81,51 +81,53 @@
         <!--Genre Trends-->
         <div class="section">
             <!--Genre diversity visualization-->
-            <div class="visualizationPart">
+            <div class="container">
                 <!--Left part of the genre diversity-->
-                <div class="leftGenresSection" style="display: grid;">
+                <div class="left-panel">
                     <!--Title of genres diversity section-->
-                    <h1 class="sectionTitleGraph">
+                    <h1 class="sectionTitleGraph header">
                         A large diversity of Genres...
                     </h1>
                     <!--Graph genres part that present a bar chart of genres-->
-                    <div id="genres_bar_chart"></div>
-                    <!--Title of the graph presented-->
-                    <h2 class="graphTitle" id="genre_graph_title">Number of Video Games by Genre in 2000</h2>
+                    <div id="genres_bar_chart" class="content"></div>
                     <!--Interaction with the genre bar chart-->
-                    <div class="visualizationPartTools">
-                        <div class="visualizationPartTimeTools">
-                            <label class= "rightPartSelectorLabel" for="year_genre_slider">Current Year Displayed :</label>
-                            <input class="visualizationPartSlider" type="range" min="1971" max="2023" value="2000" class="slider" id="year_genre_slider">
-                            <!--Current year Displayed-->
-                            <p class="visualizationPartYearDisplayed" id="year_genre_displayed">2000</p>
-                            <!--Play Button-->
-                            <button id="genre_play_button" onclick="onClickPlayButtonGenre()" class="visualizationPartButtonTool">Play</button>
-                        </div>
-                        <div class="visualizationSelectorTools">
-                            <label class= "rightPartSelectorLabel" for="nb_genre_displayed_selector">Number of Genres Displayed :</label>
-                            <select class= "rightPartSelector" id="nb_genre_displayed_selector">
-                                <option value="3">3</option>
-                                <option value="6">6</option>
-                                <option value="9">9</option>
-                                <option value="12">12</option>
-                                <option value="15">15</option>
-                                <option value="18">18</option>
-                                <option value="21">21</option>
-                                <option value="23" selected="selected">All</option>
-                            </select>
+                    <div class="footer">
+                        <!--Title of the graph presented-->
+                        <h2 class="graphTitle" id="genre_graph_title">Number of Video Games by Genre in 2000</h2>
+                        <div class="visualizationPartTools">
+                            <div class="visualizationPartTimeTools">
+                                <label class= "rightPartSelectorLabel" for="year_genre_slider">Current Year Displayed :</label>
+                                <input class="visualizationPartSlider" type="range" min="1971" max="2023" value="2000" class="slider" id="year_genre_slider">
+                                <!--Current year Displayed-->
+                                <p class="visualizationPartYearDisplayed" id="year_genre_displayed">2000</p>
+                                <!--Play Button-->
+                                <button id="genre_play_button" onclick="onClickPlayButtonGenre()" class="visualizationPartButtonTool">Play</button>
+                            </div>
+                            <div class="visualizationSelectorTools">
+                                <label class= "rightPartSelectorLabel" for="nb_genre_displayed_selector">Number of Genres Displayed :</label>
+                                <select class= "rightPartSelector" id="nb_genre_displayed_selector">
+                                    <option value="3">3</option>
+                                    <option value="6">6</option>
+                                    <option value="9">9</option>
+                                    <option value="12">12</option>
+                                    <option value="15">15</option>
+                                    <option value="18">18</option>
+                                    <option value="21">21</option>
+                                    <option value="23" selected="selected">All</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <!--Right part of the genre diversity-->
-                <div class="rightPartSection">
+                <div class="right-panel">
                     <!--When no genre is selected-->
-                    <div id="genre_right_no_selected" style="display: initial;">
+                    <div id="genre_right_no_selected" style="height: 100%;">
                         <h2 class="rightPartIndication">Please Select a Genre</h2>
                         <h2 class="rightPartIndication">(Click on a bar on the left)</h2>
                     </div>
                     <!--When a genre is selected-->
-                    <div id="genre_right_selected" style="display: none;">
+                    <div id="genre_right_selected" style="height: 100%;">
                         <div class="rightPartDescriptionPart">
                             <h2 class="rightPartTitle" id="genre_description_title"></h2>
                             <p class= "rightPartDescription" id ="genre_description_text"></p>
@@ -141,7 +143,7 @@
                                     <option value="Plays" selected="selected">Number of Players</option>
                                     <option value="Rating">Average Game's Review Rating</option>
                                     <option value="Playing">Number of Games Downloaded</option>
-                                    <option value="Wishlist">Number of Games present in the users wishlist</option>
+                                    <option value="Wishlist">Number of Games Wishlisted</option>
                                     <option value="Reviews">Number of Reviews</option>
                                 </select>
                             </div>
@@ -163,7 +165,7 @@
                                             </div>
                                         </div>
     
-                                        <div style="height: 75px; background-color: #C0C0C0;" class="podiumStep">2</div>
+                                        <div style="background-color: #C0C0C0;" class="podiumStep">2</div>
                                     </div>
                                     
                                     <!--1st Podium Place"-->
@@ -182,7 +184,7 @@
                                             </div>
                                         </div>
     
-                                        <div style="height: 95px; background-color: #ffd700;" class="podiumStep">1</div>
+                                        <div style="background-color: #ffd700;" class="podiumStep">1</div>
                                     </div>
                                     
                                     <!--3rd Podium Place"-->
@@ -201,7 +203,7 @@
                                             </div>
                                         </div>
     
-                                        <div style="height: 55px; background-color: #CD7F32;" class="podiumStep">3</div>
+                                        <div style="background-color: #CD7F32;" class="podiumStep">3</div>
                                     </div>
                                 </div>
                             </div>
@@ -220,50 +222,52 @@
         <!--Developers-->
         <div class="section">
             <!--Developers visualization-->
-            <div class="visualizationPart">
+            <div class="container">
                 <!--Left part of the developers diversity-->
-                <div class="leftGenresSection" style="display: grid;">
+                <div class="left-panel">
                     <!--Title of the section-->
-                    <h1 class="sectionTitleGraph">
+                    <h1 class="sectionTitleGraph header">
                         A lot of Developers...
                     </h1>
                     <!--Graph Developer's part that present a circle packing chart of developers-->
-                    <div id="developer_circle_packing_chart"></div>
+                    <div id="developer_circle_packing_chart" class="content"></div>
                     <!--Title of the graph presented-->
-                    <h2 class="graphTitleDev" id="developer_graph_title">Number of Video Games Realeased by Developer in 2000</h2>
-                    <!--Interaction with the developer circle packing chart-->
-                    <div class="visualizationPartTools">
-                        <div class="visualizationPartTimeTools">
-                            <label class= "rightPartSelectorLabel" for="year_developer_slider">Current Year Displayed :</label>
-                            <input type="range" min="1971" max="2023" value="2000" class="visualizationPartSlider" id="year_developer_slider">
-                            <p class="visualizationPartYearDisplayed" id="year_developer_displayed">2000</p>
-                            <!--Play Button-->
-                            <button id="developer_play_button" onclick="onClickPlayButtonDev()" class="visualizationPartButtonTool">Play</button>
-                        </div>
-                        <div class="visualizationSelectorTools">
-                            <label class="rightPartSelectorLabel" for="nb_developer_displayed_selector">Number of Developers Displayed :</label>
-                            <select class="rightPartSelector" id="nb_developer_displayed_selector">
-                                <option value="10">10</option>
-                                <option value="20"selected="selected">20</option>
-                                <option value="30">30</option>
-                                <option value="40">40</option>
-                                <option value="50">50</option>
-                                <option value="60">60</option>
-                                <option value="70">70</option>
-                                <option value="10000000000000">All</option>
-                            </select>
+                    <div class="footer">
+                        <h2 class="graphTitleDev" id="developer_graph_title">Number of Video Games Realeased by Developer in 2000</h2>
+                        <!--Interaction with the developer circle packing chart-->
+                        <div class="visualizationPartTools">
+                            <div class="visualizationPartTimeTools">
+                                <label class= "rightPartSelectorLabel" for="year_developer_slider">Current Year Displayed :</label>
+                                <input type="range" min="1971" max="2023" value="2000" class="visualizationPartSlider" id="year_developer_slider">
+                                <p class="visualizationPartYearDisplayed" id="year_developer_displayed">2000</p>
+                                <!--Play Button-->
+                                <button id="developer_play_button" onclick="onClickPlayButtonDev()" class="visualizationPartButtonTool">Play</button>
+                            </div>
+                            <div class="visualizationSelectorTools">
+                                <label class="rightPartSelectorLabel" for="nb_developer_displayed_selector">Number of Developers Displayed :</label>
+                                <select class="rightPartSelector" id="nb_developer_displayed_selector">
+                                    <option value="10">10</option>
+                                    <option value="20"selected="selected">20</option>
+                                    <option value="30">30</option>
+                                    <option value="40">40</option>
+                                    <option value="50">50</option>
+                                    <option value="60">60</option>
+                                    <option value="70">70</option>
+                                    <option value="10000000000000">All</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <!--Right part of the Developer's diversity-->
-                <div class="rightPartSection">
+                <div class="right-panel">
                     <!--When no genre is selected-->
                     <div id="developer_right_no_selected" style="display: initial;">
                         <h2 class="rightPartIndication">Please Select a Developer</h2>
                         <h2 class="rightPartIndication">(Click on a circle on the left)</h2>
                     </div>
                     <!--When a genre is selected-->
-                    <div id="developer_right_selected" style="display: none;">
+                    <div id="developer_right_selected" style="display: none; height: 100%;">
                         <!--Top Games for the developer-->
                         <div class="rightPartListPart">
                             <div class="rightPartTop3PartInfo">
@@ -275,7 +279,7 @@
                                     <option value="Plays" selected="selected">Number of Players</option>
                                     <option value="Rating">Average Game's Review Rating</option>
                                     <option value="Playing">Number of Games Downloaded</option>
-                                    <option value="Wishlist">Number of Games present in the users wishlist</option>
+                                    <option value="Wishlist">Number of Games Wishlisted</option>
                                     <option value="Reviews">Number of Reviews</option>
                                 </select>
                             </div>
