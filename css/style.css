@@ -215,7 +215,7 @@ h2 {
 .rightPartDescriptionPart {
     display: block;
     width: 100%;
-    height: 30%;
+    height: 40%;
     overflow-y: auto;
 }
 .rightPartDescription {
@@ -228,7 +228,7 @@ h2 {
 }
 .rightPartTop3Part {
     width: 100%;
-    height: 70%;
+    height: 60%;
     display: block; 
     margin: 0%; 
     padding: 0%; 
