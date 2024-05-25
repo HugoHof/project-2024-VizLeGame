@@ -275,7 +275,7 @@ h2 {
     display: block; 
     margin: 0%; 
     padding: 0%; 
-    align-content: center;
+    text-align: left;
     padding-bottom: 4%;
 }
 .rightPartTop3PartContent {
@@ -457,7 +457,7 @@ h2 {
 
 .podiumStep {
     text-align: center;
-    width: 170px;
+    width: 250px;
     border-radius: 25px;
     font-size: 50pt;
     margin-top: 10px;
