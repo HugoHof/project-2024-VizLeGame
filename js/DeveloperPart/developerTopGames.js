@@ -13,7 +13,7 @@ function drawListGamesDeveloper(data) {
     var index = 0;
     // create a card game for all the games
     for(let game of gameLst) {
-        textHTML += '<div class="gameCard">'
+        textHTML += '<div class="gameCard gameCardHorizontalFlex">'
         textHTML += '<div class= "gameCardTitleContainer">'
         textHTML += '<h1 class="gameCardTitle">' + game["Title"] + '</h1>'
         textHTML += '</div>'
