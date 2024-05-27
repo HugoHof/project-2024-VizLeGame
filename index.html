@@ -316,70 +316,99 @@
                 </div>
             </div>
         </div>
-        <!--Interactive diagram (bubbles)-->
+        <!--Interactive diagram (sankey diagram)-->
         <div class="section">
-            
-            <div class="leftSankey" style="display: grid;">
-                <h1 class= "sectionTitle">Overview</h1>
-
-                <p style="font-size: xx-large; text-align: center;"><b><i>This is where the sankey diagram will be</i></b></p>
-            </div>
-
-            <div class="rightSankey">
-                
-                <div style="display: block;">
-                    <h2>Description: ###</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
-                        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-                        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-                        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
-                        Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                    </p>
-                </div>
-
-                <div style="display: block;">
-                    <h2>Top 3 games by 
-                        <select class="metricSelector" id="metricSelector">
-                            <option id="plays" selected="selected">plays</option>
-                            <option id="ratings">ratings</option>
-                            <option id="playing">playing</option>
-                            <option id="wishlist">wishlist</option>
-                            <option id="reviews">reviews</option>
-                        </select>
-                    </h2>
-
-                    <div class="rankContainer">
-
-                        <div class="gameRankContainer" id="rank2" style="top: 20px;">
-                            <div class="gameContainer">
-                                <p style="padding: 2px;">Title:</p>
-                                <p style="padding: 2px;">genre:</p>
-                                <p style="padding: 2px;">Platforms:</p>
+            <!--sankey visualization-->
+            <div class="container">
+                <!--Left part of the sanky diagram-->
+                <div class="left-panel">
+                    <!--Title of the section-->
+                    <h1 class="sectionTitleGraph header">
+                        Wraping up
+                    </h1>
+                    <!--sankey diagram-->
+                    <div id="sankey_diagram_graph" class="content"></div>
+                    <!--Title of the graph presented-->
+                    <div class="footer">
+                        <h2 class="graphTitleDev" id="sankey_graph_title">Number of Video Games Realeased by ... in 2000</h2>
+                        <!--Interaction with the developer circle packing chart-->
+                        <div class="visualizationPartTools">
+                            <div class="visualizationPartTimeTools">
+                                <label class= "rightPartSelectorLabel" for="year_sankey_slider">Current Year Displayed :</label>
+                                <input type="range" min="1971" max="2023" value="2000" class="visualizationPartSlider" id="year_sankey_slider">
+                                <p class="visualizationPartYearDisplayed" id="year_sankey_displayed">2000</p>
+                                <!--Play Button-->
+                                <button id="sankey_play_button" onclick="onClickPlayButtonDev()" class="visualizationPartButtonTool">Play</button>
                             </div>
-                            <p style="text-align: center;">#2</p>
-                        </div>
-                        <div class="gameRankContainer" id="rank1">
-                            <div class="gameContainer">
-                                <p style="padding: 2px;">Title:</p>
-                                <p style="padding: 2px;">genre:</p>
-                                <p style="padding: 2px;">Platforms:</p>
+                            <div class="visualizationSelectorTools">
+                                <label class="rightPartSelectorLabel" for="nb_sankey_displayed_selector">Number of items Displayed :</label>
+                                <select class="rightPartSelector" id="nb_sankey_displayed_selector">
+                                    <option value="3">3</option>
+                                    <option value="5"selected="selected">5</option>
+                                    <option value="10">10</option>
+                                    <option value="15">15</option>
+                                    <option value="20">20</option>
+                                    <option value="30">30</option>
+                                    <option value="40">40</option>
+                                    <option value="10000000000000">All</option>
+                                </select>
                             </div>
-                            <p style="text-align: center;">#1</p>
-                        </div>
-                        <div class="gameRankContainer" id="rank3" style="top: 40px;">
-                            <div class="gameContainer">
-                                <p style="padding: 2px;">Title:</p>
-                                <p style="padding: 2px;">genre:</p>
-                                <p style="padding: 2px;">Platforms:</p>
-                            </div>
-                            <p style="text-align: center;">#3</p>
-
                         </div>
                     </div>
                 </div>
-
+                <!--Right part of the sankey interactive-->
+                <div class="right-panel">
+                    <!--When nothing is selected-->
+                    <div id="sankey_right_no_selected" style="display: initial;">
+                        <h2 class="rightPartIndication">Please Select an item</h2>
+                        <h2 class="rightPartIndication">(Click on a bar on the left)</h2>
+                    </div>
+                    <!--When an item is selected-->
+                    <div id="sankey_right_selected" style="display: none; height: 100%;">
+                        <!--Top Games for the selection-->
+                        <div class="rightPartListPart">
+                            <div class="rightPartTop3PartInfo">
+                                <!--Part where the games relative to the items are displayed-->
+                                <h2 class="rightPartTitleSmall" id="sankey_list_games_title">Please select an item</h2>
+                                <!--Slector of the ranking criteria-->
+                                <label class="rightPartSelectorLabel" for="sankey_list_games_criteria">Sort by :</label>
+                                <select class="rightPartSelector" id="sankey_list_games_criteria">
+                                    <option value="Plays" selected="selected">Number of Players</option>
+                                    <option value="Rating">Average Game's Review Rating</option>
+                                    <option value="Playing">Number of Games Downloaded</option>
+                                    <option value="Wishlist">Number of Games Wishlisted</option>
+                                    <option value="Reviews">Number of Reviews</option>
+                                </select>
+                            </div>
+                            <div class="rightPartTop3PartContent">
+                                <!--List of games-->
+                                <div id="sankey_list_games" class="rightPartListContainer"></div>
+                            </div>
+                        </div>
+                        <div class="rightPartGraphPart">
+                            <div class="rightPartTop3PartInfo">
+                                <!--Title of the graph presented for the evolution of the selection-->
+                                <h2 class="rightPartTitleSmall" id="sankey_graph_title_2"></h2>
+                                <!--Criteria selector for the graph-->
+                                <label class= "rightPartSelectorLabel" for="sankey_evolution_criteria">In function of :</label>
+                                    <select class="rightPartSelector" id="sankey_evolution_criteria">
+                                        <option value="Plays" selected="selected">Number of Players</option>
+                                        <option value="Rating">Average Game's Review Rating</option>
+                                        <option value="Playing">Number of Games Downloaded</option>
+                                        <option value="Wishlist">Number of Games present in the users wishlist</option>
+                                        <option value="Reviews">Number of Reviews</option>
+                                        <option value="Number_of_Games">Number of Games Realeased</option>
+                                    </select>
+                            </div>
+                            <!--Global Evolution of the selected item part-->
+                            <div class= "rightPartTop3PartContent">
+                                <!--Graph selected item's part that present a graph along the years-->
+                                <div id="sankey_circle_packing_chart_2" style="align-self: center; height: 100%; width: 100%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-
         </div>
         <!--Conclusion-->
         <div class="section">
