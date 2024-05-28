@@ -10,23 +10,31 @@
 
     <!--our CSS-->
     <link rel="stylesheet" href="css/style.css"></style>
+    <link rel="stylesheet" href="css/pacman.css"></style>
 
     <!--D3.js-->
     <script src="https://d3js.org/d3.v4.min.js"></script>
 
     <!--INTRODUCTION PAGE-->
     <script src="js/introduction/introduction.js"></script>
-    
+
+    <!--Video Games font-->
+    <link href="https://fonts.cdnfonts.com/css/games" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/sf-pixelate" rel="stylesheet">
 </head>
 <body>
 
     <div id="fullpage">
         <!--Homepage-->
-        <div class="section" id="homepage"> 
-            <h1 class="homepageTitle">How is the video game spread across different genres and platforms and are develloped by a large number of editors ?</h1>
-            <p>In 1962, the first video game, Spacewar!, was created. Since this date, each year more and more 
-                video games are developed. The studios that developed these games are spread around the world. 
-                The video games are defined by a multiple of genres and are developed to be used on different platforms.</p>
+        <div class="section" id="homepage" style="height: 90%; width: 100%; margin: 0%; padding: 0%;"> 
+            <div class="mainPageBack" style="z-index: 0;">
+                <h1 class="mainPageText">How is the video game spread across different genres and platforms and are develloped by a large number of developers ?</h1>
+                <div class="pacman">
+                    <div class="pacman-top"></div>
+                    <div class="pacman-bottom"></div>
+                    <div class="feedPacman"></div>
+                </div>
+            </div>
         </div>
         <!--Introduction-->
         <div class="section" id="intro_page">
@@ -34,13 +42,9 @@
                 Introduction
             </h1>
             <p>
-                A small introduction to our vizualization. Ex: Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
-                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Massa tempor nec feugiat nisl pretium fusce id velit ut. 
-                Molestie ac feugiat sed lectus vestibulum mattis ullamcorper velit. Fames ac turpis egestas maecenas pharetra. Ac odio tempor 
-                orci dapibus ultrices in iaculis nunc. Nisi est sit amet facilisis. Et netus et malesuada fames ac turpis egestas integer. Elit 
-                duis tristique sollicitudin nibh. Viverra adipiscing at in tellus integer feugiat. Condimentum lacinia quis vel eros donec ac odio 
-                tempor orci. Egestas purus viverra accumsan in nisl nisi scelerisque. Adipiscing tristique risus nec feugiat in fermentum posuere. 
-                A arcu cursus vitae congue mauris rhoncus. Aliquam vestibulum morbi blandit cursus.
+                In 1962, the first video game, Spacewar!, was created. Since this date, each year more and more 
+                video games are developed. The studios that developed these games are spread around the world. 
+                The video games are defined by a multiple of genres and are developed to be used on different platforms.
             </p>
 
             <div id="intro_stats" style="display: flex; flex-direction: row; justify-content: center;">
@@ -61,7 +65,7 @@
                 <div id="editors_intro_stats" class = "statsPresentation" style ="display: grid;">
                     <div id="editors_intro_stats_number" class="dynamicNumber"></div>
                     <div id="editors_intro_stats_title" class="dynamicNumberTitle">
-                        <p><b>Editors</b></p>
+                        <p><b>Developers</b></p>
                     </div>
                 </div>
     
@@ -76,115 +80,135 @@
         </div>
         <!--Genre Trends-->
         <div class="section">
-            <!--Title of genres diversity section-->
-            <h1 class="sectionTitle">
-                Game are caracterized by a large diversity of Genres
-            </h1>
             <!--Genre diversity visualization-->
-            <div class="visulizationPart">
+            <div class="container">
                 <!--Left part of the genre diversity-->
-                <div class="leftGenresSection" style="display: grid;">
-                    <!--Title of the graph presented-->
-                    <h2 class="genreGraphTitle" id="genre_graph_title">Number of Video Games by Genre in 2000</h2>
+                <div class="left-panel">
+                    <!--Title of genres diversity section-->
+                    <h1 class="sectionTitleGraph header">
+                        A large diversity of Genres...
+                    </h1>
                     <!--Graph genres part that present a bar chart of genres-->
-                    <div id="genres_bar_chart"></div>
+                    <div id="genres_bar_chart" class="content"></div>
                     <!--Interaction with the genre bar chart-->
-                    <div class="slider_divider">
-                        <div class="year_sider_displayed">
-                            <span id="year_genre_displayed">2000</span>
+                    <div class="footer">
+                        <!--Title of the graph presented-->
+                        <h2 class="graphTitle" id="genre_graph_title">Number of Video Games by Genre in 2000</h2>
+                        <div class="visualizationPartTools">
+                            <div class="visualizationPartTimeTools">
+                                <label class= "rightPartSelectorLabel" for="year_genre_slider">Current Year Displayed :</label>
+                                <input class="visualizationPartSlider" type="range" min="1971" max="2023" value="2000" class="slider" id="year_genre_slider">
+                                <!--Current year Displayed-->
+                                <p class="visualizationPartYearDisplayed" id="year_genre_displayed">2000</p>
+                                <!--Play Button-->
+                                <button id="genre_play_button" onclick="onClickPlayButtonGenre()" class="visualizationPartButtonTool">Play</button>
+                            </div>
+                            <div class="visualizationSelectorTools">
+                                <label class= "rightPartSelectorLabel" for="nb_genre_displayed_selector">Number of Genres Displayed :</label>
+                                <select class= "rightPartSelector" id="nb_genre_displayed_selector">
+                                    <option value="3">3</option>
+                                    <option value="6">6</option>
+                                    <option value="9">9</option>
+                                    <option value="12">12</option>
+                                    <option value="15">15</option>
+                                    <option value="18">18</option>
+                                    <option value="21">21</option>
+                                    <option value="23" selected="selected">All</option>
+                                </select>
+                            </div>
                         </div>
-                        <input type="range" min="1971" max="2023" value="2000" class="slider" id="year_genre_slider">
-                        <label for="nb_genre_displayed_selector">Number of GenresDisplayed :</label>
-                        <select id="nb_genre_displayed_selector">
-                            <option value="3">3</option>
-                            <option value="6">6</option>
-                            <option value="9">9</option>
-                            <option value="12">12</option>
-                            <option value="15">15</option>
-                            <option value="18">18</option>
-                            <option value="21">21</option>
-                            <option value="23" selected="selected">All</option>
-                        </select>
                     </div>
                 </div>
                 <!--Right part of the genre diversity-->
-                <div class="rightGenresSection">
-                    
-                    <div style="display: block;">
-                        <h2 class="genreDescriptivePart" id="genre_description_title">Please Select a Genre</h2>
-                        <p>Click on a bar on the bar chart diagram to see some informations relative to the genre selected.
-                        </p>
+                <div class="right-panel">
+                    <!--When no genre is selected-->
+                    <div id="genre_right_no_selected" style="height: 100%;">
+                        <h2 class="rightPartIndication">Please Select a Genre</h2>
+                        <h2 class="rightPartIndication">(Click on a bar on the left)</h2>
                     </div>
+                    <!--When a genre is selected-->
+                    <div id="genre_right_selected" style="height: 100%;">
+                        <div class="rightPartDescriptionPart">
+                            <h2 class="rightPartTitle" id="genre_description_title"></h2>
+                            <p class= "rightPartDescription" id ="genre_description_text"></p>
+                        </div>
 
-                    <div style="display: block; margin: 0%; padding: 0%; align-content: baseline;">
-                        <h2>Top 3 games</h2>
+                        <div class="rightPartTop3Part">
+                            <div class="rightPartTop3PartInfo">
+                                <h2 class="rightPartTitle">Top 3 games</h2>
 
-                        <label for="genres_games_top_3_criteria" style="margin-left: 1%;">Ranking in fuction of the :</label>
+                                <label class= "rightPartSelectorLabel" for="genres_games_top_3_criteria">Ranking in fuction of the :</label>
 
-                        <select class="metricSelector" id="genres_games_top_3_criteria">
-                            <option value="Plays" selected="selected">Number of Players</option>
-                            <option value="Rating">Average Game's Review Rating</option>
-                            <option value="Playing">Number of Games Downloaded</option>
-                            <option value="Wishlist">Number of Games present in the users wishlist</option>
-                            <option value="Reviews">Number of Reviews</option>
-                        </select>
-
-                        <div class="podiumGame">
-                            <!--2nd Podium Place"-->
-                            <div class="podiumPlace">
-                                <div class="gameCard">
-                                    <div class= "gameCardTitleContainer">
-                                        <h1 class="gameCardTitle" id="games_genre_rank_2_title">Title #2</h1>
-                                    </div>
-                                    <div class= "gameDescriptionContainer">
-                                        <label class="gameCardLabel" for="games_genre_rank_2_genres">Genre(s) </label>
-                                        <p class="gameCardTextElem" id="games_genre_rank_2_genres"></p>
-                                        <label class="gameCardLabel" for="games_genre_rank_2_developer">Developer(s) </label>
-                                        <p class="gameCardTextElem" id="games_genre_rank_2_developer"></p>
-                                        <label class="gameCardLabel" for="games_genre_rank_2_platforms">Platform(s) </label>
-                                        <p class="gameCardTextElem" id="games_genre_rank_2_platforms"></p>
-                                    </div>
-                                </div>
-
-                                <div style="height: 90px; background-color: #C0C0C0;" class="podiumStep">#2</div>
+                                <select class="rightPartSelector" id="genres_games_top_3_criteria">
+                                    <option value="Plays" selected="selected">Number of Players</option>
+                                    <option value="Rating">Average Game's Review Rating</option>
+                                    <option value="Playing">Number of Games Downloaded</option>
+                                    <option value="Wishlist">Number of Games Wishlisted</option>
+                                    <option value="Reviews">Number of Reviews</option>
+                                </select>
                             </div>
-                            
-                            <!--1st Podium Place"-->
-                            <div class="podiumPlace">
-                                <div class="gameCard">
-                                    <div class= "gameCardTitleContainer">
-                                        <h1 class="gameCardTitle" id="games_genre_rank_1_title">Title #1</h1>
+                            <div class="rightPartTop3PartContent">
+                                <div class="podiumGame">
+                                    <!--2nd Podium Place"-->
+                                    <div class="podiumPlace" style="height: 95%;">
+                                        <div class="gameCard gameCardVerticalFlex" id="genre_rank_2">
+                                            <div class= "gameCardTitleContainer">
+                                                <h1 class="gameCardTitle" id="games_genre_rank_2_title">Title #2</h1>
+                                            </div>
+                                            <div class= "gameDescriptionContainer">
+                                                <label class="gameCardLabel" for="games_genre_rank_2_genres">Genre(s) </label>
+                                                <p class="gameCardTextElem" id="games_genre_rank_2_genres"></p>
+                                                <label class="gameCardLabel" for="games_genre_rank_2_developer">Developer(s) </label>
+                                                <p class="gameCardTextElem" id="games_genre_rank_2_developer"></p>
+                                                <label class="gameCardLabel" for="games_genre_rank_2_platforms">Platform(s) </label>
+                                                <p class="gameCardTextElem" id="games_genre_rank_2_platforms"></p>
+                                            </div>
+                                        </div>
+                                        
+                                        <div style="background-color: #C0C0C0; text-align: center; font-size: 40pt;" class="podiumStep">2</div>
+                                        
                                     </div>
-                                    <div class= "gameDescriptionContainer">
-                                        <label class="gameCardLabel" for="games_genre_rank_1_genres">Genre(s) </label>
-                                        <p class="gameCardTextElem" id="games_genre_rank_1_genres"></p>
-                                        <label class="gameCardLabel" for="games_genre_rank_1_developer">Developer(s) </label>
-                                        <p class="gameCardTextElem" id="games_genre_rank_1_developer"></p>
-                                        <label class="gameCardLabel" for="games_genre_rank_1_platforms">Platform(s) </label>
-                                        <p class="gameCardTextElem" id="games_genre_rank_1_platforms"></p>
+                                    
+                                    <!--1st Podium Place"-->
+                                    <div class="podiumPlace">
+                                        <div class="gameCard gameCardVerticalFlex"  id="genre_rank_1">
+                                            <div class= "gameCardTitleContainer">
+                                                <h1 class="gameCardTitle" id="games_genre_rank_1_title">Title #1</h1>
+                                            </div>
+                                            <div class= "gameDescriptionContainer">
+                                                <label class="gameCardLabel" for="games_genre_rank_1_genres">Genre(s) </label>
+                                                <p class="gameCardTextElem" id="games_genre_rank_1_genres"></p>
+                                                <label class="gameCardLabel" for="games_genre_rank_1_developer">Developer(s) </label>
+                                                <p class="gameCardTextElem" id="games_genre_rank_1_developer"></p>
+                                                <label class="gameCardLabel" for="games_genre_rank_1_platforms">Platform(s) </label>
+                                                <p class="gameCardTextElem" id="games_genre_rank_1_platforms"></p>
+                                            </div>
+                                        </div>
+                                        
+                                        <div style="background-color: #ffd700; text-align: center;" class="podiumStep">1</div>
+                                        
+                                    </div>
+                                    
+                                    <!--3rd Podium Place"-->
+                                    <div class="podiumPlace" style="height: 90%;">
+                                        <div class="gameCard gameCardVerticalFlex"  id="genre_rank_3">
+                                            <div class= "gameCardTitleContainer">
+                                                <h1 class="gameCardTitle" id="games_genre_rank_3_title">Title #3</h1>
+                                            </div>
+                                            <div class= "gameDescriptionContainer">
+                                                <label class="gameCardLabel" for="games_genre_rank_3_genres">Genre(s) </label>
+                                                <p class="gameCardTextElem" id="games_genre_rank_3_genres"></p>
+                                                <label class="gameCardLabel" for="games_genre_rank_3_developer">Developer(s) </label>
+                                                <p class="gameCardTextElem" id="games_genre_rank_3_developer"></p>
+                                                <label class="gameCardLabel" for="games_genre_rank_3_platforms">Platform(s) </label>
+                                                <p class="gameCardTextElem" id="games_genre_rank_3_platforms"></p>
+                                            </div>
+                                        </div>
+                                        
+                                        <div style="background-color: #CD7F32; text-align: center; font-size: 30pt;" class="podiumStep">3</div>
+                                       
                                     </div>
                                 </div>
-
-                                <div style="height: 120px; background-color: #ffd700;" class="podiumStep">#1</div>
-                            </div>
-                            
-                            <!--3rd Podium Place"-->
-                            <div class="podiumPlace">
-                                <div class="gameCard">
-                                    <div class= "gameCardTitleContainer">
-                                        <h1 class="gameCardTitle" id="games_genre_rank_3_title">Title #3</h1>
-                                    </div>
-                                    <div class= "gameDescriptionContainer">
-                                        <label class="gameCardLabel" for="games_genre_rank_3_genres">Genre(s) </label>
-                                        <p class="gameCardTextElem" id="games_genre_rank_3_genres"></p>
-                                        <label class="gameCardLabel" for="games_genre_rank_3_developer">Developer(s) </label>
-                                        <p class="gameCardTextElem" id="games_genre_rank_3_developer"></p>
-                                        <label class="gameCardLabel" for="games_genre_rank_3_platforms">Platform(s) </label>
-                                        <p class="gameCardTextElem" id="games_genre_rank_3_platforms"></p>
-                                    </div>
-                                </div>
-
-                                <div style="height: 70px; background-color: #CD7F32;" class="podiumStep">#3</div>
                             </div>
                         </div>
                     </div>
@@ -200,10 +224,97 @@
         </div>
         <!--Developers-->
         <div class="section">
-            <h1 class="sectionTitle">
-                Games are developed by many developers along the years
-            </h1>
-            <img src="milestone_2/graphs_sketchs/developer_diversity_sketch.jpeg" width="90%" height="90%">
+            <!--Developers visualization-->
+            <div class="container">
+                <!--Left part of the developers diversity-->
+                <div class="left-panel">
+                    <!--Title of the section-->
+                    <h1 class="sectionTitleGraph header">
+                        A lot of Developers...
+                    </h1>
+                    <!--Graph Developer's part that present a circle packing chart of developers-->
+                    <div id="developer_circle_packing_chart" class="content"></div>
+                    <!--Title of the graph presented-->
+                    <div class="footer">
+                        <h2 class="graphTitleDev" id="developer_graph_title">Number of Video Games Realeased by Developer in 2000</h2>
+                        <!--Interaction with the developer circle packing chart-->
+                        <div class="visualizationPartTools">
+                            <div class="visualizationPartTimeTools">
+                                <label class= "rightPartSelectorLabel" for="year_developer_slider">Current Year Displayed :</label>
+                                <input type="range" min="1971" max="2023" value="2000" class="visualizationPartSlider" id="year_developer_slider">
+                                <p class="visualizationPartYearDisplayed" id="year_developer_displayed">2000</p>
+                                <!--Play Button-->
+                                <button id="developer_play_button" onclick="onClickPlayButtonDev()" class="visualizationPartButtonTool">Play</button>
+                            </div>
+                            <div class="visualizationSelectorTools">
+                                <label class="rightPartSelectorLabel" for="nb_developer_displayed_selector">Number of Developers Displayed :</label>
+                                <select class="rightPartSelector" id="nb_developer_displayed_selector">
+                                    <option value="10">10</option>
+                                    <option value="20"selected="selected">20</option>
+                                    <option value="30">30</option>
+                                    <option value="40">40</option>
+                                    <option value="50">50</option>
+                                    <option value="60">60</option>
+                                    <option value="70">70</option>
+                                    <option value="10000000000000">All</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--Right part of the Developer's diversity-->
+                <div class="right-panel">
+                    <!--When no genre is selected-->
+                    <div id="developer_right_no_selected" style="display: initial;">
+                        <h2 class="rightPartIndication">Please Select a Developer</h2>
+                        <h2 class="rightPartIndication">(Click on a circle on the left)</h2>
+                    </div>
+                    <!--When a genre is selected-->
+                    <div id="developer_right_selected" style="display: none; height: 100%;">
+                        <!--Top Games for the developer-->
+                        <div class="rightPartListPart">
+                            <div class="rightPartTop3PartInfo">
+                                <!--Part where the games relative to the developer are displayed-->
+                                <h2 class="rightPartTitleSmall" id="developer_list_games_title">Please select a Developer</h2>
+                                <!--Slector of the ranking criteria-->
+                                <label class="rightPartSelectorLabel" for="developer_list_games_criteria">Sort by :</label>
+                                <select class="rightPartSelector" id="developer_list_games_criteria">
+                                    <option value="Plays" selected="selected">Number of Players</option>
+                                    <option value="Rating">Average Game's Review Rating</option>
+                                    <option value="Playing">Number of Games Downloaded</option>
+                                    <option value="Wishlist">Number of Games Wishlisted</option>
+                                    <option value="Reviews">Number of Reviews</option>
+                                </select>
+                            </div>
+                            <div class="rightPartTop3PartContent">
+                                <!--List of games-->
+                                <div id="developer_list_games" class="rightPartListContainer"></div>
+                            </div>
+                        </div>
+                        <div class="rightPartGraphPart">
+                            <div class="rightPartTop3PartInfo">
+                                <!--Title of the graph presented for the evolution of a developer-->
+                                <h2 class="rightPartTitleSmall" id="developer_graph_title_2"></h2>
+                                <!--Criteria selector for the graph-->
+                                <label class= "rightPartSelectorLabel" for="developer_evolution_criteria">In function of :</label>
+                                    <select class="rightPartSelector" id="developer_evolution_criteria">
+                                        <option value="Plays" selected="selected">Number of Players</option>
+                                        <option value="Rating">Average Game's Review Rating</option>
+                                        <option value="Playing">Number of Games Downloaded</option>
+                                        <option value="Wishlist">Number of Games present in the users wishlist</option>
+                                        <option value="Reviews">Number of Reviews</option>
+                                        <option value="Number_of_Games">Number of Games Realeased</option>
+                                    </select>
+                            </div>
+                            <!--Global Evolution of the developer part-->
+                            <div class= "rightPartTop3PartContent">
+                                <!--Graph Developer's part that present a circle packing chart of developers-->
+                                <div id="developer_circle_packing_chart_2" style="align-self: center;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <!--Interactive diagram (bubbles)-->
         <div class="section">
@@ -301,8 +412,8 @@
         verticalCentered: false,
         scrollOverflow: false,
         navigation: true, // Adds navigation dots
-        navigationTooltips: ['Home', 'Introduction', 'Genre trends', 'Platforms', 'Studio', 'Interactive diagram', 'Conclusion', 'About us'], // Adds name to navigation dots
-        sectionsColor: ['', '', '', '', '', '', '', '#FFFFFF'], // Background colors for each section
+        navigationTooltips: ['Home', 'Introduction', 'Genre trends', 'Platforms', 'Developers', 'Interactive diagram', 'Conclusion', 'About us'], // Adds name to navigation dots
+        sectionsColor: ['#000000', '', '', '', '', '', '', '#FFFFFF'], // Background colors for each section
         });
     </script>
     <!--Introduction dynamic statistics displaying-->
@@ -314,5 +425,9 @@
     </script>
     <!--Genres bar chart-->
     <script src = "js/genresBarChart.js"></script>
+    <!--Developers Circel Packing chart-->
+    <script src = "js/DeveloperPart/developersCirclePackingChart.js"></script>
+    <script src = "js/DeveloperPart/developersEvolutionChart.js"></script>
+    <script src= "js/DeveloperPart/developerTopGames.js"></script>
 </body>
 </html>

@@ -6,6 +6,61 @@
 #fp-nav ul li .fp-tooltip {
     color: black;
 }
+
+/* left and right panels ---------------------------------------------------------- */
+.container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    height: 99%;
+    width: 99%;
+    padding-top: 0.5%; /* already a 0.5% left padding on fullpage.js sections*/
+}
+
+.left-panel {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+.header, .footer {
+    padding: 10px;
+    text-align: center;
+    height: max-content;
+}
+
+.content {
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+}
+
+.content svg {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.right-panel {
+    background-color: #e2e2e2;
+    padding: 2.5%;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border-radius: 25px;
+    border: 5px solid rgb(25, 0, 187);
+    background-color: #000000;
+    overflow: hidden;
+}
+
+/*@media only screen and (max-width: 768px) {
+    .container {
+        grid-template-columns: 1fr;
+        grid-template-rows: 3fr 1fr;
+    }
+}*/
+/* end ---------------------------------- */
+
+
 /* left side of the interactive graph */
 .leftSankey {
     float: left;
@@ -32,9 +87,8 @@
 }
 /* the root container of the top 3 */
 .rankContainer {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
+    overflow: auto;
+    white-space: nowrap;
     width: 100%;
 }
 /* child of root container of the top 3 */
@@ -95,12 +149,24 @@ p {
 h2 {
     padding-inline: 20px;
 }
+.section {
+    width: 100%;
+    height: 100%;
+    margin: 0.5%;
+}
 /* FOR THE GENRE DIVERSITY PART*/
+.sectionTitleGraph {
+    font-family: 'Games', sans-serif;
+    text-align: left;
+    margin: 10px;
+    font-size: 35pt;
+}
 
 /*style of the main vizualisation part*/
-.visulizationPart {
-    width: 100%;
-    height: 90%;
+.visualizationPart {
+    width: 96%;
+    height: 95%;
+    align-content: center;
 }
 /* left side of the genre diversity part */
 .leftGenresSection {
@@ -110,21 +176,245 @@ h2 {
     background-color: #fff;
 }
 /* right side of the genre diversity part */
-.rightGenresSection {
-    float: right;
-    width: 50%;
+.rightPartSection {
+    border-radius: 25px;
+    border: 5px solid rgb(25, 0, 187);
+    /*display: flow-root;*/
+    /*width: 49%;
     height: 100%;
-    background-color: #77b7e2;
-    align-items: end;
+    padding: 0%;
+    margin: 0%;*/
+    background-color: #000000;
+    /*align-items: center;
+    align-content: center;*/
+}
+.rightPartIndication {
+    color: #d0d0d0;
+    font-family: 'Games', 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    text-align: center;
+    align-content: center;
+    align-items: center;
+    align-self: center;
+    font-size: 30pt;
+    font-weight: normal;
+}
+.rightPartTitle {
+    color: white;
+    font-family: 'Games', sans-serif;
+    text-align: left;
+    font-size: 30pt;
+    margin: 2%;
+}
+.rightPartTitleSmall {
+    color: white;
+    font-family: 'Games', sans-serif;
+    text-align: left;
+    font-size: 16pt;
+    margin: 2%;
+}
+.rightPartDescriptionPart {
+    display: block;
+    width: 100%;
+    height: 40%;
+    overflow-y: auto;
+}
+.rightPartDescription {
+    color: rgb(125, 125, 125);
+    font-family: 'SF Pixelate', sans-serif;
+    font-style: normal;
+    margin: 2%;
+    padding: 0;
+    font-size: 14pt;
+}
+.rightPartTop3Part {
+    width: 100%;
+    height: 60%;
+    display: block; 
+    margin: 0%; 
+    padding: 0%; 
+    align-content: center;
+}
+.rightPartListPart {
+    width: 100%;
+    height: 50%;
+    display: block; 
+    margin: 0%; 
+    padding: 0%; 
+    align-content: top;
+}
+.rightPartGraphPart {
+    width: 100%;
+    height: 42.5%;
+    display: block;
+    margin: 0%; 
+    padding: 0%; 
     align-content: end;
+    align-content: end;
+    padding-top: 2.5%;
+}
+.rightPartSelectorLabel {
+    margin-left: 1%;
+    color: white;
+    font-family: 'SF Pixelate', sans-serif;
+    font-weight: bold;
+    text-align: left;
+    font-size: 14pt;
+}
+.rightPartSelector {
+    padding: 0;
+    padding-left: 5px;
+    font-size: 14pt;
+    text-align: left;
+    border: 1px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.rightPartTop3PartInfo {
+    height: fit-content;
+    width: 100%;
+    display: block; 
+    margin: 0%; 
+    padding: 0%; 
+    text-align: left;
+    padding-bottom: 4%;
+}
+.rightPartTop3PartContent {
+    height: 70%;
+    width: 100%;
+    flex-wrap: nowrap;
+    display: block; 
+    margin: 0%; 
+    padding: 0%; 
+    align-content: center;
+}
+.rightPartListContainer {
+    margin: 2px;
+    padding: 10px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    height: 100%;
+    gap: 5px;
+    /*width: 750x;
+    min-width: 750px;
+    max-width: 750px;
+    height: 280px;
+    min-height: 280px;
+    max-height: 280;*/
+}
+.visualizationPartTools {
+    border-radius: 25px;
+    border: 5px solid rgb(25, 0, 187);
+    display: flow-root;
+    width: 49%;
+    height: fit-content;
+    padding: 0%;
+    margin: 0%;
+    background-color: #000000;
+    align-items: center;
+    align-content: center;
+    align-self: center;
+    margin-left: 40px;
+    min-width: 80%;
+}
+.visualizationPartYearDisplayed {
+    display: inline-block;
+    position: relative;
+    width: 80px;
+    color: white;
+    line-height: 25px;
+    text-align: center;
+    border-radius: 3px;
+    background: gray;
+    padding: 5px 10px;
+    margin-left: 8px;
+    font-family: 'Games', 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    
+    &:after {
+        position: absolute;
+        top: 8px;
+        left: -7px;
+        width: 0;
+        height: 0;
+        border-top: 7px solid transparent;
+        border-right: 7px solid gray;
+        border-bottom: 7px solid transparent;
+        content: '';
+    }
+}
+.visualizationPartSlider {
+    -webkit-appearance: none;
+    width: 20%;
+    height: 10px;
+    border-radius: 10px;
+    background: #d3d3d3;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+}
+  
+.visualizationPartSlider:hover {
+    opacity: 1;
+}
+  
+.visualizationPartSlider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    border-radius: 50px;
+    width: 25px;
+    height: 25px;
+    background: #0bffce;
+    cursor: pointer;
+}
+  
+.visualizationPartSlider::-moz-range-thumb {
+    width: 25px;
+    border-radius: 50px;
+    height: 25px;
+    background: #0bffce;
+    cursor: pointer;
+}
+.visualizationPartTimeTools {
+    margin: 1%;
+    margin-bottom: 1%;
+    
+}
+.visualizationPartButtonTool {
+    background-color: #04AA6D;
+    border: none;
+    border-radius: 10px;
+    font-family: 'Games', sans-serif;
+    color: white;
+    padding: 10px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16pt;
+}
+.visualizationSelectorTools {
+    margin: 1%;
+    margin-top: 2%;
 }
 
 /* title of the genre graph */
-.genreGraphTitle {
+.graphTitle{
     text-align: center;
     padding: 0px;
     font-size: 30px;
     margin: 0px 0px 0px 0px;
+    font-family: 'Games', sans-serif;
+    color: gray;
+}
+.graphTitleDev{
+    text-align: center;
+    padding: 0px;
+    font-size: 25px;
+    margin: 0px 0px 0px 0px;
+    font-family: 'Games', sans-serif;
+    color: gray;
 }
 
 /* title of the genres descriptive part */
@@ -140,75 +430,138 @@ h2 {
 .podiumGame {
     padding: 0%;
     margin: 0%;
-    padding-top: 0%;
     display: flex;
-    flex-direction: row;
-    justify-content: center;
+    padding-top: 0%;
+    grid-column: 1;
+    flex-direction:row;
     width: 100%;
-    height: 80%;
-    align-items: end;
+    height: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    gap: 5px;
+    align-items: flex-end;
 }
 
 .podiumPlace {
+    position: relative;
     padding: 0%;
-    margin: 1%;
-    padding-top: 10%;
+    margin: 0%;
+    padding-top: 1px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     width: 100%;
-    height: 80%;
+    height: 100%;
     align-items: center;
+    justify-content: flex-end;
 }
 
 .podiumStep {
     text-align: center;
-    width: 100%;
-    font-size: xx-large;
+    width: 250px;
+    border-radius: 25px;
+    font-size: 50pt;
     margin-top: 10px;
     align-content: center;
     align-items: center;
     justify-content: center;
+    font-family: 'Games', 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 .gameCard {
+    /*min-width: 250px;
+    min-height: 260px;
+    max-width: 250px;
+    max-height: 260px;/
     box-shadow: 0 14px 18px 0 rgba(6, 6, 6, 0.2);
-    width: 80%;
-    height: 100%;
-    margin: 1%;
+    /*width: 250px;
+    height: 260px;*/
+    margin: 0%;
+    background-color: #d0d0d0;
+    border-radius: 10px;
+    padding: 2px;
     justify-content: center;
     text-align: center;
+    width: 250px;
+    overflow-y: auto;
 }
+
+.gameCardVerticalFlex {
+    flex-grow: 1;
+    flex-shrink: 1;
+}
+
+.gameCardHorizontalFlex {
+    height: 100%;
+    flex-shrink: 0;
+}
+
 .gameCardTitleContainer {
-    font-family: 'Courier New', Courier, monospace;
-    background-color: black;
     width: 100%;
-    height: 20%;
-    font-size: small;
-    color: white;
+    height: auto;
+    align-items: center;
+    align-content: center;
     padding: auto;
     padding-left: 0%;
     margin-left: 0%;
     justify-self: center;
 }
+.gameCardTitle{
+    border-radius: 15px;
+    font-family: 'Games', 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    background-color: black;
+    font-size: 16pt;
+    padding: 7px;
+    color: white;
+}
 .gameCardLabel {
     text-align: left;
-    font-family: cursive;
+    font-family: 'SF Pixelate', sans-serif;
+    font-size: 12pt;
+    margin: 0%;
     margin-left: 5%;
     margin-right: 5%;
 }
 .gameCardTextElem {
-    font-size: medium;
+    font-size: 11pt;
     text-align: left;
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-family: 'Games', 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     margin-top: 0%;
     padding-top: 0%;
-    margin-left: 8%;
-    margin-right: 5%;
+    margin-left: 5px;
+    margin-right: 5px;
 }
 .gameDescriptionContainer {
+    padding-top: 10px;
+    align-items: end;
+    align-content: end;
     text-align: left;
-    background-color: #d0d0d0;
     width: 100%;
-    height: 80%;
+    height: auto;
+}
+
+/*DEVELOPERS PART*/
+.node:hover{
+    stroke-width: 7px;
+    opacity: 1;
+}
+
+/*MAIN PAGE*/
+.mainPageBack {
+    background-color: transparent;
+    min-width: 100%;
+    min-height: 100%;
+    max-width: 100%;
+    max-width: 100%;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+}
+.mainPageText {
+    color: white;
+    font-family: 'Games', 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    padding: 10%;
+    font-size: 40pt;
+    justify-content: center;
 }
