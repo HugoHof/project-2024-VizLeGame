@@ -330,7 +330,7 @@
                     <div id="sankey_diagram_graph" class="content"></div>
                     <!--Title of the graph presented-->
                     <div class="footer">
-                        <h2 class="graphTitleDev" id="sankey_graph_title">Number of Video Games Realeased by ... in 2000</h2>
+                        <h2 class="graphTitleDev" id="sankey_graph_title">Number of Video Games Realeased in 2000</h2>
                         <!--Interaction with the developer circle packing chart-->
                         <div class="visualizationPartTools">
                             <div class="visualizationPartTimeTools">
@@ -340,18 +340,47 @@
                                 <!--Play Button-->
                                 <button id="sankey_play_button" onclick="onClickPlayButtonSankey()" class="visualizationPartButtonTool">Play</button>
                             </div>
-                            <div class="visualizationSelectorTools">
-                                <label class="rightPartSelectorLabel" for="nb_sankey_displayed_selector">Number of links Displayed :</label>
-                                <select class="rightPartSelector" id="nb_sankey_displayed_selector">
-                                    <option value="5">5</option>
-                                    <option value="10"selected="selected">10</option>
-                                    <option value="20">20</option>
-                                    <option value="30">30</option>
-                                    <option value="40">40</option>
-                                    <option value="50">50</option>
-                                    <option value="70">70</option>
-                                    <option value="100">100</option>
-                                </select>
+                            <div class="visualizationSelectorTools" id="sankey_order_draggable" style="display: flex; flex-direction: column;">
+                                <!--genres-->
+                                <div id="sankey_genres" class="draggable dragGenreOutline" draggable="true">
+                                    <label class="rightPartSelectorLabel" style="cursor: move;">Number of genres displayed : </label>
+                                    <select class="rightPartSelector" id="nb_sankey_displayed_selector_genre">
+                                        <option value="3">3</option>
+                                        <option value="5"selected="selected">5</option>
+                                        <option value="7">7</option>
+                                        <option value="10">10</option>
+                                        <option value="15">15</option>
+                                        <option value="21">21</option>
+                                    </select>
+                                </div>
+                                <!--platforms-->
+                                <div id="sankey_platforms" class="draggable dragPlatformOutline" draggable="true">
+                                    <label class="rightPartSelectorLabel" style="cursor: move;">Number of platforms displayed : </label>
+                                    <select class="rightPartSelector" id="nb_sankey_displayed_selector_platform">
+                                        <option value="3">3</option>
+                                        <option value="5"selected="selected">5</option>
+                                        <option value="7">7</option>
+                                        <option value="10">10</option>
+                                        <option value="15">15</option>
+                                        <option value="20">20</option>
+                                        <option value="30">30</option>
+                                        <option value="50">50</option>
+                                    </select>
+                                </div>
+                                <!--developers-->
+                                <div id="sankey_developers" class="draggable dragDeveloperOutline" draggable="true">
+                                    <label class="rightPartSelectorLabel" style="cursor: move;">Number of developers displayed : </label>
+                                    <select class="rightPartSelector" id="nb_sankey_displayed_selector_developer">
+                                        <option value="5">5</option>
+                                        <option value="7"selected="selected">7</option>
+                                        <option value="10">10</option>
+                                        <option value="15">15</option>
+                                        <option value="20">20</option>
+                                        <option value="30">30</option>
+                                        <option value="40">40</option>
+                                        <option value="50">50</option>
+                                    </select>
+                                </div>
                             </div>
                         </div>
                     </div>

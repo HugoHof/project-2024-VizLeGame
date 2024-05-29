@@ -37,23 +37,71 @@ d3.json("data/games_by_year_by_all.json", function(error, data) {
 
     // retrieve the slider of the years
     var sliderOutputSankey = document.getElementById("year_sankey_displayed");
-    var yearSliderSanky = document.getElementById("year_sankey_slider")
+    document.getElementById("year_sankey_slider")
         .oninput = function() {
             // display the year currently displayed
             sliderOutputSankey.innerHTML = this.value;
             drawSankey(data);
         };
 
-    // retrieve the selector of the number of bars displayed
-    var nbBarsSankey= document.getElementById("nb_sankey_displayed_selector")
+    // retrieve the selectors of the number of bars displayed
+    document.getElementById("nb_sankey_displayed_selector_genre")
         .oninput = function() {
             drawSankey(data);
         };
+
+    document.getElementById("nb_sankey_displayed_selector_platform")
+        .oninput = function() {
+            drawSankey(data);
+        };
+
+    document.getElementById("nb_sankey_displayed_selector_developer")
+        .oninput = function() {
+            drawSankey(data);
+        };
+
+    // order draggable
+    const container = document.getElementById('sankey_order_draggable');
+    let draggedElement = null;
+
+    container.addEventListener('dragstart', (e) => {
+        draggedElement = e.target;
+        e.dataTransfer.effectAllowed = 'move';
+    });
+
+    container.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        e.dataTransfer.dropEffect = 'move';
+
+        const target = e.target;
+        if (target && target !== draggedElement && target.classList.contains('draggable')) {
+            const rect = target.getBoundingClientRect();
+            const threshold = rect.height * 0.5;
+            const mouseOverTop = e.clientY - rect.top;
+            const mouseOverBot = rect.bottom - e.clientY;
+            const prev = mouseOverTop > threshold;
+            const next = mouseOverBot > threshold;
+            container.insertBefore(draggedElement, next && target.nextSibling || prev && target.previousSibling || target);
+            drawSankey(data);
+        }
+    });
+
+    container.addEventListener('drop', (e) => {
+        e.preventDefault();
+        draggedElement = null;
+    });
+
+    container.addEventListener('dragend', (e) => {
+        e.preventDefault();
+        draggedElement = null;
+    });
 
     // upadte every 3 s the displaying of the graph if isPlayingSankey is activated
     setInterval(function() { return upadteGraphDisplayinyOnPlaySankey(data); }, 3000);
 
 });
+
+
 
 // update when time is playing
 function upadteGraphDisplayinyOnPlaySankey(data){
@@ -87,35 +135,58 @@ function drawSankey(data){
     // Clear the previous diagram
     sankeyDiagram.selectAll("*").remove();
 
-    let sankey_data_year = data[String(document.getElementById("year_sankey_slider").value)];
-
-    let nbItems = document.getElementById("nb_sankey_displayed_selector").value;
-
-    let sankey_data = sankey_data_year.sort((a, b) => b.value - a.value).slice(0, nbItems);
-
+    let sankey_data = data[String(document.getElementById("year_sankey_slider").value)].sort((a, b) => b.value - a.value);
 
     var nodes = [];
     var links = [];
 
-    // create links and nodes
+    let nbGenre = document.getElementById("nb_sankey_displayed_selector_genre").value;
+    let nbPlatform = document.getElementById("nb_sankey_displayed_selector_platform").value;
+    let nbDeveloper = document.getElementById("nb_sankey_displayed_selector_developer").value;
+
+    // create nodes and links
     sankey_data.forEach(link => {
         
-        //update text to avoid loop
-        genre = link.Genre + 'g';
-        platform = link.Platform + 'p';
-        developer = link.Developer + 'd';
+        // update text to avoid loop
+        const genre = link.Genre + 'g';
+        const platform = link.Platform + 'p';
+        const developer = link.Developer + 'd';
 
         // nodes -------------------------
-        if (nodes.findIndex(it => it.name === genre) == -1) nodes.push({"name": genre, "color": [102, 92, 190]});
+        if (nodes.findIndex(it => it.name === genre) == -1 && nbGenre > 0) {
+            nbGenre--;
+            nodes.push({"name": genre, "color": [102, 92, 190]});
+        }
 
-        if (nodes.findIndex(it => it.name === platform) == -1) nodes.push({"name": platform, "color": [228, 0, 15]});
+        if (nodes.findIndex(it => it.name === platform) == -1 && nbPlatform > 0) {
+            nbPlatform--;
+            nodes.push({"name": platform, "color": [228, 0, 15]});
+        }
 
-        if (nodes.findIndex(it => it.name === developer) == -1) nodes.push({"name": developer, "color": [14, 122, 13]});
+        if (nodes.findIndex(it => it.name === developer) == -1 && nbDeveloper > 0) {
+            nbDeveloper--;
+            nodes.push({"name": developer, "color": [14, 122, 13]});
+        }
+
+        // order of the bars
+        const container = document.getElementById('sankey_order_draggable');
+        const order = Array.from(container.children).map(div => div.id).map(id => {
+            if (id === "sankey_genres") return genre;
+            if (id === "sankey_platforms") return platform;
+            if (id === "sankey_developers") return developer;
+        });
 
         // links -------------------------
         // Create two links for each data element
-        let link1 = { "source": genre, "target": platform, "value": link.value };
-        let link2 = { "source": platform, "target": developer, "value": link.value };
+        if (nodes.findIndex(it => it.name === order[0]) != -1 && nodes.findIndex(it => it.name === order[1]) != -1) {
+            let link1 = { "source": order[0], "target": order[1], "value": link.value };
+            updateOrAddLink(link1);
+        }
+        
+        if (nodes.findIndex(it => it.name === order[1]) != -1 && nodes.findIndex(it => it.name === order[2]) != -1) {
+            let link2 = { "source": order[1], "target": order[2], "value": link.value };
+            updateOrAddLink(link2);
+        }
 
         // Function to find an existing link and update the value if found
         function updateOrAddLink(newLink) {
@@ -126,10 +197,6 @@ function drawSankey(data){
                 links.push(newLink);
             }
         }
-
-        // Update or add the links
-        updateOrAddLink(link1);
-        updateOrAddLink(link2);
 
     });
 

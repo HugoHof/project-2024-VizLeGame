@@ -92,6 +92,27 @@
 }
 /* sankey diagram end ----------------------*/
 
+/* draggable divs --------------------------*/
+
+.draggable {
+    margin-top: 3px;
+    border-radius: 15px;
+    display: inline-block;
+    cursor: move;
+}
+
+.dragGenreOutline {
+    border: 3px solid #665cbe;
+}
+
+.dragPlatformOutline {
+    border: 3px solid #e4000f;
+}
+
+.dragDeveloperOutline {
+    border: 3px solid #0e7a0d;
+}
+
 /* left side of the interactive graph */
 .leftSankey {
     float: left;
