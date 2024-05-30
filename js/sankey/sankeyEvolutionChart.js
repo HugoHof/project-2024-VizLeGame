@@ -41,7 +41,7 @@ function drawSankeyEvolutionChart(data) {
 
     let graphDataInter = []
 
-    for (let year = 1970; year <= 2030; year++) {
+    for (let year = 1970; year <= 2023; year++) {
         const lst_games = dataPerYear[String(year)] !== undefined ? dataPerYear[String(year)] : [];
         graphDataInter.push({ Year: year, Lst_Games: lst_games });
     }

@@ -181,7 +181,7 @@ function upadteGraphDisplayinyOnPlaySankey(data){
         if(currentYear >= document.getElementById("year_sankey_slider").min && currentYear <= document.getElementById("year_sankey_slider").max - 1) {
             document.getElementById("year_sankey_displayed").innerHTML = currentYear + 1
             document.getElementById("year_sankey_slider").value = currentYear + 1
-            document.getElementById("sankey_graph_title").innerHTML = "Number of Video Games Realeased in " + currentYear + 1;
+            document.getElementById("sankey_graph_title").innerHTML = "Number of Video Games Realeased in " + String(currentYear + 1);
             // re draw the graph
             drawListGamesSankey(data, allSankeyGames)
         }
