@@ -48,6 +48,7 @@ d3.json("data/games_by_year_by_all.json", function(error, data) {
     document.getElementById("year_sankey_slider")
         .oninput = function() {
             // display the year currently displayed
+            document.getElementById("sankey_graph_title").innerHTML = "Number of Video Games Realeased in " + this.value;
             sliderOutputSankey.innerHTML = this.value;
             drawListGamesSankey(data, allSankeyGames)
         };
@@ -171,6 +172,7 @@ function upadteGraphDisplayinyOnPlaySankey(data){
         if(currentYear >= document.getElementById("year_sankey_slider").min && currentYear <= document.getElementById("year_sankey_slider").max - 1) {
             document.getElementById("year_sankey_displayed").innerHTML = currentYear + 1
             document.getElementById("year_sankey_slider").value = currentYear + 1
+            document.getElementById("sankey_graph_title").innerHTML = "Number of Video Games Realeased in " + currentYear + 1;
             // re draw the graph
             drawListGamesSankey(data, allSankeyGames)
         }

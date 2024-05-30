@@ -18,7 +18,7 @@ function filterSankey(data, filterField, filterList) {
 let sankey_data;
 
 //Draw the list of the games relative to a developer.
-function drawListGamesSankey(sankeyData, data) {
+async function drawListGamesSankey(sankeyData, data) {
 
     sankey_data = sankeyData;
     
