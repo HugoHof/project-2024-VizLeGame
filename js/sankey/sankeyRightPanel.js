@@ -52,8 +52,6 @@ async function drawListGamesSankey(sankeyData, data) {
         filterText += `<div>${filter}<span class="remove-btn" onclick="removeFilterSankey('platforms', '${filter}')">x</span></div>`;
     });
 
-    filterText += `<div>Clear all<span class="remove-btn" onclick="removeFilterSankey('all', null)">x</span></div>`;
-
     filterText += '</div></div>';
 
     document.getElementById("sankey_list_games_filter").innerHTML = filterText;

@@ -147,14 +147,13 @@
 }
 
 .custom-select .remove-btn {
-    font: 15pt arial;
-    color: red;
+    font: 20pt arial;
     cursor: pointer;
     margin-left: 10px;
 }
 
 .custom-select .arrow {
-    font: 15pt arial;
+    font: 20pt arial;
     margin-left: 10px;
     transition: transform 0.3s ease;
 }
@@ -169,6 +168,13 @@
 
 .show {
     display: block;
+}
+
+.clearButton {
+    font: 15px 'Games';
+    background-color: white;
+    color: black;
+    border-radius: 15px;
 }
 
 /* draggable divs --------------------------*/
@@ -190,6 +196,22 @@
 
 .dragDeveloperOutline {
     border: 3px solid #0e7a0d;
+}
+
+.tooltipGraph {
+    position: absolute;
+    text-align: center;
+    width: auto;
+    height: auto;
+    padding: 8px;
+    font: 12px 'SF Pixelate';
+    color: white;
+    background: black;
+    border: 0px;
+    border-radius: 5px;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.2s ease;
 }
 
 /* left side of the interactive graph */

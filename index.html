@@ -352,7 +352,7 @@
                 <div class="left-panel">
                     <!--Title of the section-->
                     <h1 class="sectionTitleGraph header">
-                        Wraping up
+                        ...Bringing it all together
                     </h1>
                     <!--sankey diagram-->
                     <div id="sankey_diagram_graph" class="content"></div>
@@ -423,23 +423,29 @@
                                 <!--Part where the games relative to the items are displayed-->
                                 <div id="sankey_list_games_filter"></div>
                                 <!--Slector of the ranking criteria-->
-                                <label class="rightPartSelectorLabel">Sort by :</label>
-                                <select class="rightPartSelector" id="sankey_list_games_criteria">
-                                    <option value="Plays" selected="selected">Number of Players</option>
-                                    <option value="Rating">Average Game's Review Rating</option>
-                                    <option value="Playing">Number of Games Downloaded</option>
-                                    <option value="Wishlist">Number of Games Wishlisted</option>
-                                    <option value="Reviews">Number of Reviews</option>
-                                </select>
-                                <label class="rightPartSelectorLabel">Top :</label>
-                                <select class="rightPartSelector" id="sankey_list_games_top">
-                                    <option value="25" selected="selected">25</option>
-                                    <option value="50">50</option>
-                                    <option value="100">100</option>
-                                    <option value="150">150</option>
-                                    <option value="300">300</option>
-                                    <option value="10000000000">All</option>
-                                </select>
+                                <div style="margin-top: 7px; display: flex; justify-content: end;">
+                                    <button class="clearButton" onclick="removeFilterSankey('all', null);">Clear all</button>
+                                </div>
+                                <div>
+                                    <label class="rightPartSelectorLabel">Sort by :</label>
+                                    <select class="rightPartSelector" id="sankey_list_games_criteria">
+                                        <option value="Plays" selected="selected">Number of Players</option>
+                                        <option value="Rating">Average Game's Review Rating</option>
+                                        <option value="Playing">Number of Games Downloaded</option>
+                                        <option value="Wishlist">Number of Games Wishlisted</option>
+                                        <option value="Reviews">Number of Reviews</option>
+                                    </select>
+                                    <label class="rightPartSelectorLabel">Top :</label>
+                                    <select class="rightPartSelector" id="sankey_list_games_top">
+                                        <option value="25" selected="selected">25</option>
+                                        <option value="50">50</option>
+                                        <option value="100">100</option>
+                                        <option value="150">150</option>
+                                        <option value="300">300</option>
+                                        <option value="10000000000">All</option>
+                                    </select>
+                                </div>
+                                
                             </div>
                             <div class="rightPartTop3PartContent">
                                 <!--List of games-->

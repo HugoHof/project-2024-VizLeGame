@@ -30,6 +30,10 @@ var sankeyDiagram = d3.select("#sankey_diagram_graph").append("svg")
     .append("g")
     .attr("transform", "translate(" + marginSankey.left + "," + marginSankey.top + ")");
 
+// Create the tooltip div
+var tooltipSankey = d3.select("#sankey_diagram_graph").append("div")
+  .attr("class", "tooltipGraph");
+
 var sankey = d3.sankey()
 .nodeWidth(36)
 .nodePadding(10)
@@ -303,9 +307,15 @@ function drawSankey(data){
         .style("stroke-width", function(d) { return Math.max(2, d.dy); })
         .sort(function(a, b) { return b.dy - a.dy; });
 
-    link.append("title")
-        .attr("class", "link-title")
-        .text(function(d) { return d.source.name.name.slice(0, -1) + " → " + d.target.name.name.slice(0, -1) + "\n" + format(d.value); });
+    link.on("mouseover", function(d) {
+            tooltipSankey.transition().duration(200).style("opacity", .9);
+            tooltipSankey.html(d.source.name.name.slice(0, -1) + " → " + d.target.name.name.slice(0, -1) + "<br/>" + format(d.value))
+                .style("left", (d3.event.pageX + 5) + "px")
+                .style("top", (d3.event.pageY - 28) + "px");
+        })
+        .on("mouseout", function(d) {
+            tooltipSankey.transition().duration(500).style("opacity", 0);
+        });
 
     var node = sankeyDiagram.append("g").selectAll(".node")
         .data(nodes)
@@ -338,9 +348,15 @@ function drawSankey(data){
         .attr("width", sankey.nodeWidth())
         .style("fill", function(d) { return checkFilterSelected(d.name.name) ? d3.rgb(...d.name.color).darker(2) : d3.rgb(...d.name.color);})
         .style("stroke", function(d) { return d3.rgb(...d.name.color).darker(2); })
-        .append("title")
-        .attr("class", "node-title")
-        .text(function(d) { return d.name.name.slice(0, -1) + "\n" + format(d.value); });
+        .on("mouseover", function(d) {
+            tooltipSankey.transition().duration(200).style("opacity", .9);
+            tooltipSankey.html(d.name.name.slice(0, -1) + "<br/>" + format(d.value))
+                .style("left", (d3.event.pageX + 5) + "px")
+                .style("top", (d3.event.pageY - 28) + "px");
+        })
+        .on("mouseout", function(d) {
+            tooltipSankey.transition().duration(500).style("opacity", 0);
+        });
 
     node.append("text")
         .attr("x", -6)
