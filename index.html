@@ -217,10 +217,97 @@
         </div>
         <!--Platforms-->
         <div class="section">
-            <h1 class="sectionTitle">
-                Games are developed for different platforms
-            </h1>
-            <img src="milestone_2/graphs_sketchs/platforms_sketch.jpg" width="90%" height="90%">
+             <!--Developers visualization-->
+             <div class="container">
+                <!--Left part of the developers diversity-->
+                <div class="left-panel">
+                    <!--Title of the section-->
+                    <h1 class="sectionTitleGraph header">
+                        that can be played on different platforms
+                    </h1>
+                    <!--Graph Developer's part that present a circle packing chart of developers-->
+                    <div id="platform_tree_map" class="content"></div>
+                    <!--Title of the graph presented-->
+                    <div class="footer">
+                        <h2 class="graphTitlePlatforms" id="platforms_graph_title">Number of Video Games Realeased on some Platforms in 2000</h2>
+                        <!--Interaction with the developer circle packing chart-->
+                        <div class="visualizationPartTools">
+                            <div class="visualizationPartTimeTools">
+                                <label class= "rightPartSelectorLabel" for="year_platforms_slider">Current Year Displayed :</label>
+                                <input type="range" min="1971" max="2023" value="2000" class="visualizationPartSlider" id="year_platforms_slider">
+                                <p class="visualizationPartYearDisplayed" id="year_platforms_displayed">2000</p>
+                                <!--Play Button-->
+                                <button id="platforms_play_button" onclick="onClickPlayButtonPlatforms()" class="visualizationPartButtonTool">Play</button>
+                            </div>
+                            <div class="visualizationSelectorTools">
+                                <label class="rightPartSelectorLabel" for="nb_platforms_displayed_selector">Number of Platforms Displayed :</label>
+                                <select class="rightPartSelector" id="nb_platforms_displayed_selector">
+                                    <option value="10">10</option>
+                                    <option value="20"selected="selected">20</option>
+                                    <option value="30">30</option>
+                                    <option value="40">40</option>
+                                    <option value="50">50</option>
+                                    <option value="60">60</option>
+                                    <option value="70">70</option>
+                                    <option value="10000000000000">All</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--Right part of the Platform's diversity-->
+                <div class="right-panel">
+                    <!--When no platform is selected-->
+                    <div id="platforms_right_no_selected" style="display: initial;">
+                        <h2 class="rightPartIndication">Please Select a Platform</h2>
+                        <h2 class="rightPartIndication">(Click on a rectangle on the left)</h2>
+                    </div>
+                    <!--When a platform is selected-->
+                    <div id="platforms_right_selected" style="display: none; height: 100%;">
+                        <!--Top Games for the platform-->
+                        <div class="rightPartListPart">
+                            <div class="rightPartTop3PartInfo">
+                                <!--Part where the games relative to the platform are displayed-->
+                                <h2 class="rightPartTitleSmall" id="platforms_list_games_title">Please select a Platform</h2>
+                                <!--Slector of the ranking criteria-->
+                                <label class="rightPartSelectorLabel" for="platforms_list_games_criteria">Sort by :</label>
+                                <select class="rightPartSelector" id="platforms_list_games_criteria">
+                                    <option value="Plays" selected="selected">Number of Players</option>
+                                    <option value="Rating">Average Game's Review Rating</option>
+                                    <option value="Playing">Number of Games Downloaded</option>
+                                    <option value="Wishlist">Number of Games Wishlisted</option>
+                                    <option value="Reviews">Number of Reviews</option>
+                                </select>
+                            </div>
+                            <div class="rightPartTop3PartContent">
+                                <!--List of games-->
+                                <div id="platforms_list_games" class="rightPartListContainer"></div>
+                            </div>
+                        </div>
+                        <div class="rightPartGraphPart">
+                            <div class="rightPartTop3PartInfo">
+                                <!--Title of the graph presented for the evolution of a platform-->
+                                <h2 class="rightPartTitleSmall" id="platforms_graph_title_2"></h2>
+                                <!--Criteria selector for the graph-->
+                                <label class= "rightPartSelectorLabel" for="platforms_evolution_criteria">In function of :</label>
+                                    <select class="rightPartSelector" id="platforms_evolution_criteria">
+                                        <option value="Plays" selected="selected">Number of Players</option>
+                                        <option value="Rating">Average Game's Review Rating</option>
+                                        <option value="Playing">Number of Games Downloaded</option>
+                                        <option value="Wishlist">Number of Games present in the users wishlist</option>
+                                        <option value="Reviews">Number of Reviews</option>
+                                        <option value="Number_of_Games">Number of Games Realeased</option>
+                                    </select>
+                            </div>
+                            <!--Global Evolution of the developer part-->
+                            <div class= "rightPartTop3PartContent">
+                                <!--Graph Platforms's part that present a treemap of platforms-->
+                                <div id="platform_tree_map_2" style="align-self: center;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <!--Developers-->
         <div class="section">
@@ -425,6 +512,10 @@
     </script>
     <!--Genres bar chart-->
     <script src = "js/genresBarChart.js"></script>
+    <!--platforms graph-->
+    <script src="js/PlatformPart/platformTreeMap.js"></script>
+    <script src="js/PlatformPart/platformsTopGames.js"></script>
+    <script src="js/PlatformPart/platformsEvolutionChart.js"></script>
     <!--Developers Circel Packing chart-->
     <script src = "js/DeveloperPart/developersCirclePackingChart.js"></script>
     <script src = "js/DeveloperPart/developersEvolutionChart.js"></script>
