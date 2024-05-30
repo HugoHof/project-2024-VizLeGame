@@ -88,6 +88,10 @@ async function drawListGamesSankey(sankeyData, data) {
         textHTML += '<h1 class="gameCardTitle" style="width: 100%;" >No game matching the current filter(s) and date</h1>';
     }
 
+    function listStringToString(list) {
+        return list.match(/"(?:[^"\\]|\\.)*"|'(?:[^'\\]|\\.)*'/g).join(", ").replace(/["']/g, '');
+    }
+
     // create a card game for all the games
     for(let game of gameListCard) {
         textHTML += '<div class="gameCard gameCardHorizontalFlex">'
@@ -96,11 +100,11 @@ async function drawListGamesSankey(sankeyData, data) {
         textHTML += '</div>'
         textHTML += '<div class= "gameDescriptionContainer">'
         textHTML += '<label class="gameCardLabel">Genre(s) </label>'
-        textHTML += '<p class="gameCardTextElem">' + String(game["Genres"]).replaceAll(',', ", ") + '</p>'
+        textHTML += '<p class="gameCardTextElem">' + listStringToString(game["Genres"]) + '</p>'
         textHTML += '<label class="gameCardLabel">Developer(s) </label>'
-        textHTML += '<p class="gameCardTextElem">' + String(game["Developers"]).replaceAll(',', ", ") + '</p>'
+        textHTML += '<p class="gameCardTextElem">' + listStringToString(game["Developers"]) + '</p>'
         textHTML += '<label class="gameCardLabel">Platform(s) </label>'
-        textHTML += '<p class="gameCardTextElem">' + String(game["Platforms"]).replaceAll(',', ", ") + '</p>'
+        textHTML += '<p class="gameCardTextElem">' + listStringToString(game["Platforms"]) + '</p>'
         textHTML += '</div>'
         textHTML += '</div>'
     }
