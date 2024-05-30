@@ -13,6 +13,14 @@ var formatNumber = d3.format(",.0f"),    // zero decimal places
 // to know if the graph is currently play
 var isPlayingSankey = false;
 
+var allSankeyGames;
+
+var sankeyFilterList = {
+    genres: [],
+    platforms: [],
+    developers: [],
+};
+
 var sankeyDiagram = d3.select("#sankey_diagram_graph").append("svg")
     .attr("viewBox", `0 0 ${widthSankey + marginSankey.left + marginSankey.right} ${heightSankey + marginSankey.top + marginSankey.bottom}`)
     .attr("preserveAspectRatio", "xMidYMid meet")
@@ -29,6 +37,31 @@ var sankey = d3.sankey()
 
 var path = sankey.link();
 
+d3.csv("data/games_data_clean.csv", function(e, data) {
+    if(e) {
+        console.log('Error when loading the data for interactive diagram : ', e);
+        return;
+    }
+
+    // initial draw
+    drawListGamesSankey(data);
+
+    // retrieve the selectors
+    document.getElementById("sankey_list_games_criteria")
+        .oninput = function() {
+            drawListGamesSankey(data);
+        }
+
+    document.getElementById("sankey_evolution_criteria")
+        .oninput = function() {
+            drawSankeyEvolutionChart(data);
+        }
+    
+    allSankeyGames = data;
+});
+
+
+
 d3.json("data/games_by_year_by_all.json", function(error, data) {
     if (error) throw error;
     
@@ -42,6 +75,7 @@ d3.json("data/games_by_year_by_all.json", function(error, data) {
             // display the year currently displayed
             sliderOutputSankey.innerHTML = this.value;
             drawSankey(data);
+            drawListGamesSankey(allSankeyGames)
         };
 
     // retrieve the selectors of the number of bars displayed
@@ -101,7 +135,30 @@ d3.json("data/games_by_year_by_all.json", function(error, data) {
 
 });
 
+function clickOnItemSankey(name) {
+    let lastChar = name.charAt(name.length - 1);
+    if (lastChar === 'g') {
+        updateSankeyFilterList(sankeyFilterList.genres, name);
+    }
+    if (lastChar === 'p') {
+        updateSankeyFilterList(sankeyFilterList.platforms, name);
+    }
+    if (lastChar === 'd') {
+        updateSankeyFilterList(sankeyFilterList.developers, name);
+    }
 
+    drawListGamesSankey(allSankeyGames);
+
+    function updateSankeyFilterList(filterList, name) {
+        let ind = filterList.findIndex(item => item === name.slice(0, -1));
+        if (ind == -1) {
+            filterList.push(name.slice(0, -1));
+        } else {
+            filterList.splice(ind, 1);
+        }
+    }
+
+}
 
 // update when time is playing
 function upadteGraphDisplayinyOnPlaySankey(data){
@@ -117,6 +174,7 @@ function upadteGraphDisplayinyOnPlaySankey(data){
             document.getElementById("year_sankey_slider").value = currentYear + 1
             // re draw the graph
             drawSankey(data)
+            drawListGamesSankey(allSankeyGames)
         }
     }
 }
@@ -235,8 +293,25 @@ function drawSankey(data){
         .attr("class", "node")
         .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; })
         .call(d3.drag()
-            .on("start", function() { this.parentNode.appendChild(this); })
-            .on("drag", dragmove));
+            .on("start", function(event) { 
+                startX = event.x;
+                startY = event.y;
+                this.parentNode.appendChild(this); 
+            })
+            .on("drag", dragmove)
+            .on("end", function(event) {
+                const endX = event.x;
+                const endY = event.y;
+                const dx = endX - startX;
+                const dy = endY - startY;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+                const clickThreshold = 5;
+        
+                if (distance < clickThreshold) {
+                    clickOnItemSankey(event.name.name)
+                }
+            }));
+        
 
     node.append("rect")
         .attr("height", function(d) { return d.dy; })

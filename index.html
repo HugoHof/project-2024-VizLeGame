@@ -387,18 +387,13 @@
                 </div>
                 <!--Right part of the sankey interactive-->
                 <div class="right-panel">
-                    <!--When nothing is selected-->
-                    <div id="sankey_right_no_selected" style="display: initial;">
-                        <h2 class="rightPartIndication">Please Select an item</h2>
-                        <h2 class="rightPartIndication">(Click on a bar on the left)</h2>
-                    </div>
                     <!--When an item is selected-->
-                    <div id="sankey_right_selected" style="display: none; height: 100%;">
+                    <div id="sankey_right_selected" style="display: initial; height: 100%;">
                         <!--Top Games for the selection-->
                         <div class="rightPartListPart">
                             <div class="rightPartTop3PartInfo">
                                 <!--Part where the games relative to the items are displayed-->
-                                <h2 class="rightPartTitleSmall" id="sankey_list_games_title">Please select an item</h2>
+                                <div id="sankey_list_games_filter"></div>
                                 <!--Slector of the ranking criteria-->
                                 <label class="rightPartSelectorLabel" for="sankey_list_games_criteria">Sort by :</label>
                                 <select class="rightPartSelector" id="sankey_list_games_criteria">
@@ -491,5 +486,7 @@
     <!--Sankey diagram-->
     <script src="js/sankey/sankey.js"></script>
     <script src="js/sankey/sankeyDiagram.js"></script>
+    <script src="js/sankey/sankeyEvolutionChart.js"></script>
+    <script src="js/sankey/sankeyRightPanel.js"></script>
 </body>
 </html>
