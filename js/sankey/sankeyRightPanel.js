@@ -36,7 +36,7 @@ async function drawListGamesSankey(sankeyData, data) {
     let filterText = `
         <div class="custom-select">
             <div class="selected-item" onclick="toggleDropdownSankey()">
-                <div class="selected-text">Selected items: ${selectedText}</div>
+                <div class="selected-text"><span class="selected-text-main">Selected items :</span> ${selectedText}</div>
                 <span class="arrow down">></span>
             </div>
             <div class="custom-select-content">
