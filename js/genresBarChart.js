@@ -191,6 +191,9 @@ function updateTop3GamesGenreRanking(data) {
     gamesArray.sort(function (x, y) {
         return d3.descending(x[document.getElementById("genres_games_top_3_criteria").value], y[document.getElementById("genres_games_top_3_criteria").value]);
     });
+    // edit the title of the top 3 section
+    document.getElementById("top_3_genre_games_title")
+        .textContent = "Top 3 games in "+String(document.getElementById("year_genre_slider").value)
     //slect the top 3
     const endIndex = Math.max(0, gamesArray.length);
     const top3Games = gamesArray.slice(0, endIndex);
