@@ -15,8 +15,12 @@ function filterSankey(data, filterField, filterList) {
     });
 }
 
+let sankey_data;
+
 //Draw the list of the games relative to a developer.
-function drawListGamesSankey(data) {
+function drawListGamesSankey(sankeyData, data) {
+
+    sankey_data = sankeyData;
     
     // edit the dropdown list---------------------------------------------------------------
     let selectedItems = [];
@@ -97,10 +101,11 @@ function drawListGamesSankey(data) {
 
     // draw graph ---------------------------------------------------------------------------------------
     drawSankeyEvolutionChart(gameList);
+    drawSankey(sankeyData);
 
 }
 
-// remove the filter, called from the dropdownmenu
+// remove the filter, called from the dropdownmenu ---------------------------------------------------------------------
 function removeFilterSankey(type, filter) {
     if (type === 'genres') {
         sankeyFilterList.genres = sankeyFilterList.genres.filter(item => item !== filter);
@@ -109,7 +114,8 @@ function removeFilterSankey(type, filter) {
     } else if (type === 'platforms') {
         sankeyFilterList.platforms = sankeyFilterList.platforms.filter(item => item !== filter);
     }
-    drawListGamesSankey(allSankeyGames);
+    // redraw
+    drawListGamesSankey(sankey_data, allSankeyGames);
 }
 
 // toggle the dropdown called form the dropdownmenu

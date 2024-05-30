@@ -37,31 +37,6 @@ var sankey = d3.sankey()
 
 var path = sankey.link();
 
-d3.csv("data/games_data_clean.csv", function(e, data) {
-    if(e) {
-        console.log('Error when loading the data for interactive diagram : ', e);
-        return;
-    }
-
-    // initial draw
-    drawListGamesSankey(data);
-
-    // retrieve the selectors
-    document.getElementById("sankey_list_games_criteria")
-        .oninput = function() {
-            drawListGamesSankey(data);
-        }
-
-    document.getElementById("sankey_evolution_criteria")
-        .oninput = function() {
-            drawSankeyEvolutionChart(data);
-        }
-    
-    allSankeyGames = data;
-});
-
-
-
 d3.json("data/games_by_year_by_all.json", function(error, data) {
     if (error) throw error;
     
@@ -74,8 +49,7 @@ d3.json("data/games_by_year_by_all.json", function(error, data) {
         .oninput = function() {
             // display the year currently displayed
             sliderOutputSankey.innerHTML = this.value;
-            drawSankey(data);
-            drawListGamesSankey(allSankeyGames)
+            drawListGamesSankey(data, allSankeyGames)
         };
 
     // retrieve the selectors of the number of bars displayed
@@ -93,6 +67,31 @@ d3.json("data/games_by_year_by_all.json", function(error, data) {
         .oninput = function() {
             drawSankey(data);
         };
+
+    // load all data for right panel
+    d3.csv("data/games_data_clean.csv", function(e, allData) {
+        if(e) {
+            console.log('Error when loading the data for interactive diagram : ', e);
+            return;
+        }
+    
+        // initial draw
+        drawListGamesSankey(data, allData);
+    
+        // retrieve the selectors
+        document.getElementById("sankey_list_games_criteria")
+            .oninput = function() {
+                drawListGamesSankey(data, allData);
+            }
+    
+        document.getElementById("sankey_evolution_criteria")
+            .oninput = function() {
+                drawSankeyEvolutionChart(data, allData);
+            }
+        
+        allSankeyGames = allData;
+    });
+
 
     // order draggable
     const container = document.getElementById('sankey_order_draggable');
@@ -135,7 +134,7 @@ d3.json("data/games_by_year_by_all.json", function(error, data) {
 
 });
 
-function clickOnItemSankey(name) {
+function clickOnItemSankey(data,name) {
     let lastChar = name.charAt(name.length - 1);
     if (lastChar === 'g') {
         updateSankeyFilterList(sankeyFilterList.genres, name);
@@ -147,7 +146,7 @@ function clickOnItemSankey(name) {
         updateSankeyFilterList(sankeyFilterList.developers, name);
     }
 
-    drawListGamesSankey(allSankeyGames);
+    drawListGamesSankey(data, allSankeyGames);
 
     function updateSankeyFilterList(filterList, name) {
         let ind = filterList.findIndex(item => item === name.slice(0, -1));
@@ -173,8 +172,7 @@ function upadteGraphDisplayinyOnPlaySankey(data){
             document.getElementById("year_sankey_displayed").innerHTML = currentYear + 1
             document.getElementById("year_sankey_slider").value = currentYear + 1
             // re draw the graph
-            drawSankey(data)
-            drawListGamesSankey(allSankeyGames)
+            drawListGamesSankey(data, allSankeyGames)
         }
     }
 }
@@ -186,6 +184,21 @@ function onClickPlayButtonSankey() {
         isPlayingSankey  = !isPlayingSankey;
         document.getElementById("sankey_play_button").innerText = isPlayingSankey ? "Pause" : "Play";
     }
+}
+
+// check if the filter is selected
+function checkFilterSelected(name) {
+    let lastChar = name.charAt(name.length - 1);
+    if (lastChar === 'g') {
+        return sankeyFilterList.genres.findIndex(item => item === name.slice(0, -1)) >= 0
+    }
+    if (lastChar === 'p') {
+        return sankeyFilterList.platforms.findIndex(item => item === name.slice(0, -1)) >= 0
+    }
+    if (lastChar === 'd') {
+        return sankeyFilterList.developers.findIndex(item => item === name.slice(0, -1)) >= 0
+    }
+    return false;
 }
 
 function drawSankey(data){
@@ -308,7 +321,7 @@ function drawSankey(data){
                 const clickThreshold = 5;
         
                 if (distance < clickThreshold) {
-                    clickOnItemSankey(event.name.name)
+                    clickOnItemSankey(data, event.name.name)
                 }
             }));
         
@@ -316,7 +329,7 @@ function drawSankey(data){
     node.append("rect")
         .attr("height", function(d) { return d.dy; })
         .attr("width", sankey.nodeWidth())
-        .style("fill", function(d) { return d3.rgb(...d.name.color); })
+        .style("fill", function(d) { return checkFilterSelected(d.name.name) ? d3.rgb(...d.name.color).darker(2) : d3.rgb(...d.name.color);})
         .style("stroke", function(d) { return d3.rgb(...d.name.color).darker(2); })
         .append("title")
         .attr("class", "node-title")
