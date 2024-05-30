@@ -11,6 +11,7 @@
     <!--our CSS-->
     <link rel="stylesheet" href="css/style.css"></style>
     <link rel="stylesheet" href="css/pacman.css"></style>
+    <link rel="stylesheet" href="css/mario.css"></style>
 
     <!--D3.js-->
     <script src="https://d3js.org/d3.v4.min.js"></script>
@@ -27,8 +28,8 @@
     <div id="fullpage">
         <!--Homepage-->
         <div class="section" id="homepage" style="height: 90%; width: 100%; margin: 0%; padding: 0%;"> 
-            <div class="mainPageBack" style="z-index: 0;">
-                <h1 class="mainPageText">How is the video game spread across different genres and platforms and are develloped by a large number of developers ?</h1>
+            <div class="mainPageBack">
+                <h1 class="mainPageText">How are video games distributed across different genres and platforms, and how many developers are involved in creating them ?</h1>
                 <div class="pacman">
                     <div class="pacman-top"></div>
                     <div class="pacman-bottom"></div>
@@ -37,46 +38,73 @@
             </div>
         </div>
         <!--Introduction-->
-        <div class="section" id="intro_page">
-            <h1 class="sectionTitle">
-                Introduction
-            </h1>
-            <p>
-                In 1962, the first video game, Spacewar!, was created. Since this date, each year more and more 
-                video games are developed. The studios that developed these games are spread around the world. 
-                The video games are defined by a multiple of genres and are developed to be used on different platforms.
-            </p>
+        <div class="section" id="intro_page" style="margin-left: 0;">
+            <div class="containerIntro">
+                <div class="introAnimation">
+                    <div class="sky">
+                        <div style="height: 70%;"></div>
+                        <img class="cloud" src="https://raw.githubusercontent.com/LantareCode/random-this-and-thats/master/CSS/SuperMario-Animation/images/CloudSingle.gif">
+                        <img class="cloud" src="https://raw.githubusercontent.com/LantareCode/random-this-and-thats/master/CSS/SuperMario-Animation/images/CloudDouble.gif">
+                        <img class="cloud" src="https://raw.githubusercontent.com/LantareCode/random-this-and-thats/master/CSS/SuperMario-Animation/images/CloudTriple.gif">
+                    </div>
+                    <div class="ground">
+                        <div class="skyblocks">
+                            <img class="brick" src="https://raw.githubusercontent.com/LantareCode/random-this-and-thats/master/CSS/SuperMario-Animation/images/Bricks.gif" height="70px;">
+                            <img class="brick" src="https://raw.githubusercontent.com/LantareCode/random-this-and-thats/master/CSS/SuperMario-Animation/images/QuestionBlock.gif" height="70px;">
+                            <img class="brick" src="https://raw.githubusercontent.com/LantareCode/random-this-and-thats/master/CSS/SuperMario-Animation/images/Bricks.gif" height="70px;">
+                            <img class="brick" src="https://raw.githubusercontent.com/LantareCode/random-this-and-thats/master/CSS/SuperMario-Animation/images/Bricks.gif" height="70px;">
+                        </div>
+                        <img class="bush" src="https://raw.githubusercontent.com/LantareCode/random-this-and-thats/master/CSS/SuperMario-Animation/images/BushSingle.gif" height="70px;">
+                        <img class="bush" src="https://raw.githubusercontent.com/LantareCode/random-this-and-thats/master/CSS/SuperMario-Animation/images/BushDouble.gif" height="70px;">
+                        <img class="bush" src="https://raw.githubusercontent.com/LantareCode/random-this-and-thats/master/CSS/SuperMario-Animation/images/BushSingle.gif" height="70px;">
 
-            <div id="intro_stats" style="display: flex; flex-direction: row; justify-content: center;">
-                <div id="genre_intro_stats" class = "statsPresentation" style ="display: grid;">
-                    <div id="genres_intro_stats_number" class="dynamicNumber"></div>
-                    <div id="genres_intro_stats_title" class="dynamicNumberTitle">
-                        <p><b>Genres</b></p>
+                        <div class="mario"></div>
                     </div>
                 </div>
-    
-                <div id="platforms_intro_stats" class = "statsPresentation" style ="display: grid;">
-                    <div id="platforms_intro_stats_number" class="dynamicNumber"></div>
-                    <div id="platforms_intro_stats_title" class="dynamicNumberTitle">
-                        <p><b>Platforms</b></p>
-                    </div>
-                </div>
-    
-                <div id="editors_intro_stats" class = "statsPresentation" style ="display: grid;">
-                    <div id="editors_intro_stats_number" class="dynamicNumber"></div>
-                    <div id="editors_intro_stats_title" class="dynamicNumberTitle">
-                        <p><b>Developers</b></p>
-                    </div>
-                </div>
-    
-                <div id="games_intro_stats" class = "statsPresentation" style ="display: grid;">
-                    <div id="games_intro_stats_number" class="dynamicNumber"></div>
-                    <div id="games_intro_stats_title" class="dynamicNumberTitle">
-                        <p><b>Games</b></p>
+                <!--Introduction Page content-->
+                <div class="introContent">
+                    <h1 class="sectionTitleGraph header">
+                        Introduction
+                    </h1>
+                    <p class="descriptionIntro">
+                        In 1962, the first video game, Spacewar!, was created. Since then, the development of video games has grown exponentially each year. 
+                        Video games span a multitude of genres and are designed for various platforms, created by a vast number of developers. 
+                        Our visualizations aim to illustrate the evolution of genres, platforms, and developers over the years from 1971 to 2023. Additionally, 
+                        we will explore the relationships among these three components throughout the history of video games.
+                        Our analysis is based on the <a href="https://www.kaggle.com/datasets/matheusfonsecachaves/popular-video-games">following dataset</a>.
+                        Below, you will find a comprehensive overview of the number of games, genres, platforms, and developers.
+                    </p>
+                    <div id="intro_stats" class="introNumberContainer">
+                        <div id="genre_intro_stats" class = "statsPresentation">
+                            <div id="genres_intro_stats_number" class="dynamicNumber"></div>
+                            <div id="genres_intro_stats_title" class="dynamicNumberTitle">
+                                <p><b>Genres</b></p>
+                            </div>
+                        </div>
+            
+                        <div id="platforms_intro_stats" class = "statsPresentation">
+                            <div id="platforms_intro_stats_number" class="dynamicNumber"></div>
+                            <div id="platforms_intro_stats_title" class="dynamicNumberTitle">
+                                <p><b>Platforms</b></p>
+                            </div>
+                        </div>
+            
+                        <div id="editors_intro_stats" class = "statsPresentation">
+                            <div id="editors_intro_stats_number" class="dynamicNumber"></div>
+                            <div id="editors_intro_stats_title" class="dynamicNumberTitle">
+                                <p><b>Developers</b></p>
+                            </div>
+                        </div>
+            
+                        <div id="games_intro_stats" class = "statsPresentation">
+                            <div id="games_intro_stats_number" class="dynamicNumber"></div>
+                            <div id="games_intro_stats_title" class="dynamicNumberTitle">
+                                <p><b>Games</b></p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-
         </div>
         <!--Genre Trends-->
         <div class="section">
@@ -475,7 +503,7 @@
         displayNumberDynamically("#genres_intro_stats_number", 23, 2000);
         displayNumberDynamically("#platforms_intro_stats_number", 175, 3000);
         displayNumberDynamically("#editors_intro_stats_number", 12846, 5000);
-        displayNumberDynamically("#games_intro_stats_number", 26903, 6000);
+        displayNumberDynamically("#games_intro_stats_number", 26903, 7000);
     </script>
     <!--Genres bar chart-->
     <script src = "js/genresBarChart.js"></script>
