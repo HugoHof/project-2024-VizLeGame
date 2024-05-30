@@ -80,6 +80,11 @@ function drawListGamesSankey(sankeyData, data) {
     gameListCard = sortSankey(gameListCard, String(document.getElementById("sankey_list_games_criteria").value));
 
     let textHTML = "";
+
+    if (gameListCard.length <= 0) {
+        textHTML += '<h1 class="gameCardTitle" style="width: 100%;" >No game matching the current filter(s) and date</h1>';
+    }
+
     // create a card game for all the games
     for(let game of gameListCard) {
         textHTML += '<div class="gameCard gameCardHorizontalFlex">'
