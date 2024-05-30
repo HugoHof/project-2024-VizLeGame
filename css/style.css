@@ -112,6 +112,7 @@
 }
 
 .custom-select-content div {
+    font-family: 'Games', sans-serif;
     border-radius: 15px;
     padding: 8px 16px;
     cursor: pointer;
@@ -134,6 +135,7 @@
 }
 
 .custom-select .selected-text {
+    font-family: 'Games', sans-serif;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
