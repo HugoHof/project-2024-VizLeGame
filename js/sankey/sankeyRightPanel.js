@@ -51,6 +51,9 @@ async function drawListGamesSankey(sankeyData, data) {
     sankeyFilterList.platforms.forEach(filter => {
         filterText += `<div>${filter}<span class="remove-btn" onclick="removeFilterSankey('platforms', '${filter}')">x</span></div>`;
     });
+
+    filterText += `<div>Clear all<span class="remove-btn" onclick="removeFilterSankey('all', null)">x</span></div>`;
+
     filterText += '</div></div>';
 
     document.getElementById("sankey_list_games_filter").innerHTML = filterText;
@@ -118,6 +121,10 @@ function removeFilterSankey(type, filter) {
         sankeyFilterList.developers = sankeyFilterList.developers.filter(item => item !== filter);
     } else if (type === 'platforms') {
         sankeyFilterList.platforms = sankeyFilterList.platforms.filter(item => item !== filter);
+    } else if (type === 'all'){
+        sankeyFilterList.genres = [];
+        sankeyFilterList.platforms = [];
+        sankeyFilterList.developers = [];
     }
     // redraw
     drawListGamesSankey(sankey_data, allSankeyGames);
