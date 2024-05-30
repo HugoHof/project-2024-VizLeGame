@@ -22,8 +22,8 @@ d3.json("data/games_by_year_and_platforms.json", function(e, data) {
 
      // Specify the color scale.
      //const colors = ["#ffbff1", "#bf60aa", "#ff80e3", "#ffd5bf", "#bf8160", "#ffac80","#8060bf","#d5bfff","#aa80ff","#c40098"];
-     const colors = ["#ff80e3", "#aa80ff","#b33e00","#d5bfff", "#804071","#ff5800","#24006b","#330099","#c40098", "#ffbff1"];
-
+    // const colors = ["#330099", "#aa80ff","#b33e00","#d5bfff", "#804071","#ff5800","#24006b","#330099","#c40098", "#ffbff1"];
+    const colors = ["#9e0142","#d53e4f", "#f46d43", "#fdae61", "#fee08b","#e6f598","#abdda4","#66c2a5","#3288bd","#5e4fa2"];
 
 
     Object.keys(data).forEach(year => {
@@ -118,7 +118,7 @@ function drawPlatformTreemap(data) {
         .attr("height", d => d.y1 - d.y0)
         //.style("fill", d => { d3.rgb([200, 0, 0])/*color(d.parent.name);*/ })
         .style("fill", d => d.data.color)
-        .style("fill-opacity", 0.7)
+        .style("fill-opacity", 1)
         .on("click",d => onClickRectPlatforms(d, data))
         .on("mouseover",d => mouseMoveRectPlatforms(d, data));
 
@@ -136,7 +136,7 @@ function drawPlatformTreemap(data) {
             // Calculate area of the rectangle
             const area = (d.x1 - d.x0) * (d.y1 - d.y0);
             // Determine font size proportional to area (adjust multiplier as needed)
-            return Math.sqrt(area) / 6;})
+            return Math.sqrt(area) / 7;})
         .attr("clip-path", d => d.clipUid)
         .attr("text-anchor", "start")
         .selectAll("tspan")
