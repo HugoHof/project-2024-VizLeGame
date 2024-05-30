@@ -119,7 +119,8 @@ function drawPlatformTreemap(data) {
         //.style("fill", d => { d3.rgb([200, 0, 0])/*color(d.parent.name);*/ })
         .style("fill", d => d.data.color)
         .style("fill-opacity", 0.7)
-        .on("click",d => onClickRectPlatforms(d, data));
+        .on("click",d => onClickRectPlatforms(d, data))
+        .on("mouseover",d => mouseMoveRectPlatforms(d, data));
 
     // Append a clipPath to ensure text does not overflow.
     leaf.append("clipPath")
@@ -185,5 +186,9 @@ function onClickRectPlatforms(e,data){
     // show the right content of the visualization
     document.getElementById("platforms_right_no_selected").style.display = "none"
     document.getElementById("platforms_right_selected").style.display = "initial"
+
+function mouseMoveRectPlatforms(d, data){
+    TooltipPlatforms.style("opacity", 1)
+    }
     
 }
