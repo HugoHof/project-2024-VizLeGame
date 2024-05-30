@@ -87,7 +87,12 @@ d3.json("data/games_by_year_by_all.json", function(error, data) {
     
         document.getElementById("sankey_evolution_criteria")
             .oninput = function() {
-                drawSankeyEvolutionChart(data, allData);
+                drawSankeyEvolutionChart(allData);
+            }
+
+        document.getElementById("sankey_list_games_top")
+            .oninput = function() {
+                drawListGamesSankey(data, allData);
             }
         
         allSankeyGames = allData;

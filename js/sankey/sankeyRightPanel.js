@@ -92,6 +92,9 @@ async function drawListGamesSankey(sankeyData, data) {
         return list.match(/"(?:[^"\\]|\\.)*"|'(?:[^'\\]|\\.)*'/g).join(", ").replace(/["']/g, '');
     }
 
+    // only take top k
+    gameListCard = gameListCard.slice(0, document.getElementById("sankey_list_games_top").value);
+
     // create a card game for all the games
     for(let game of gameListCard) {
         textHTML += '<div class="gameCard gameCardHorizontalFlex">'
