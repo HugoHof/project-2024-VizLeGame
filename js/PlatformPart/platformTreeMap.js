@@ -1,11 +1,13 @@
 
 // Specify the chart’s dimensions.
-const widthTreemap = 1154; 
-const heightTreemap = 1154;
+const widthTreemap = 1700; 
+const heightTreemap = 1300;
 
 const tile = d3.treemapSquarify;
 var isPlayingPlatforms = false;
 var currentPlatformSelected = "";
+
+var colorPlatforms = []
 
 // Create the SVG container.
 const platform_tree_map = d3.select("#platform_tree_map").append("svg")
@@ -18,6 +20,18 @@ const platform_tree_map = d3.select("#platform_tree_map").append("svg")
 d3.json("data/games_by_year_and_platforms.json", function(e, data) {
     if (e) console.log("Error loading the data for treemap platforms file: " + e);
 
+     // Specify the color scale.
+     //const colors = ["#ffbff1", "#bf60aa", "#ff80e3", "#ffd5bf", "#bf8160", "#ffac80","#8060bf","#d5bfff","#aa80ff","#c40098"];
+     const colors = ["#ff80e3", "#aa80ff","#b33e00","#d5bfff", "#804071","#ff5800","#24006b","#330099","#c40098", "#ffbff1"];
+
+
+
+    Object.keys(data).forEach(year => {
+        Object.keys(data[year]).forEach(type => {
+            if (!colorPlatforms[type])
+                colorPlatforms[type] = d3.rgb(colors.pop())
+        })
+    })
     //draw the treemap
     drawPlatformTreemap(data)
 
@@ -41,13 +55,6 @@ d3.json("data/games_by_year_and_platforms.json", function(e, data) {
             sliderOutputPlatforms.innerHTML = document.getElementById("year_platforms_slider").value
             drawPlatformTreemap(data)
         }
-    
-    //select the number of platforms to display
-    var nbPlatformsToDisplay = document.getElementById("nb_platforms_displayed_selector")
-        .oninput = function() {
-            //re-draw the platform Treemap
-            drawPlatformTreemap(data)
-        }
 
     // upadte every 3 s the displaying of the graph if isPlayingPlatforms is activated
     setInterval(function() { return updateTreemapDisplayinyOnPlayPlatforms(data); }, 3000)
@@ -67,15 +74,15 @@ function drawPlatformTreemap(data) {
     Object.keys(data_year).forEach(type => {
         treemapData.children.push({"name": type, "children": []});
 
+        let color = colorPlatforms[type];
+
         Object.keys(data_year[type]).forEach(platform => {
-            treemapData.children.at(treemapData.children.length - 1).children.push({"name": platform, "parent": type, "value": data_year[type][platform].length, "games": data_year[type][platform]})
+            treemapData.children.at(treemapData.children.length - 1).children.push({"name": platform, "parent": type, "value": data_year[type][platform].length, "games": data_year[type][platform], "color": color})
         })
     });
 
-    //console.log(treemapData)    
-
-    // Specify the color scale.
-    const color = d3.scaleOrdinal(treemapData.children.map(d => d.name), d3.schemeTableau10);
+   
+    
 
     // Compute the layout.
     const root = d3.treemap()
@@ -87,7 +94,6 @@ function drawPlatformTreemap(data) {
         .sum(d => d.value)
         .sort((a, b) => b.value - a.value));
 
-    platform_tree_map.selectAll("g").attr("color", color)
 
 
     // Append a tooltip.
@@ -108,10 +114,11 @@ function drawPlatformTreemap(data) {
     // Append a color rectangle. 
     leaf.append("rect")
         //.attr("id", d => (d.leafUid = DOM.uid("leaf")).id)
-        .attr("fill", d => { while (d.depth > 1) d = d.parent; return color(d.data.name); })
-        .attr("fill-opacity", 0.6)
         .attr("width", d => d.x1 - d.x0)
         .attr("height", d => d.y1 - d.y0)
+        //.style("fill", d => { d3.rgb([200, 0, 0])/*color(d.parent.name);*/ })
+        .style("fill", d => d.data.color)
+        .style("fill-opacity", 0.7)
         .on("click",d => onClickRectPlatforms(d, data));
 
     // Append a clipPath to ensure text does not overflow.
@@ -122,8 +129,15 @@ function drawPlatformTreemap(data) {
 
     // Append multiline text. The last line shows the value and has a specific formatting.
     leaf.append("text")
-        .style("font", "5em games")
+        .style("font-family", "arial")
+        .style("font-weight", "bold")
+        .style("font-size", d => {
+            // Calculate area of the rectangle
+            const area = (d.x1 - d.x0) * (d.y1 - d.y0);
+            // Determine font size proportional to area (adjust multiplier as needed)
+            return Math.sqrt(area) / 6;})
         .attr("clip-path", d => d.clipUid)
+        .attr("text-anchor", "start")
         .selectAll("tspan")
         .data(d => d.data.name.split(/(?=[A-Z][a-z])|\s+/g).concat(format(d.value)))
         .enter()
@@ -132,6 +146,7 @@ function drawPlatformTreemap(data) {
         .attr("y", (d, i, nodes) => `${(i === nodes.length - 1) * 0.3 + 1.1 + i * 0.9}em`)
         .attr("fill-opacity", (d, i, nodes) => i === nodes.length - 1 ? 0.7 : null)
         .text(d => d);
+
 
 }
 

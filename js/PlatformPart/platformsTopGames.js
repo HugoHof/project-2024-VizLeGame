@@ -2,7 +2,7 @@
 function drawListGamesPlatforms(data) {
     //change the title
     document.getElementById("platforms_list_games_title")
-        .textContent = "Games Realeased on " + String(currentPlatformSelected) + " in " + String(document.getElementById("year_platforms_slider").value)
+        .textContent = "Games Realeased on " + String(currentPlatformSelected.name) + " in " + String(document.getElementById("year_platforms_slider").value)
 
 
     
