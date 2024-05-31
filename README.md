@@ -31,6 +31,8 @@ You can find on this link the [screencast video file](/milestone_3/VizLeGame_Scr
 
 Thank you for your reading.
 
+(The link for the website github action come from a personal [GitHub account](https://github.com/HugoHof/VizLeGame) since GitHub Page Actions is unable on this repositiry as indicated on Ed).
+
 ## Late policy
 
 - < 24h: 80% of the grade for the milestone
