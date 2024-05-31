@@ -17,6 +17,10 @@ const platform_tree_map = d3.select("#platform_tree_map").append("svg")
     .style("height", "100%")
     .style("display", "block")
 
+var TooltipPlatforms = d3.select("#platform_tree_map").append("div")
+    .attr("class", "tooltipGraph")
+
+
 d3.json("data/games_by_year_and_platforms.json", function(e, data) {
     if (e) console.log("Error loading the data for treemap platforms file: " + e);
 
@@ -24,8 +28,10 @@ d3.json("data/games_by_year_and_platforms.json", function(e, data) {
      //const colors = ["#ffbff1", "#bf60aa", "#ff80e3", "#ffd5bf", "#bf8160", "#ffac80","#8060bf","#d5bfff","#aa80ff","#c40098"];
     // const colors = ["#330099", "#aa80ff","#b33e00","#d5bfff", "#804071","#ff5800","#24006b","#330099","#c40098", "#ffbff1"];
     const colors = ["#9e0142","#d53e4f", "#f46d43", "#fdae61", "#fee08b","#e6f598","#abdda4","#66c2a5","#3288bd","#5e4fa2"];
-
-
+    //const colors = ["#4E79A7", "#F28E2B", "#E15759", "#76B7B2", "#59A14F", "#EDC948", "#B07AA1", "#FF9DA7", "#9C755F", "#BAB0AC"]
+    //const colors = ["#1f77b4", "#ff7f0e", "#2ca02c", "#d62728", "#9467bd", "#8c564b", "#e377c2", "#7f7f7f", "#bcbd22", "#17becf"]
+    //const colors = ["#FF5733", "#33FF57", "#3357FF", "#FF33A1", "#33FFA1", "#A133FF", "#FF5733", "#FFBD33", "#33FFF0", "#FF3388"]
+    
     Object.keys(data).forEach(year => {
         Object.keys(data[year]).forEach(type => {
             if (!colorPlatforms[type])
@@ -69,6 +75,8 @@ function drawPlatformTreemap(data) {
     datePlatforms = document.getElementById("year_platforms_slider").value
     let data_year = data[datePlatforms]
 
+    document.getElementById("platforms_graph_title").textContent = "Games by Platforms in " + datePlatforms
+
     let treemapData = {"name": "platforms", "children": []};
 
     Object.keys(data_year).forEach(type => {
@@ -108,28 +116,30 @@ function drawPlatformTreemap(data) {
 
     
     
-    leaf.append("title")
-        .text(d => `${d.ancestors().reverse().map(d => d.data.name).join(".")}\n${format(d.value)}`);
+    leaf
+    .on("mouseover", d => mouseMoveRectPlatforms(d, data))
+    .on("mouseout", function(d) {
+        TooltipPlatforms.transition().duration(500).style("opacity", 0);
+    });
 
     // Append a color rectangle. 
     leaf.append("rect")
         //.attr("id", d => (d.leafUid = DOM.uid("leaf")).id)
         .attr("width", d => d.x1 - d.x0)
         .attr("height", d => d.y1 - d.y0)
-        //.style("fill", d => { d3.rgb([200, 0, 0])/*color(d.parent.name);*/ })
         .style("fill", d => d.data.color)
         .style("fill-opacity", 1)
         .on("click",d => onClickRectPlatforms(d, data))
-        .on("mouseover",d => mouseMoveRectPlatforms(d, data));
+        
 
     // Append a clipPath to ensure text does not overflow.
     leaf.append("clipPath")
-        //.attr("id", d => (d.clipUid = DOM.uid("clip")).id)
-        .append("use")
-        //.attr("xlink:href", d => d.leafUid.href);
+        .attr("id", d => (`clip-${d.clipUid}`))
+        .append("use");
 
     // Append multiline text. The last line shows the value and has a specific formatting.
-    leaf.append("text")
+    /*leaf.append("text")
+        .style("pointer-events", "none")
         .style("font-family", "arial")
         .style("font-weight", "bold")
         .style("font-size", d => {
@@ -140,14 +150,54 @@ function drawPlatformTreemap(data) {
         .attr("clip-path", d => d.clipUid)
         .attr("text-anchor", "start")
         .selectAll("tspan")
-        .data(d => d.data.name.split(/(?=[A-Z][a-z])|\s+/g).concat(format(d.value)))
+        .data(d => {
+        const name = d.data.name;
+        const value = format(d.value) + " games";
+        return [name, value];
+        })
         .enter()
         .append("tspan")
         .attr("x", 3)
         .attr("y", (d, i, nodes) => `${(i === nodes.length - 1) * 0.3 + 1.1 + i * 0.9}em`)
         .attr("fill-opacity", (d, i, nodes) => i === nodes.length - 1 ? 0.7 : null)
-        .text(d => d);
+        .text(d => d);*/
+        
+        leaf.append("text")
+        .attr("x", d => Math.max((d.x1 - d.x0)/15, 2) +"px")
+        .attr("y", d => Math.max((d.y1-d.y0)/11, 2) +"px")
+        .attr("dy", "0.35em")
+        .attr("pointer-events", "none")
+        .attr("text-anchor", "left")
+        .style("font-family", "arial")
+        .style("font-weight", "bold")
+        .style("fill", "#3c3d28")
+        .text(d => {
+            var index = ((d.x1 -d.x0)) <= 500 ? (d.x1 -d.x0) * 7 / (Math.min((d.x1 - d.x0), (d.y1 -d.y0))) : 100
+            if(index < String(d.data.name).length) {
+                return String(d.data.name).substring(0, index) + "...";
+            }
+            return d.data.name;
+        })
+        .style("font-size", d => { return Math.min(Math.min((d.x1 - d.x0), (d.y1 -d.y0)) / 5, 60) + "px"; })
 
+        leaf.append("text")
+        .attr("x", d => Math.max((d.x1 - d.x0)/15, 2) +"px")
+        .attr("y", d => Math.max((d.y1-d.y0)/11, 2) + Math.min(Math.min((d.x1 - d.x0), (d.y1 -d.y0)) /5, 70)+"px")
+        .attr("dy", "0.35em")
+        .attr("pointer-events", "none")
+        .attr("text-anchor", "left")
+        .style("font-family", "arial")
+        .style("font-weight", "bold")
+        .style("fill", "#3c3d28")
+        .text(d => {
+            var index = (d.x1 -d.x0) * 8 / (Math.min((d.x1 - d.x0), (d.y1 -d.y0)))
+            if(index < String(d.data.value).length) {
+                return String(d.data.value).substring(0, index) + "...";
+            }
+            return d.data.value;
+        })
+        .style("font-size", d => { return Math.min(Math.min((d.x1 - d.x0), (d.y1 -d.y0)) /5  + 1, 62) + "px"; })
+       
 
 }
 
@@ -186,9 +236,13 @@ function onClickRectPlatforms(e,data){
     // show the right content of the visualization
     document.getElementById("platforms_right_no_selected").style.display = "none"
     document.getElementById("platforms_right_selected").style.display = "initial"
-
-function mouseMoveRectPlatforms(d, data){
-    TooltipPlatforms.style("opacity", 1)
-    }
     
 }
+
+function mouseMoveRectPlatforms(d, data){
+    TooltipPlatforms.transition().duration(200).style("opacity", .9);
+    TooltipPlatforms.html(d.data.parent + "<br>" + d.data.name + "<br>" + d.value + " games")
+        .style("left", (d3.event.pageX + 10) + "px")
+        .style("top", (d3.event.pageY - 50) + "px")
+
+    }
