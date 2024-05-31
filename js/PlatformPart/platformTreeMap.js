@@ -217,7 +217,7 @@ function onClickRectPlatforms(e,data){
 
 function mouseMoveRectPlatforms(d, data){
     TooltipPlatforms.transition().duration(200).style("opacity", .9);
-    TooltipPlatforms.html(d.data.parent + "<br>" + d.data.name + "<br>" + d.value + " games")
+    TooltipPlatforms.html(d.data.parent + "<br>" + d.data.name + "<br>" + d.value + " games released")
         .style("left", (d3.event.pageX + 10) + "px")
         .style("top", (d3.event.pageY - 50) + "px")
 
