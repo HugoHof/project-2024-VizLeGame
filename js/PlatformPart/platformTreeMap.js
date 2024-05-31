@@ -159,7 +159,6 @@ function drawPlatformTreemap(data) {
         .attr("pointer-events", "none")
         .attr("text-anchor", "left")
         .style("font-family", "arial")
-        .style("font-weight", "bold")
         .style("fill", d => currentPlatformSelected.name === d.data.name ? "white" : "#3c3d28")
         .text(d => {
             var index = (d.x1 -d.x0) * 8 / (Math.min((d.x1 - d.x0), (d.y1 -d.y0)))
