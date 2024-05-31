@@ -481,12 +481,29 @@
         <!--Conclusion-->
         <div class="section">
 
+            <div class="aboutUsSection" style="gap: 0%;">
+                <h1 class="sectionTitleGraph header">
+                    Conclusion
+                </h1>
 
-            <h1 class="sectionTitle">
-                Conclusion
-            </h1>
+                <div style="display: flex; gap: 1%;width: 98%;margin-left: -0.5%;padding: 1%;">
+                    <div class="boxOutline descriptionIntro" style="text-align: justify; width: 60%;padding: 3%;">
+                        The graph on the right illustrates the increasing number of video games released annually. 
+                        Our analysis firstly revealed that the distribution of genres has evolved over time. 
+                        Furthermore, we observed that video games are developed for a multitude of platforms, and also that the number of developers engaged in this process has grown considerably over time. 
+                        Finally, we observed that the genres, platforms and developers can be linked in various ways. 
+                        Thank you for your attention, we hope that our visualization has piqued your interest and that you may be more inclined to pursue further research in the video game industry.
+                    </div>
+    
+                    <div class="boxOutline" style="width: 40%;">
+                        <h2 class="rightPartTitleSmall">Number of games realeased along the years</h2>
+                        <div id="conclusion_chart" style="align-self: center; height: fit-content; width: 100%;"></div>
+                    </div>
+        
+                </div>
+                
+            </div>
             
-
             <!--sonic-->
             <div class='level-container' style="margin-left: -0.5%;">
                 <div class='row-container'>
@@ -563,8 +580,8 @@
                     </div>
                 </div>
 
-                <div class="aboutUsLast">This web site was done in the context of the <a href="https://moodle.epfl.ch/course/view.php?id=15487">Data visualization course</a> at EPFL.<br>
-                    We would like to thank the Data visualization team for their feedbacks during the milestones.<br>
+                <div class="boxOutline descriptionIntro" style="text-align: justify; width: 60%;padding: 1%;">This web site was done in the context of the <a href="https://edu.epfl.ch/coursebook/en/data-visualization-COM-480">Data visualization course</a> at EPFL.
+                    We would like to thank the Data visualization team for their feedbacks during the milestones.
                     The source code can be found <a href="https://github.com/com-480-data-visualization/project-2024-VizLeGame">here</a>.
                 </div>
 
@@ -581,16 +598,19 @@
         scrollOverflow: false,
         navigation: true, // Adds navigation dots
         navigationTooltips: ['Home', 'Introduction', 'Genre trends', 'Platforms', 'Developers', 'Interactive diagram', 'Conclusion', 'About us'], // Adds name to navigation dots
+        anchors: ['', 'Introduction', '', '', '', '', '', ''],
         sectionsColor: ['#000000', '', '', '', '', '', '', '#FFFFFF'], // Background colors for each section
         normalScrollElements: ".rightPartDescriptionPart, .podiumGame, .gameCard, .rightPartListContainer", // to avoid going to another page when scrolling
+        onLeave: function(origin, destination, direction, trigger){
+            if (destination.anchor === 'Introduction'){
+                // Introduction dynamic statistics displaying
+                displayNumberDynamically("#genres_intro_stats_number", 23, 2000);
+                displayNumberDynamically("#platforms_intro_stats_number", 175, 3000);
+                displayNumberDynamically("#editors_intro_stats_number", 12846, 5000);
+                displayNumberDynamically("#games_intro_stats_number", 26903, 7000);
+            }
+        },
         });
-    </script>
-    <!--Introduction dynamic statistics displaying-->
-    <script>
-        displayNumberDynamically("#genres_intro_stats_number", 23, 2000);
-        displayNumberDynamically("#platforms_intro_stats_number", 175, 3000);
-        displayNumberDynamically("#editors_intro_stats_number", 12846, 5000);
-        displayNumberDynamically("#games_intro_stats_number", 26903, 7000);
     </script>
     <!--Genres bar chart-->
     <script src = "js/genresBarChart.js"></script>
@@ -603,5 +623,7 @@
     <script src="js/sankey/sankeyDiagram.js"></script>
     <script src="js/sankey/sankeyEvolutionChart.js"></script>
     <script src="js/sankey/sankeyRightPanel.js"></script>
+    <!--conclusion-->
+    <script src="js/conclusionGraph.js"></script>
 </body>
 </html>
