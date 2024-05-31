@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="css/style.css"></style>
     <link rel="stylesheet" href="css/pacman.css"></style>
     <link rel="stylesheet" href="css/mario.css"></style>
+    <link rel="stylesheet" href="css/sonic.css"></style>
 
     <!--D3.js-->
     <script src="https://d3js.org/d3.v4.min.js"></script>
@@ -553,24 +554,112 @@
         </div>
         <!--Conclusion-->
         <div class="section">
-            <h1 class="sectionTitle">
-                Conclusion
-            </h1>
-            <p>
-                A conclusion to the story telling of our vizualization. Ex: Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
-                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Massa tempor nec feugiat nisl pretium fusce id velit ut. 
-                Molestie ac feugiat sed lectus vestibulum mattis ullamcorper velit. Fames ac turpis egestas maecenas pharetra. Ac odio tempor 
-                orci dapibus ultrices in iaculis nunc. Nisi est sit amet facilisis. Et netus et malesuada fames ac turpis egestas integer. Elit 
-                duis tristique sollicitudin nibh. Viverra adipiscing at in tellus integer feugiat. Condimentum lacinia quis vel eros donec ac odio 
-                tempor orci. Egestas purus viverra accumsan in nisl nisi scelerisque. Adipiscing tristique risus nec feugiat in fermentum posuere. 
-                A arcu cursus vitae congue mauris rhoncus. Aliquam vestibulum morbi blandit cursus.
-            </p>
+
+            <div class="aboutUsSection" style="gap: 0%;">
+                <h1 class="sectionTitleGraph header">
+                    Conclusion
+                </h1>
+
+                <div style="display: flex; gap: 1%;width: 98%;margin-left: -0.5%;padding: 1%;">
+                    <div class="boxOutline descriptionIntro" style="text-align: justify; width: 60%;padding: 3%;">
+                        The graph on the right illustrates the increasing number of video games released annually. 
+                        Our analysis firstly revealed that the distribution of genres has evolved over time. 
+                        Furthermore, we observed that video games are developed for a multitude of platforms, and also that the number of developers engaged in this process has grown considerably over time. 
+                        Finally, we observed that the genres, platforms and developers can be linked in various ways. 
+                        Thank you for your attention, we hope that our visualization has piqued your interest and that you may be more inclined to pursue further research in the video game industry.
+                    </div>
+    
+                    <div class="boxOutline" style="width: 40%;">
+                        <h2 class="rightPartTitleSmall">Number of games realeased along the years</h2>
+                        <div id="conclusion_chart" style="align-self: center; height: fit-content; width: 100%;"></div>
+                    </div>
+        
+                </div>
+                
+            </div>
+            
+            <!--sonic-->
+            <div class='level-container' style="margin-left: -0.5%;">
+                <div class='row-container'>
+                  <div class='row'>
+                    <div class='sonic'></div>
+                  </div>
+                </div>
+                <div class='tube-container'>
+                  <div class='support-1'></div>
+                  <div class='support-2'></div>
+                  <div class='tube'></div>
+                </div>
+              </div>
         </div>
         <!--About us-->
         <div class="section">
-            <h1 class="sectionTitle">
-                About us & Context
-            </h1>
+
+            <div class="introAnimation" style="margin-left: -0.5%;">
+                <div class="sky">
+                    <div style="height: 70%;"></div>
+                    <img class="cloud" src="https://raw.githubusercontent.com/LantareCode/random-this-and-thats/master/CSS/SuperMario-Animation/images/CloudSingle.gif">
+                    <img class="cloud" src="https://raw.githubusercontent.com/LantareCode/random-this-and-thats/master/CSS/SuperMario-Animation/images/CloudDouble.gif">
+                    <img class="cloud" src="https://raw.githubusercontent.com/LantareCode/random-this-and-thats/master/CSS/SuperMario-Animation/images/CloudTriple.gif">
+                </div>
+                <div class="ground">
+                    <div class="skyblocks">
+                        <img class="brick" src="https://raw.githubusercontent.com/LantareCode/random-this-and-thats/master/CSS/SuperMario-Animation/images/Bricks.gif" height="70px;">
+                        <img class="brick" src="https://raw.githubusercontent.com/LantareCode/random-this-and-thats/master/CSS/SuperMario-Animation/images/QuestionBlock.gif" height="70px;">
+                        <img class="brick" src="https://raw.githubusercontent.com/LantareCode/random-this-and-thats/master/CSS/SuperMario-Animation/images/Bricks.gif" height="70px;">
+                        <img class="brick" src="https://raw.githubusercontent.com/LantareCode/random-this-and-thats/master/CSS/SuperMario-Animation/images/Bricks.gif" height="70px;">
+                    </div>
+                    <img class="bush" src="https://raw.githubusercontent.com/LantareCode/random-this-and-thats/master/CSS/SuperMario-Animation/images/BushSingle.gif" height="70px;">
+                    <img class="bush" src="https://raw.githubusercontent.com/LantareCode/random-this-and-thats/master/CSS/SuperMario-Animation/images/BushDouble.gif" height="70px;">
+                    <img class="bush" src="https://raw.githubusercontent.com/LantareCode/random-this-and-thats/master/CSS/SuperMario-Animation/images/BushSingle.gif" height="70px;">
+
+                    <div class="mario"></div>
+                </div>
+            </div>
+
+            <div class="aboutUsSection">
+                <h1 class="sectionTitleGraph header">
+                    About us and Context
+                </h1>
+
+                <div class="aboutUsContainer">
+                    <div class="aboutUsItem">
+                        <div class="imgContainer">
+                            <img src="images/Mario.png">
+                        </div>
+                        <div class="name">
+                            <h1>Hugo Hof</h1>
+                            <a href="mailto:hugo.hof@epfl.ch">hugo.hof@epfl.ch</a>
+                        </div>
+                    </div>
+    
+                    <div class="aboutUsItem">
+                        <div class="imgContainer">
+                            <img src="images/Luigi.png">
+                        </div>
+                        <div class="name">
+                            <h1>Eric Kurmann</h1>
+                            <a href="mailto:eric.kurmann@epfl.ch">eric.kurmann@epfl.ch</a>
+                        </div>
+                    </div>
+    
+                    <div class="aboutUsItem">
+                        <div class="imgContainer">
+                            <img src="images/Peach.png">
+                        </div>
+                        <div class="name">
+                            <h1>Camille Steiner</h1>
+                            <a href="mailto:camille.steiner@epfl.ch">camille.steiner@epfl.ch</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="boxOutline descriptionIntro" style="text-align: justify; width: 60%;padding: 1%;">This web site was done in the context of the <a href="https://edu.epfl.ch/coursebook/en/data-visualization-COM-480">Data visualization course</a> at EPFL.
+                    We would like to thank the Data visualization team for their feedbacks during the milestones.
+                    The source code can be found <a href="https://github.com/com-480-data-visualization/project-2024-VizLeGame">here</a>.
+                </div>
+
+            </div>
         </div>
     </div>
 
@@ -583,16 +672,19 @@
         scrollOverflow: false,
         navigation: true, // Adds navigation dots
         navigationTooltips: ['Home', 'Introduction', 'Genre trends', 'Platforms', 'Developers', 'Interactive diagram', 'Conclusion', 'About us'], // Adds name to navigation dots
+        anchors: ['', 'Introduction', '', '', '', '', '', ''],
         sectionsColor: ['#000000', '', '', '', '', '', '', '#FFFFFF'], // Background colors for each section
         normalScrollElements: ".rightPartDescriptionPart, .podiumGame, .gameCard, .rightPartListContainer", // to avoid going to another page when scrolling
+        onLeave: function(origin, destination, direction, trigger){
+            if (destination.anchor === 'Introduction'){
+                // Introduction dynamic statistics displaying
+                displayNumberDynamically("#genres_intro_stats_number", 23, 2000);
+                displayNumberDynamically("#platforms_intro_stats_number", 175, 3000);
+                displayNumberDynamically("#editors_intro_stats_number", 12846, 5000);
+                displayNumberDynamically("#games_intro_stats_number", 26903, 7000);
+            }
+        },
         });
-    </script>
-    <!--Introduction dynamic statistics displaying-->
-    <script>
-        displayNumberDynamically("#genres_intro_stats_number", 23, 2000);
-        displayNumberDynamically("#platforms_intro_stats_number", 175, 3000);
-        displayNumberDynamically("#editors_intro_stats_number", 12846, 5000);
-        displayNumberDynamically("#games_intro_stats_number", 26903, 7000);
     </script>
     <!--Genres bar chart-->
     <script src = "js/genresBarChart.js"></script>
@@ -609,5 +701,7 @@
     <script src="js/sankey/sankeyDiagram.js"></script>
     <script src="js/sankey/sankeyEvolutionChart.js"></script>
     <script src="js/sankey/sankeyRightPanel.js"></script>
+    <!--conclusion-->
+    <script src="js/conclusionGraph.js"></script>
 </body>
 </html>
