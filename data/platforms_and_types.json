@@ -1,0 +1,933 @@
+{
+    "consoles": [
+      {
+        "id": 1,
+        "name": "Windows PC",
+        "genres": 8
+      },
+      {
+        "id": 2,
+        "name": "PlayStation 4",
+        "genres": 1
+      },
+      {
+        "id": 3,
+        "name": "Xbox One",
+        "genres": 1
+      },
+      {
+        "id": 4,
+        "name": "PlayStation 5",
+        "genres": 1
+      },
+      {
+        "id": 5,
+        "name": "Xbox Series",
+        "genres": 1
+      },
+      {
+        "id": 6,
+        "name": "Wii U",
+        "genres": 1
+      },
+      {
+        "id": 7,
+        "name": "Nintendo Switch",
+        "genres": 3
+      },
+      {
+        "id": 8,
+        "name": "Mac",
+        "genres": 8
+      },
+      {
+        "id": 9,
+        "name": "Linux",
+        "genres": 8
+      },
+      {
+        "id": 10,
+        "name": "PlayStation Vita",
+        "genres": 2
+      },
+      {
+        "id": 11,
+        "name": "Android",
+        "genres": 10
+      },
+      {
+        "id": 12,
+        "name": "iOS",
+        "genres": 10
+      },
+      {
+        "id": 13,
+        "name": "Xbox 360",
+        "genres": 1
+      },
+      {
+        "id": 14,
+        "name": "PlayStation 3",
+        "genres": 1
+      },
+      {
+        "id": 15,
+        "name": "Google Stadia",
+        "genres": 4
+      },
+      {
+        "id": 16,
+        "name": "Wii",
+        "genres": 1
+      },
+      {
+        "id": 17,
+        "name": "Nintendo 64",
+        "genres": 1
+      },
+      {
+        "id": 18,
+        "name": "PlayStation",
+        "genres": 1
+      },
+      {
+        "id": 19,
+        "name": "PlayStation Portable",
+        "genres": 2
+      },
+      {
+        "id": 20,
+        "name": "Playstation VR2",
+        "genres": 5
+      },
+      {
+        "id": 21,
+        "name": "PlayStation 2",
+        "genres":1
+      },
+      {
+        "id": 22,
+        "name": "Nintendo GameCube",
+        "genres": 1
+      },
+      {
+        "id": 23,
+        "name": "Super Famicom",
+        "genres": 1
+      },
+      {
+        "id": 24,
+        "name": "SNES",
+        "genres": 1
+      },
+      {
+        "id": 25,
+        "name": "Satellaview",
+        "genres": 1
+      },
+      {
+        "id": 26,
+        "name": "New Nintendo 3DS",
+        "genres": 2
+      },
+      {
+        "id": 27,
+        "name": "PlayStation VR",
+        "genres": 5
+      },
+      {
+        "id": 28,
+        "name": "Arcade",
+        "genres": 7
+      },
+      {
+        "id": 29,
+        "name": "Family Computer Disk System",
+        "genres": 6
+      },
+      {
+        "id": 30,
+        "name": "Nintendo 3DS",
+        "genres": 2
+      },
+      {
+        "id": 31,
+        "name": "NES",
+        "genres": 1
+      },
+      {
+        "id": 32,
+        "name": "Family Computer (FAMICOM)",
+        "genres": 1
+      },
+      {
+        "id": 33,
+        "name": "Windows Phone",
+        "genres": 10
+      },
+      {
+        "id": 34,
+        "name": "Xbox",
+        "genres": 1
+      },
+      {
+        "id": 35,
+        "name": "Ouya",
+        "genres": 4
+      },
+      {
+        "id": 36,
+        "name": "Game Boy Advance",
+        "genres": 2
+      },
+      {
+        "id": 37,
+        "name": "OnLive Game System",
+        "genres": 4
+      },
+      {
+        "id": 38,
+        "name": "Nintendo DS",
+        "genres": 2
+      },
+      {
+        "id": 39,
+        "name": "Web browser",
+        "genres": 4
+      },
+      {
+        "id": 40,
+        "name": "Sega Saturn",
+        "genres": 1
+      },
+      {
+        "id": 41,
+        "name": "PC-98",
+        "genres": 8
+      },
+      {
+        "id": 42,
+        "name": "PC DOS",
+        "genres": 8
+      },
+      {
+        "id": 43,
+        "name": "Sega 32X",
+        "genres": 1
+      },
+      {
+        "id": 44,
+        "name": "3DO Interactive Multiplayer",
+        "genres": 1
+      },
+      {
+        "id": 45,
+        "name": "Atari Jaguar",
+        "genres": 1
+      },
+      {
+        "id": 46,
+        "name": "Sega Mega Drive/Genesis",
+        "genres": 1
+      },
+      {
+        "id": 47,
+        "name": "Nintendo DSi",
+        "genres": 2
+      },
+      {
+        "id": 48,
+        "name": "Amazon Fire TV",
+        "genres": 4
+      },
+      {
+        "id": 49,
+        "name": "SteamVR",
+        "genres": 5
+      },
+      {
+        "id": 50,
+        "name": "Oculus Rift",
+        "genres": 5
+      },
+      {
+        "id": 51,
+        "name": "Dreamcast",
+        "genres": 1
+      },
+      {
+        "id": 52,
+        "name": "Mobile",
+        "genres": 10
+      },
+      {
+        "id": 53,
+        "name": "Amiga",
+        "genres": 8
+      },
+      {
+        "id": 54,
+        "name": "Commodore C64/128",
+        "genres": 8
+      },
+      {
+        "id": 55,
+        "name": "Game Boy",
+        "genres": 2
+      },
+      {
+        "id": 56,
+        "name": "Sega CD",
+        "genres": 6
+      },
+      {
+        "id": 57,
+        "name": "Turbografx-16/PC Engine CD",
+        "genres": 1
+      },
+      {
+        "id": 58,
+        "name": "Game Boy Color",
+        "genres": 2
+      },
+      {
+        "id": 59,
+        "name": "Zeebo",
+        "genres": 1
+      },
+      {
+        "id": 60,
+        "name": "N-Gage",
+        "genres": 2
+      },
+      {
+        "id": 61,
+        "name": "FM-7",
+        "genres": 8
+      },
+      {
+        "id": 62,
+        "name": "Sharp X1",
+        "genres": 8
+      },
+      {
+        "id": 63,
+        "name": "Texas Instruments TI-99",
+        "genres": 8
+      },
+      {
+        "id": 64,
+        "name": "BlackBerry OS",
+        "genres": 10
+      },
+      {
+        "id": 65,
+        "name": "Commodore VIC-20",
+        "genres": 8
+      },
+      {
+        "id": 66,
+        "name": "Sharp MZ-2200",
+        "genres": 8
+      },
+      {
+        "id": 67,
+        "name": "Palm OS",
+        "genres": 10
+      },
+      {
+        "id": 68,
+        "name": "Windows Mixed Reality",
+        "genres": 5
+      },
+      {
+        "id": 69,
+        "name": "Tapwave Zodiac",
+        "genres": 2
+      },
+      {
+        "id": 70,
+        "name": "Neo Geo CD",
+        "genres": 1
+      },
+      {
+        "id": 71,
+        "name": "Neo Geo MVS",
+        "genres": 7
+      },
+      {
+        "id": 72,
+        "name": "Neo Geo AES",
+        "genres": 1
+      },
+      {
+        "id": 73,
+        "name": "Oculus Quest",
+        "genres": 5
+      },
+      {
+        "id": 74,
+        "name": "Oculus Quest 2",
+        "genres": 5
+      },
+      {
+        "id": 75,
+        "name": "Blu-ray Player",
+        "genres": 6
+      },
+      {
+        "id": 76,
+        "name": "WonderSwan Color",
+        "genres": 2
+      },
+      {
+        "id": 77,
+        "name": "Oculus VR",
+        "genres": 5
+      },
+      {
+        "id": 78,
+        "name": "MSX2",
+        "genres": 8
+      },
+      {
+        "id": 79,
+        "name": "Atari 2600",
+        "genres": 1
+      },
+      {
+        "id": 80,
+        "name": "Atari ST/STE",
+        "genres": 8
+      },
+      {
+        "id": 81,
+        "name": "ZX Spectrum",
+        "genres": 8
+      },
+      {
+        "id": 82,
+        "name": "Amstrad CPC",
+        "genres": 8
+      },
+      {
+        "id": 83,
+        "name": "TurboGrafx-16/PC Engine",
+        "genres": 1
+      },
+      {
+        "id": 84,
+        "name": "Commodore 16",
+        "genres": 8
+      },
+      {
+        "id": 85,
+        "name": "Amiga CD32",
+        "genres": 8
+      },
+      {
+        "id": 86,
+        "name": "Windows Mobile",
+        "genres": 10
+      },
+      {
+        "id": 87,
+        "name": "Atari 7800",
+        "genres": 1
+      },
+      {
+        "id": 88,
+        "name": "Sega Master System",
+        "genres": 1
+      },
+      {
+        "id": 89,
+        "name": "SG-1000",
+        "genres": 1
+      },
+      {
+        "id": 90,
+        "name": "MSX",
+        "genres": 8
+      },
+      {
+        "id": 91,
+        "name": "Sega Game Gear",
+        "genres": 2
+      },
+      {
+        "id": 92,
+        "name": "FM Towns",
+        "genres": 8
+      },
+      {
+        "id": 93,
+        "name": "NEC PC-6000 Series",
+        "genres": 8
+      },
+      {
+        "id": 94,
+        "name": "PC-8801",
+        "genres": 8
+      },
+      {
+        "id": 95,
+        "name": "Sharp X68000",
+        "genres": 8
+      },
+      {
+        "id": 96,
+        "name": "WonderSwan",
+        "genres": 2
+      },
+      {
+        "id": 97,
+        "name": "Atari 5200",
+        "genres": 1
+      },
+      {
+        "id": 98,
+        "name": "Atari Jaguar CD",
+        "genres": 6
+      },
+      {
+        "id": 99,
+        "name": "Atari 8-bit",
+        "genres": 8
+      },
+      {
+        "id": 100,
+        "name": "Apple II",
+        "genres": 8
+      },
+      {
+        "id": 101,
+        "name": "Leapster Explorer/LeadPad Explorer",
+        "genres": 2
+      },
+      {
+        "id": 102,
+        "name": "Daydream",
+        "genres": 5
+      },
+      {
+        "id": 103,
+        "name": "Gear VR",
+        "genres": 5
+      },
+      {
+        "id": 104,
+        "name": "Stadia",
+        "genres": 4
+      },
+      {
+        "id": 105,
+        "name": "OOParts",
+        "genres": 10
+      },
+      {
+        "id": 106,
+        "name": "Atari Lynx",
+        "genres": 2
+      },
+      {
+        "id": 107,
+        "name": "Nintendo 64DD",
+        "genres": 6
+      },
+      {
+        "id": 108,
+        "name": "Apple IIGS",
+        "genres": 8
+      },
+      {
+        "id": 109,
+        "name": "Commodore CDTV",
+        "genres": 8
+      },
+      {
+        "id": 110,
+        "name": "Acorn Archimedes",
+        "genres": 8
+      },
+      {
+        "id": 111,
+        "name": "BBC Microcomputer System",
+        "genres": 8
+      },
+      {
+        "id": 112,
+        "name": "TRS-80",
+        "genres": 8
+      },
+      {
+        "id": 113,
+        "name": "ColecoVision",
+        "genres": 1
+      },
+      {
+        "id": 114,
+        "name": "Intellivision",
+        "genres": 1
+      },
+      {
+        "id": 115,
+        "name": "Commodore Plus/4",
+        "genres": 8
+      },
+      {
+        "id": 116,
+        "name": "Acorn Electron",
+        "genres": 8
+      },
+      {
+        "id": 117,
+        "name": "DVD Player",
+        "genres": 6
+      },
+      {
+        "id": 118,
+        "name": "Philips CD-i",
+        "genres": 1
+      },
+      {
+        "id": 119,
+        "name": "Neo Geo Pocket Color",
+        "genres": 2
+      },
+      {
+        "id": 120,
+        "name": "Vectrex",
+        "genres": 1
+      },
+      {
+        "id": 121,
+        "name": "PC Engine SuperGrafx",
+        "genres": 1
+      },
+      {
+        "id": 122,
+        "name": "Handheld Electronic LCD",
+        "genres": 2
+      },
+      {
+        "id": 123,
+        "name": "HP 2100",
+        "genres": 8
+      },
+      {
+        "id": 124,
+        "name": "CDC Cyber 70",
+        "genres": 8
+      },
+      {
+        "id": 125,
+        "name": "Philips Videopac G7000",
+        "genres": 1
+      },
+      {
+        "id": 126,
+        "name": "Virtual Boy",
+        "genres": 5
+      },
+      {
+        "id": 127,
+        "name": "TRS-80 Color Computer",
+        "genres": 8
+      },
+      {
+        "id": 128,
+        "name": "Meta Quest 3",
+        "genres": 5
+      },
+      {
+        "id": 129,
+        "name": "Nintendo PlayStation",
+        "genres": 1
+      },
+      {
+        "id": 130,
+        "name": "PC-FX",
+        "genres": 8
+      },
+      {
+        "id": 131,
+        "name": "Amstrad PCW",
+        "genres": 8
+      },
+      {
+        "id": 132,
+        "name": "Tatung Einstein",
+        "genres": 8
+      },
+      {
+        "id": 133,
+        "name": "Playdate",
+        "genres": 2
+      },
+      {
+        "id": 134,
+        "name": "Watara/QuickShot Supervision",
+        "genres": 2
+      },
+      {
+        "id": 135,
+        "name": "Bally Astrocade",
+        "genres": 1
+      },
+      {
+        "id": 136,
+        "name": "Sega Pico",
+        "genres": 8
+      },
+      {
+        "id": 137,
+        "name": "Pokémon mini",
+        "genres": 2
+      },
+      {
+        "id": 138,
+        "name": "Plug & Play",
+        "genres": 9
+      },
+      {
+        "id": 139,
+        "name": "Microcomputer",
+        "genres": 8
+      },
+      {
+        "id": 140,
+        "name": "Fairchild Channel F",
+        "genres": 1
+      },
+      {
+        "id": 141,
+        "name": "Leapster",
+        "genres": 2
+      },
+      {
+        "id": 142,
+        "name": "Game & Watch",
+        "genres": 2
+      },
+      {
+        "id": 143,
+        "name": "Commodore PET",
+        "genres": 8
+      },
+      {
+        "id": 144,
+        "name": "Dragon 32/64",
+        "genres": 8
+      },
+      {
+        "id": 145,
+        "name": "Neo Geo Pocket",
+        "genres": 2
+      },
+      {
+        "id": 146,
+        "name": "Epoch Cassette Vision",
+        "genres": 1
+      },
+      {
+        "id": 147,
+        "name": "AY-3-8606",
+        "genres": 9
+      },
+      {
+        "id": 148,
+        "name": "EDSAC",
+        "genres": 8
+      },
+      {
+        "id": 149,
+        "name": "Legacy Computer",
+        "genres": 8
+      },
+      {
+        "id": 150,
+        "name": "PC-50X Family",
+        "genres": 8
+      },
+      {
+        "id": 151,
+        "name": "AY-3-8605",
+        "genres": 9
+      },
+      {
+        "id": 152,
+        "name": "Evercade",
+        "genres": 3
+      },
+      {
+        "id": 153,
+        "name": "VC 4000",
+        "genres": 1
+      },
+      {
+        "id": 154,
+        "name": "Gamate",
+        "genres": 2
+      },
+      {
+        "id": 155,
+        "name": "Intellivision Amico",
+        "genres": 9
+      },
+      {
+        "id": 156,
+        "name": "Hyper Neo Geo 64",
+        "genres": 7
+      },
+      {
+        "id": 157,
+        "name": "Game.com",
+        "genres": 2
+      },
+      {
+        "id": 158,
+        "name": "Thomson MO5",
+        "genres": 8
+      },
+      {
+        "id": 159,
+        "name": "Sinclair ZX81",
+        "genres": 8
+      },
+      {
+        "id": 160,
+        "name": "V.Smile",
+        "genres": 1
+      },
+      {
+        "id": 161,
+        "name": "HyperScan",
+        "genres": 1
+      },
+      {
+        "id": 162,
+        "name": "Playdia",
+        "genres": 1
+      },
+      {
+        "id": 163,
+        "name": "Odyssey",
+        "genres": 9
+      },
+      {
+        "id": 164,
+        "name": "AY-3-8760",
+        "genres": 9
+      },
+      {
+        "id": 165,
+        "name": "Visual Memory Unit / Visual Memory System",
+        "genres": 2
+      },
+      {
+        "id": 166,
+        "name": "Arduboy",
+        "genres": 2
+      },
+      {
+        "id": 167,
+        "name": "1292 Advanced Programmable Video System",
+        "genres": 1
+      },
+      {
+        "id": 168,
+        "name": "Mega Duck/Cougar Boy",
+        "genres": 2
+      },
+      {
+        "id": 169,
+        "name": "PLATO",
+        "genres": 8
+      },
+      {
+        "id": 170,
+        "name": "Oculus Go",
+        "genres": 5
+      },
+      {
+        "id": 171,
+        "name": "AY-3-8500",
+        "genres": 9
+      },
+      {
+        "id": 172,
+        "name": "PlayStation Network",
+        "genres": 1
+      },
+      {
+        "id": 173,
+        "name": "PDP-11",
+        "genres": 8
+      },
+      {
+        "id": 174,
+        "name": "PDP-10",
+        "genres": 8
+      },
+      {
+        "id": 175,
+        "name": "DEC GT40",
+        "genres": 8
+      }
+    ],
+    "genres": [
+      {
+        "id": 1,
+        "name": "Home Console",
+        "description": "The most common type of video game console, typically connected to a television and powered by an AC outlet."
+      },
+      {
+        "id": 2,
+        "name": "Handheld Console",
+        "description": " A portable video game console that can be held in the hands and played anywhere."
+      },
+      {
+        "id": 3,
+        "name": "Hybrid Console",
+        "description": " A video game console that can be used as both a home console and a handheld console."
+      },
+      {
+        "id": 4,
+        "name": "Streaming Console",
+        "description": " A video game console that streams games over the internet, rather than running them locally."
+      },
+      {
+        "id": 5,
+        "name": "VR Console",
+        "description": " A video game console that is designed to be used with a virtual reality headset."
+      },
+      {
+        "id": 6,
+        "name": "Peripherical for console",
+        "description": " A device that is designed to be used with a video game console, such as a 'light gun' or 'dance pad"
+      },
+      {
+        "id": 7,
+        "name": "Arcade Console",
+        "description": " A video game console that is designed to be used in an arcade setting."
+      },
+      {
+        "id": 8,
+        "name": "Personal Computer",
+        "description": " A general-purpose computer that is designed for personal use."
+      },
+      {
+        "id": 9,
+        "name": "other",
+        "description": " Other types of video game consoles that do not fit into the other categories."
+      },
+      {
+        "id": 10,
+        "name": "Mobile",
+        "description": "A mobile device that is capable of running video games, such as a smartphone or tablet."
+      }
+    ]
+  }
+
+  
