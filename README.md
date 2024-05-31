@@ -25,9 +25,9 @@ You can find on this link the [web-link](https://hugohof.github.io/VizLeGame/) o
 ## Milestone 3 (31st May, 5pm)
 
 **80% of the final grade**
-You can find on this link the [report](/milestone_3/) relative to the milestone 3.
-You can find on this link the [web-link](https://hugohof.github.io/VizLeGame/#) of our final website.
-You can find on this link the [screencast video file](/milestone_3/VizLeGame_ScreenCast.mp4) of our website's presentation.
+- You can find on this link the [report](/milestone_3/) relative to the milestone 3.
+- You can find on this link the [web-link](https://hugohof.github.io/VizLeGame/#) of our final website.
+- You can find on this link the [screencast video file](/milestone_3/VizLeGame_ScreenCast.mp4) of our website's presentation.
 
 Thank you for your reading.
 
