@@ -1,7 +1,8 @@
 
 // Specify the chart’s dimensions.
-const widthTreemap = 1700; 
-const heightTreemap = 1300;
+const marginTreemap = { top:10, right: 40, bottom: 60, left:100 }
+const widthTreemap = 1700 - marginTreemap.left -marginTreemap.right; 
+const heightTreemap = 1300 - marginTreemap.top - marginTreemap.bottom;
 
 const tile = d3.treemapSquarify;
 var isPlayingPlatforms = false;
@@ -11,11 +12,13 @@ var colorPlatforms = []
 
 // Create the SVG container.
 const platform_tree_map = d3.select("#platform_tree_map").append("svg")
-    .attr("viewBox", `0 0 ${widthTreemap} ${heightTreemap}`)
+    .attr("viewBox", `0 0 ${widthTreemap + marginTreemap.left + marginTreemap.right} ${heightTreemap + marginTreemap.top + marginTreemap.bottom}`)
     .attr("preserveAspectRatio", "xMidYMid meet")
     .style("width", "100%")
     .style("height", "100%")
     .style("display", "block")
+    .append("g")
+    .attr("transform", "translate(" + marginTreemap.left + "," + marginTreemap.top + ")");
 
 var TooltipPlatforms = d3.select("#platform_tree_map").append("div")
     .attr("class", "tooltipGraph")
@@ -24,13 +27,8 @@ var TooltipPlatforms = d3.select("#platform_tree_map").append("div")
 d3.json("data/games_by_year_and_platforms.json", function(e, data) {
     if (e) console.log("Error loading the data for treemap platforms file: " + e);
 
-     // Specify the color scale.
-     //const colors = ["#ffbff1", "#bf60aa", "#ff80e3", "#ffd5bf", "#bf8160", "#ffac80","#8060bf","#d5bfff","#aa80ff","#c40098"];
-    // const colors = ["#330099", "#aa80ff","#b33e00","#d5bfff", "#804071","#ff5800","#24006b","#330099","#c40098", "#ffbff1"];
+    // Specify the color scale.
     const colors = ["#9e0142","#d53e4f", "#f46d43", "#fdae61", "#fee08b","#e6f598","#abdda4","#66c2a5","#3288bd","#5e4fa2"];
-    //const colors = ["#4E79A7", "#F28E2B", "#E15759", "#76B7B2", "#59A14F", "#EDC948", "#B07AA1", "#FF9DA7", "#9C755F", "#BAB0AC"]
-    //const colors = ["#1f77b4", "#ff7f0e", "#2ca02c", "#d62728", "#9467bd", "#8c564b", "#e377c2", "#7f7f7f", "#bcbd22", "#17becf"]
-    //const colors = ["#FF5733", "#33FF57", "#3357FF", "#FF33A1", "#33FFA1", "#A133FF", "#FF5733", "#FFBD33", "#33FFF0", "#FF3388"]
     
     Object.keys(data).forEach(year => {
         Object.keys(data[year]).forEach(type => {
@@ -124,10 +122,9 @@ function drawPlatformTreemap(data) {
 
     // Append a color rectangle. 
     leaf.append("rect")
-        //.attr("id", d => (d.leafUid = DOM.uid("leaf")).id)
         .attr("width", d => d.x1 - d.x0)
         .attr("height", d => d.y1 - d.y0)
-        .style("fill", d => d.data.color)
+        .style("fill", d => currentPlatformSelected.name === d.data.name ? d.data.color.darker(3) : d.data.color)
         .style("fill-opacity", 1)
         .on("click",d => onClickRectPlatforms(d, data))
         
@@ -136,31 +133,6 @@ function drawPlatformTreemap(data) {
     leaf.append("clipPath")
         .attr("id", d => (`clip-${d.clipUid}`))
         .append("use");
-
-    // Append multiline text. The last line shows the value and has a specific formatting.
-    /*leaf.append("text")
-        .style("pointer-events", "none")
-        .style("font-family", "arial")
-        .style("font-weight", "bold")
-        .style("font-size", d => {
-            // Calculate area of the rectangle
-            const area = (d.x1 - d.x0) * (d.y1 - d.y0);
-            // Determine font size proportional to area (adjust multiplier as needed)
-            return Math.sqrt(area) / 7;})
-        .attr("clip-path", d => d.clipUid)
-        .attr("text-anchor", "start")
-        .selectAll("tspan")
-        .data(d => {
-        const name = d.data.name;
-        const value = format(d.value) + " games";
-        return [name, value];
-        })
-        .enter()
-        .append("tspan")
-        .attr("x", 3)
-        .attr("y", (d, i, nodes) => `${(i === nodes.length - 1) * 0.3 + 1.1 + i * 0.9}em`)
-        .attr("fill-opacity", (d, i, nodes) => i === nodes.length - 1 ? 0.7 : null)
-        .text(d => d);*/
         
         leaf.append("text")
         .attr("x", d => Math.max((d.x1 - d.x0)/15, 2) +"px")
@@ -170,7 +142,7 @@ function drawPlatformTreemap(data) {
         .attr("text-anchor", "left")
         .style("font-family", "arial")
         .style("font-weight", "bold")
-        .style("fill", "#3c3d28")
+        .style("fill", d => currentPlatformSelected.name === d.data.name ? "white" : "#3c3d28")
         .text(d => {
             var index = ((d.x1 -d.x0)) <= 500 ? (d.x1 -d.x0) * 7 / (Math.min((d.x1 - d.x0), (d.y1 -d.y0))) : 100
             if(index < String(d.data.name).length) {
@@ -188,7 +160,7 @@ function drawPlatformTreemap(data) {
         .attr("text-anchor", "left")
         .style("font-family", "arial")
         .style("font-weight", "bold")
-        .style("fill", "#3c3d28")
+        .style("fill", d => currentPlatformSelected.name === d.data.name ? "white" : "#3c3d28")
         .text(d => {
             var index = (d.x1 -d.x0) * 8 / (Math.min((d.x1 - d.x0), (d.y1 -d.y0)))
             if(index < String(d.data.value).length) {
@@ -223,6 +195,7 @@ function onClickPlayButtonPlatforms() {
     if(document.getElementById("year_platforms_slider").value < document.getElementById("year_platforms_slider").max || isPlayingPlatforms) {
         isPlayingPlatforms  = !isPlayingPlatforms
         document.getElementById("platforms_play_button").innerText = isPlayingPlatforms ? "Pause" : "Play"
+        
     }
 }
 function onClickRectPlatforms(e,data){
@@ -232,6 +205,9 @@ function onClickRectPlatforms(e,data){
         drawListGamesPlatforms(data)
         drawPlatformsEvolutionChart(data)
     }
+
+    // redraw the treemap
+    drawPlatformTreemap(data);
 
     // show the right content of the visualization
     document.getElementById("platforms_right_no_selected").style.display = "none"
